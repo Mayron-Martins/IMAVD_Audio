@@ -1,0 +1,10 @@
+{
+  "version": "0.2.1",
+  "tasks": [
+    {
+      "taskLabel": "tarefa-Program",
+      "appliesTo": "Project_IMAVD_Audio/src/Program.cs",
+      "type": "launch"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+C:\Users\Mayro\source\repos\IMAVD_Audio\Project_Audio\bin\Debug\Project_Audio.exe.config
+C:\Users\Mayro\source\repos\IMAVD_Audio\Project_Audio\bin\Debug\Project_Audio.exe
+C:\Users\Mayro\source\repos\IMAVD_Audio\Project_Audio\bin\Debug\Project_Audio.pdb
+C:\Users\Mayro\source\repos\IMAVD_Audio\Project_Audio\obj\Debug\Project_Audio.csproj.AssemblyReference.cache
+C:\Users\Mayro\source\repos\IMAVD_Audio\Project_Audio\obj\Debug\Project_Audio.csproj.SuggestedBindingRedirects.cache
+C:\Users\Mayro\source\repos\IMAVD_Audio\Project_Audio\obj\Debug\Project_Audio.Properties.Resources.resources
+C:\Users\Mayro\source\repos\IMAVD_Audio\Project_Audio\obj\Debug\Project_Audio.csproj.GenerateResource.cache
+C:\Users\Mayro\source\repos\IMAVD_Audio\Project_Audio\obj\Debug\Project_Audio.csproj.CoreCompileInputs.cache
+C:\Users\Mayro\source\repos\IMAVD_Audio\Project_Audio\obj\Debug\Project_Audio.exe
+C:\Users\Mayro\source\repos\IMAVD_Audio\Project_Audio\obj\Debug\Project_Audio.pdb
