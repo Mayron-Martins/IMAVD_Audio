@@ -1,23 +1,22 @@
-﻿using System;
+﻿using Project_Audio.Controller;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Project_Audio
 {
     public partial class Principal : Form
     {
+        private PrincipalController controller;
         public bool microphoneStatus;
-        public Image originalImage;
+        public LinkedList<Image> imageStack;
         public Principal()
         {
             InitializeComponent();
+            controller = new PrincipalController(this);
             microphoneStatus = false;
+            imageStack = new LinkedList<Image>();
         }
 
         private void openFile_MouseEnter(object sender, EventArgs e)
@@ -32,7 +31,7 @@ namespace Project_Audio
 
         private void textToSpeech_MouseEnter(object sender, EventArgs e)
         {
-            description.Text = "Text to Speech";
+            description.Text = "Text to Speech: Performs the conversion of typed text.";
         }
 
         private void textToSpeech_MouseLeave(object sender, EventArgs e)
@@ -42,7 +41,7 @@ namespace Project_Audio
 
         private void speechToText_MouseEnter(object sender, EventArgs e)
         {
-            description.Text = "Speech to Text";
+            description.Text = "Speech to Text: Performs the conversion of audio captured by the microphone or from a file.";
         }
 
         private void speechToText_MouseLeave(object sender, EventArgs e)
@@ -52,22 +51,23 @@ namespace Project_Audio
 
         private void textToSpeech_Click(object sender, EventArgs e)
         {
-            ActiveButton(textToSpeech, speechToText);
+            ActiveButton(textToSpeech, speechToText, voiceCommands);
         }
 
         private void speechToText_Click(object sender, EventArgs e)
         {
-            ActiveButton(speechToText, textToSpeech);
+            ActiveButton(speechToText, textToSpeech, voiceCommands);
         }
 
-        private void ActiveButton(Button button, Button otherButton)
+        private void ActiveButton(Button button, Button otherButton1, Button otherButton2)
         {
             Color bg = button.BackColor;
 
             if (bg.Equals(Color.FromArgb(179, 179, 179)))
             {
                 button.BackColor = Color.White;
-                otherButton.BackColor = Color.FromArgb(179, 179, 179);
+                otherButton1.BackColor = Color.FromArgb(179, 179, 179);
+                otherButton2.BackColor = Color.FromArgb(179, 179, 179);
             }
             else
             {
@@ -75,7 +75,7 @@ namespace Project_Audio
             }
 
             panelTextInteraction.Enabled =
-                (button.BackColor == otherButton.BackColor) ? false : true;
+                (textToSpeech.BackColor == speechToText.BackColor) ? false : true;
         }
 
         private void microphone_Click(object sender, EventArgs e)
@@ -141,7 +141,7 @@ namespace Project_Audio
                 }
                 else
                 {
-                    originalImage = Image.FromFile(selectedFilePath);
+                    imageStack.AddLast(Image.FromFile(selectedFilePath));
                 }
             }
         }
@@ -155,6 +155,61 @@ namespace Project_Audio
         private void microphone_MouseLeave(object sender, EventArgs e)
         {
             description.Text = "";
+        }
+
+        private void geometricShapes_MouseEnter(object sender, EventArgs e)
+        {
+            description.Text = "Generate Geometric Shapes: Inserts the shapes generated according to random creation, automatically resizing according to quantity.";
+        }
+
+        private void geometricShapes_MouseLeave(object sender, EventArgs e)
+        {
+            description.Text = "";
+        }
+
+        private void voiceCommands_MouseEnter(object sender, EventArgs e)
+        {
+            description.Text = "Voice Commands: Speak the corresponding command to perform an action with the objects on the screen.";
+        }
+
+        private void voiceCommands_MouseLeave(object sender, EventArgs e)
+        {
+            description.Text = "";
+        }
+
+        private void peoplesFaces_MouseEnter(object sender, EventArgs e)
+        {
+            description.Text = "Generate People's Faces: Inserts the faces on the screen according to selected images or using the defaults.";
+        }
+
+        private void peoplesFaces_MouseLeave(object sender, EventArgs e)
+        {
+            description.Text = "";
+        }
+
+        private void listPresets_MouseEnter(object sender, EventArgs e)
+        {
+            description.Text = "Presets List: Create lists of commands and interactions to be executed with the objects on the canvas.";
+        }
+
+        private void listPresets_MouseLeave(object sender, EventArgs e)
+        {
+            description.Text = "";
+        }
+
+        private void trashImages_MouseEnter(object sender, EventArgs e)
+        {
+            description.Text = "Clean Images Panel";
+        }
+
+        private void cleanImages_MouseLeave(object sender, EventArgs e)
+        {
+            description.Text = "";
+        }
+
+        private void voiceCommands_Click(object sender, EventArgs e)
+        {
+            ActiveButton(voiceCommands, textToSpeech, speechToText);
         }
     }
 }

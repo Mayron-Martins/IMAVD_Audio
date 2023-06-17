@@ -39,20 +39,30 @@
             this.insertedText = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.description = new System.Windows.Forms.Label();
+            this.pathAudioFile = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.peoplesFaces = new System.Windows.Forms.Button();
+            this.voiceCommands = new System.Windows.Forms.Button();
+            this.geometricShapes = new System.Windows.Forms.Button();
             this.microphone = new System.Windows.Forms.Button();
             this.speechToText = new System.Windows.Forms.Button();
             this.textToSpeech = new System.Windows.Forms.Button();
             this.openFile = new System.Windows.Forms.Button();
-            this.pathAudioFile = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
+            this.listPresets = new System.Windows.Forms.Button();
+            this.cleanImages = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.actualPresets = new System.Windows.Forms.Label();
             this.panelTextInteraction.SuspendLayout();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // panelTextInteraction
             // 
             this.panelTextInteraction.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(47)))), ((int)(((byte)(46)))));
             this.panelTextInteraction.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelTextInteraction.Controls.Add(this.button1);
             this.panelTextInteraction.Controls.Add(this.label3);
             this.panelTextInteraction.Controls.Add(this.differenceTexts);
             this.panelTextInteraction.Controls.Add(this.compareTexts);
@@ -91,7 +101,7 @@
             this.compareTexts.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(109)))), ((int)(((byte)(36)))));
             this.compareTexts.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.compareTexts.ForeColor = System.Drawing.Color.White;
-            this.compareTexts.Location = new System.Drawing.Point(94, 211);
+            this.compareTexts.Location = new System.Drawing.Point(139, 211);
             this.compareTexts.Name = "compareTexts";
             this.compareTexts.Size = new System.Drawing.Size(75, 30);
             this.compareTexts.TabIndex = 4;
@@ -156,12 +166,80 @@
             this.description.Size = new System.Drawing.Size(0, 15);
             this.description.TabIndex = 0;
             // 
+            // pathAudioFile
+            // 
+            this.pathAudioFile.Enabled = false;
+            this.pathAudioFile.Location = new System.Drawing.Point(12, 460);
+            this.pathAudioFile.Name = "pathAudioFile";
+            this.pathAudioFile.Size = new System.Drawing.Size(262, 20);
+            this.pathAudioFile.TabIndex = 6;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.White;
+            this.label4.Location = new System.Drawing.Point(9, 440);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(120, 17);
+            this.label4.TabIndex = 8;
+            this.label4.Text = "Path to Audio File";
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(103)))), ((int)(((byte)(136)))));
+            this.button1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.White;
+            this.button1.Location = new System.Drawing.Point(47, 211);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 30);
+            this.button1.TabIndex = 9;
+            this.button1.Text = "Generate";
+            this.button1.UseVisualStyleBackColor = false;
+            // 
+            // peoplesFaces
+            // 
+            this.peoplesFaces.BackColor = System.Drawing.Color.White;
+            this.peoplesFaces.Image = global::Project_Audio.Properties.Resources.faces;
+            this.peoplesFaces.Location = new System.Drawing.Point(610, 12);
+            this.peoplesFaces.Name = "peoplesFaces";
+            this.peoplesFaces.Size = new System.Drawing.Size(50, 50);
+            this.peoplesFaces.TabIndex = 11;
+            this.peoplesFaces.UseVisualStyleBackColor = false;
+            this.peoplesFaces.MouseEnter += new System.EventHandler(this.peoplesFaces_MouseEnter);
+            this.peoplesFaces.MouseLeave += new System.EventHandler(this.peoplesFaces_MouseLeave);
+            // 
+            // voiceCommands
+            // 
+            this.voiceCommands.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(179)))), ((int)(((byte)(179)))), ((int)(((byte)(179)))));
+            this.voiceCommands.Image = global::Project_Audio.Properties.Resources.voiceCommand;
+            this.voiceCommands.Location = new System.Drawing.Point(554, 12);
+            this.voiceCommands.Name = "voiceCommands";
+            this.voiceCommands.Size = new System.Drawing.Size(50, 50);
+            this.voiceCommands.TabIndex = 10;
+            this.voiceCommands.UseVisualStyleBackColor = false;
+            this.voiceCommands.Click += new System.EventHandler(this.voiceCommands_Click);
+            this.voiceCommands.MouseEnter += new System.EventHandler(this.voiceCommands_MouseEnter);
+            this.voiceCommands.MouseLeave += new System.EventHandler(this.voiceCommands_MouseLeave);
+            // 
+            // geometricShapes
+            // 
+            this.geometricShapes.BackColor = System.Drawing.Color.White;
+            this.geometricShapes.Image = global::Project_Audio.Properties.Resources.geometricShapes;
+            this.geometricShapes.Location = new System.Drawing.Point(498, 12);
+            this.geometricShapes.Name = "geometricShapes";
+            this.geometricShapes.Size = new System.Drawing.Size(50, 50);
+            this.geometricShapes.TabIndex = 9;
+            this.geometricShapes.UseVisualStyleBackColor = false;
+            this.geometricShapes.MouseEnter += new System.EventHandler(this.geometricShapes_MouseEnter);
+            this.geometricShapes.MouseLeave += new System.EventHandler(this.geometricShapes_MouseLeave);
+            // 
             // microphone
             // 
             this.microphone.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(179)))), ((int)(((byte)(179)))), ((int)(((byte)(179)))));
             this.microphone.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.microphone.Image = global::Project_Audio.Properties.Resources.audioOff;
-            this.microphone.Location = new System.Drawing.Point(362, 12);
+            this.microphone.Location = new System.Drawing.Point(368, 12);
             this.microphone.Name = "microphone";
             this.microphone.Size = new System.Drawing.Size(50, 50);
             this.microphone.TabIndex = 5;
@@ -212,24 +290,50 @@
             this.openFile.MouseEnter += new System.EventHandler(this.openFile_MouseEnter);
             this.openFile.MouseLeave += new System.EventHandler(this.openFile_MouseLeave);
             // 
-            // pathAudioFile
+            // listPresets
             // 
-            this.pathAudioFile.Enabled = false;
-            this.pathAudioFile.Location = new System.Drawing.Point(12, 460);
-            this.pathAudioFile.Name = "pathAudioFile";
-            this.pathAudioFile.Size = new System.Drawing.Size(262, 20);
-            this.pathAudioFile.TabIndex = 6;
+            this.listPresets.BackColor = System.Drawing.Color.White;
+            this.listPresets.Image = global::Project_Audio.Properties.Resources.listPresets;
+            this.listPresets.Location = new System.Drawing.Point(666, 12);
+            this.listPresets.Name = "listPresets";
+            this.listPresets.Size = new System.Drawing.Size(50, 50);
+            this.listPresets.TabIndex = 12;
+            this.listPresets.UseVisualStyleBackColor = false;
+            this.listPresets.MouseEnter += new System.EventHandler(this.listPresets_MouseEnter);
+            this.listPresets.MouseLeave += new System.EventHandler(this.listPresets_MouseLeave);
             // 
-            // label4
+            // cleanImages
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(9, 440);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(120, 17);
-            this.label4.TabIndex = 8;
-            this.label4.Text = "Path to Audio File";
+            this.cleanImages.BackColor = System.Drawing.Color.White;
+            this.cleanImages.Image = global::Project_Audio.Properties.Resources.trashImages;
+            this.cleanImages.Location = new System.Drawing.Point(722, 12);
+            this.cleanImages.Name = "cleanImages";
+            this.cleanImages.Size = new System.Drawing.Size(50, 50);
+            this.cleanImages.TabIndex = 13;
+            this.cleanImages.UseVisualStyleBackColor = false;
+            this.cleanImages.MouseEnter += new System.EventHandler(this.trashImages_MouseEnter);
+            this.cleanImages.MouseLeave += new System.EventHandler(this.cleanImages_MouseLeave);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(498, 80);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(274, 353);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBox1.TabIndex = 14;
+            this.pictureBox1.TabStop = false;
+            // 
+            // actualPresets
+            // 
+            this.actualPresets.AutoSize = true;
+            this.actualPresets.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.actualPresets.ForeColor = System.Drawing.Color.White;
+            this.actualPresets.Location = new System.Drawing.Point(498, 436);
+            this.actualPresets.Name = "actualPresets";
+            this.actualPresets.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.actualPresets.Size = new System.Drawing.Size(106, 17);
+            this.actualPresets.TabIndex = 15;
+            this.actualPresets.Text = "Presets: Default";
             // 
             // Principal
             // 
@@ -237,6 +341,13 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
             this.ClientSize = new System.Drawing.Size(784, 511);
+            this.Controls.Add(this.actualPresets);
+            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.cleanImages);
+            this.Controls.Add(this.listPresets);
+            this.Controls.Add(this.peoplesFaces);
+            this.Controls.Add(this.voiceCommands);
+            this.Controls.Add(this.geometricShapes);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.pathAudioFile);
             this.Controls.Add(this.microphone);
@@ -252,6 +363,7 @@
             this.panelTextInteraction.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -275,6 +387,14 @@
         private System.Windows.Forms.Button microphone;
         private System.Windows.Forms.TextBox pathAudioFile;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button geometricShapes;
+        private System.Windows.Forms.Button voiceCommands;
+        private System.Windows.Forms.Button peoplesFaces;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button listPresets;
+        private System.Windows.Forms.Button cleanImages;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label actualPresets;
     }
 }
 

@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\PrincipalController.cs" />
     <Compile Include="View\Principal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -83,16 +84,20 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Controller\" />
     <Folder Include="Model\" />
     <Folder Include="Temp\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="View\Icons\audioOff.png" />
     <Content Include="View\Icons\audioOn.png" />
+    <Content Include="View\Icons\faces.png" />
     <Content Include="View\Icons\folder.png" />
+    <Content Include="View\Icons\geometricShapes.png" />
+    <Content Include="View\Icons\listPresets.png" />
     <Content Include="View\Icons\speechToText.png" />
     <Content Include="View\Icons\textToSpeech.png" />
+    <Content Include="View\Icons\trashImages.png" />
+    <Content Include="View\Icons\voiceCommand.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
