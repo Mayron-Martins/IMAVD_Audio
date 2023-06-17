@@ -3,6 +3,7 @@ using Project_Audio.View;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Project_Audio
@@ -80,9 +81,12 @@ namespace Project_Audio
                 (textToSpeech.BackColor == speechToText.BackColor) ? false : true;
         }
 
-        private void microphone_Click(object sender, EventArgs e)
+        private  async void microphone_Click(object sender, EventArgs e)
         {
             Image img = microphone.Image;
+
+            string audioFilePath = pathAudioFile.Text;
+            string textoConvertido = string.Empty;
 
             bool status = CompareImages(microphone.Image, global::Project_Audio.Properties.Resources.audioOff);
 
@@ -91,6 +95,31 @@ namespace Project_Audio
             microphone.BackColor = status ? Color.White : Color.FromArgb(179, 179, 179);
 
             microphoneStatus = status;
+
+
+
+            if (!string.IsNullOrEmpty(audioFilePath))
+            {
+                // Converter o arquivo de áudio em texto
+                textoConvertido = await controller.ConverterAudioEmTexto(audioFilePath);
+            }
+            else
+            {
+                // Converter a fala em texto
+                textoConvertido = await controller.ConverterFalaEmTexto();
+            }
+
+            // Exibir o texto traduzido na TextBox
+            generatedText.Text = textoConvertido;
+
+
+
+
+
+
+
+
+
         }
 
         private bool CompareImages(Image img1, Image img2)
@@ -218,6 +247,22 @@ namespace Project_Audio
         {
             Presets presets = new Presets(this);
             presets.Show();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string texto = insertedText.Text;
+            controller.ConverterTextoEmAudio(texto);
+        }
+
+        private void generatedText_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pathAudioFile_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
