@@ -47,7 +47,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\PresetsController.cs" />
     <Compile Include="Controller\PrincipalController.cs" />
+    <Compile Include="View\Presets.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Presets.Designer.cs">
+      <DependentUpon>Presets.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\Principal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -66,6 +73,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="View\Presets.resx">
+      <DependentUpon>Presets.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\Principal.resx">
       <DependentUpon>Principal.cs</DependentUpon>
     </EmbeddedResource>
@@ -85,18 +95,23 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Model\" />
+    <Folder Include="Presets\" />
     <Folder Include="Temp\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="View\Icons\addPreset.png" />
     <Content Include="View\Icons\audioOff.png" />
     <Content Include="View\Icons\audioOn.png" />
     <Content Include="View\Icons\faces.png" />
     <Content Include="View\Icons\folder.png" />
     <Content Include="View\Icons\geometricShapes.png" />
     <Content Include="View\Icons\listPresets.png" />
+    <Content Include="View\Icons\removeCommand.png" />
+    <Content Include="View\Icons\save.png" />
     <Content Include="View\Icons\speechToText.png" />
     <Content Include="View\Icons\textToSpeech.png" />
     <Content Include="View\Icons\trashImages.png" />
+    <Content Include="View\Icons\updateCommand.png" />
     <Content Include="View\Icons\voiceCommand.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

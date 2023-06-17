@@ -9,3 +9,4 @@ C:\Users\Mayro\source\repos\IMAVD_Audio\Project_Audio\obj\Debug\Project_Audio.cs
 C:\Users\Mayro\source\repos\IMAVD_Audio\Project_Audio\obj\Debug\Project_Audio.exe
 C:\Users\Mayro\source\repos\IMAVD_Audio\Project_Audio\obj\Debug\Project_Audio.pdb
 C:\Users\Mayro\Source\Repos\IMAVD_Audio\Project_Audio\obj\Debug\Project_Audio.Principal.resources
+C:\Users\Mayro\Source\Repos\IMAVD_Audio\Project_Audio\obj\Debug\Project_Audio.View.Presets.resources

@@ -63,6 +63,16 @@ namespace Project_Audio.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap addPreset {
+            get {
+                object obj = ResourceManager.GetObject("addPreset", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap audioOff {
             get {
                 object obj = ResourceManager.GetObject("audioOff", resourceCulture);
@@ -123,6 +133,26 @@ namespace Project_Audio.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap removeCommand {
+            get {
+                object obj = ResourceManager.GetObject("removeCommand", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap save {
+            get {
+                object obj = ResourceManager.GetObject("save", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap speechToText {
             get {
                 object obj = ResourceManager.GetObject("speechToText", resourceCulture);
@@ -146,6 +176,16 @@ namespace Project_Audio.Properties {
         internal static System.Drawing.Bitmap trashImages {
             get {
                 object obj = ResourceManager.GetObject("trashImages", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap updateCommand {
+            get {
+                object obj = ResourceManager.GetObject("updateCommand", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

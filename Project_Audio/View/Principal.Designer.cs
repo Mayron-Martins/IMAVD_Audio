@@ -42,6 +42,10 @@
             this.description = new System.Windows.Forms.Label();
             this.pathAudioFile = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.actualPresets = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.cleanImages = new System.Windows.Forms.Button();
+            this.listPresets = new System.Windows.Forms.Button();
             this.peoplesFaces = new System.Windows.Forms.Button();
             this.voiceCommands = new System.Windows.Forms.Button();
             this.geometricShapes = new System.Windows.Forms.Button();
@@ -49,10 +53,6 @@
             this.speechToText = new System.Windows.Forms.Button();
             this.textToSpeech = new System.Windows.Forms.Button();
             this.openFile = new System.Windows.Forms.Button();
-            this.listPresets = new System.Windows.Forms.Button();
-            this.cleanImages = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.actualPresets = new System.Windows.Forms.Label();
             this.panelTextInteraction.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -197,6 +197,53 @@
             this.label4.TabIndex = 8;
             this.label4.Text = "Path to Audio File";
             // 
+            // actualPresets
+            // 
+            this.actualPresets.AutoSize = true;
+            this.actualPresets.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.actualPresets.ForeColor = System.Drawing.Color.White;
+            this.actualPresets.Location = new System.Drawing.Point(498, 436);
+            this.actualPresets.Name = "actualPresets";
+            this.actualPresets.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.actualPresets.Size = new System.Drawing.Size(106, 17);
+            this.actualPresets.TabIndex = 15;
+            this.actualPresets.Text = "Presets: Default";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBox1.Location = new System.Drawing.Point(498, 80);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(274, 353);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBox1.TabIndex = 14;
+            this.pictureBox1.TabStop = false;
+            // 
+            // cleanImages
+            // 
+            this.cleanImages.BackColor = System.Drawing.Color.White;
+            this.cleanImages.Image = global::Project_Audio.Properties.Resources.trashImages;
+            this.cleanImages.Location = new System.Drawing.Point(722, 12);
+            this.cleanImages.Name = "cleanImages";
+            this.cleanImages.Size = new System.Drawing.Size(50, 50);
+            this.cleanImages.TabIndex = 13;
+            this.cleanImages.UseVisualStyleBackColor = false;
+            this.cleanImages.MouseEnter += new System.EventHandler(this.trashImages_MouseEnter);
+            this.cleanImages.MouseLeave += new System.EventHandler(this.cleanImages_MouseLeave);
+            // 
+            // listPresets
+            // 
+            this.listPresets.BackColor = System.Drawing.Color.White;
+            this.listPresets.Image = global::Project_Audio.Properties.Resources.listPresets;
+            this.listPresets.Location = new System.Drawing.Point(666, 12);
+            this.listPresets.Name = "listPresets";
+            this.listPresets.Size = new System.Drawing.Size(50, 50);
+            this.listPresets.TabIndex = 12;
+            this.listPresets.UseVisualStyleBackColor = false;
+            this.listPresets.Click += new System.EventHandler(this.listPresets_Click);
+            this.listPresets.MouseEnter += new System.EventHandler(this.listPresets_MouseEnter);
+            this.listPresets.MouseLeave += new System.EventHandler(this.listPresets_MouseLeave);
+            // 
             // peoplesFaces
             // 
             this.peoplesFaces.BackColor = System.Drawing.Color.White;
@@ -290,52 +337,6 @@
             this.openFile.MouseEnter += new System.EventHandler(this.openFile_MouseEnter);
             this.openFile.MouseLeave += new System.EventHandler(this.openFile_MouseLeave);
             // 
-            // listPresets
-            // 
-            this.listPresets.BackColor = System.Drawing.Color.White;
-            this.listPresets.Image = global::Project_Audio.Properties.Resources.listPresets;
-            this.listPresets.Location = new System.Drawing.Point(666, 12);
-            this.listPresets.Name = "listPresets";
-            this.listPresets.Size = new System.Drawing.Size(50, 50);
-            this.listPresets.TabIndex = 12;
-            this.listPresets.UseVisualStyleBackColor = false;
-            this.listPresets.MouseEnter += new System.EventHandler(this.listPresets_MouseEnter);
-            this.listPresets.MouseLeave += new System.EventHandler(this.listPresets_MouseLeave);
-            // 
-            // cleanImages
-            // 
-            this.cleanImages.BackColor = System.Drawing.Color.White;
-            this.cleanImages.Image = global::Project_Audio.Properties.Resources.trashImages;
-            this.cleanImages.Location = new System.Drawing.Point(722, 12);
-            this.cleanImages.Name = "cleanImages";
-            this.cleanImages.Size = new System.Drawing.Size(50, 50);
-            this.cleanImages.TabIndex = 13;
-            this.cleanImages.UseVisualStyleBackColor = false;
-            this.cleanImages.MouseEnter += new System.EventHandler(this.trashImages_MouseEnter);
-            this.cleanImages.MouseLeave += new System.EventHandler(this.cleanImages_MouseLeave);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox1.Location = new System.Drawing.Point(498, 80);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(274, 353);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox1.TabIndex = 14;
-            this.pictureBox1.TabStop = false;
-            // 
-            // actualPresets
-            // 
-            this.actualPresets.AutoSize = true;
-            this.actualPresets.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.actualPresets.ForeColor = System.Drawing.Color.White;
-            this.actualPresets.Location = new System.Drawing.Point(498, 436);
-            this.actualPresets.Name = "actualPresets";
-            this.actualPresets.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.actualPresets.Size = new System.Drawing.Size(106, 17);
-            this.actualPresets.TabIndex = 15;
-            this.actualPresets.Text = "Presets: Default";
-            // 
             // Principal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -395,7 +396,7 @@
         private System.Windows.Forms.Button listPresets;
         private System.Windows.Forms.Button cleanImages;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Label actualPresets;
+        public System.Windows.Forms.Label actualPresets;
     }
 }
 
