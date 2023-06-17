@@ -301,6 +301,7 @@
             this.geometricShapes.Size = new System.Drawing.Size(67, 62);
             this.geometricShapes.TabIndex = 9;
             this.geometricShapes.UseVisualStyleBackColor = false;
+            this.geometricShapes.Click += new System.EventHandler(this.geometricShapes_Click);
             this.geometricShapes.MouseEnter += new System.EventHandler(this.geometricShapes_MouseEnter);
             this.geometricShapes.MouseLeave += new System.EventHandler(this.geometricShapes_MouseLeave);
             // 

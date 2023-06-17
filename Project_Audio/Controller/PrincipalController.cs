@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Drawing;
 using System.Windows.Forms;
 using System.IO;
 using Microsoft.CognitiveServices.Speech;
@@ -14,7 +15,11 @@ namespace Project_Audio.Controller
     public class PrincipalController
     {
         private Principal view;
+
         private SpeechRecognizer recognizer;
+
+        LinkedList<Image> imageLinkedList = new LinkedList<Image>();
+
 
         public PrincipalController(Principal view)
         {
@@ -29,6 +34,7 @@ namespace Project_Audio.Controller
                 synthesizer.Speak(texto);
             }
         }
+
         //-------------------------------------
 
         //--TRANSFORMAÇÃO DE ÁUDIO EM TEXTO--
@@ -80,6 +86,26 @@ namespace Project_Audio.Controller
 
 
 
+
+
+
+        public void GenerateImageListFromButton(Image shape)
+        {
+            imageLinkedList.AddLast(shape);
+        }
+
+        public Image GetRandomImage()
+        {
+            Random random = new Random();
+            int randomIndex = random.Next(0, imageLinkedList.Count);
+
+            LinkedListNode<Image> currentNode = imageLinkedList.First;
+            for (int i = 0; i < randomIndex; i++)
+            {
+                currentNode = currentNode.Next;
+            }
+            return currentNode.Value;
+        }
 
     }
 }

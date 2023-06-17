@@ -1,6 +1,8 @@
 ﻿using Project_Audio.Controller;
 using Project_Audio.View;
+using Project_Audio.Model;
 using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Threading.Tasks;
@@ -8,6 +10,7 @@ using System.Windows.Forms;
 
 namespace Project_Audio
 {
+
     public partial class Principal : Form
     {
         private PrincipalController controller;
@@ -81,7 +84,7 @@ namespace Project_Audio
                 (textToSpeech.BackColor == speechToText.BackColor) ? false : true;
         }
 
-        private  async void microphone_Click(object sender, EventArgs e)
+        private async void microphone_Click(object sender, EventArgs e)
         {
             Image img = microphone.Image;
 
@@ -156,13 +159,13 @@ namespace Project_Audio
             fileDialog.Title = "Select an Audio or Image File";
             fileDialog.Filter = "Arquivos de Áudio|*.wav;*.mp3;*.ogg|Arquivos de Imagem|*.jpg;*.png;*.gif";
 
-            if(fileDialog.ShowDialog() == DialogResult.OK)
+            if (fileDialog.ShowDialog() == DialogResult.OK)
             {
                 string selectedFilePath = fileDialog.FileName;
                 string fileExtension = System.IO.Path.GetExtension(selectedFilePath);
 
                 string[] audioExtensions = { ".wav", ".mp3", ".ogg" };
-                bool fileTypeAudio = (Array.IndexOf(audioExtensions, 
+                bool fileTypeAudio = (Array.IndexOf(audioExtensions,
                     fileExtension.ToLower()) != -1);
 
                 if (fileTypeAudio)
@@ -249,6 +252,7 @@ namespace Project_Audio
             presets.Show();
         }
 
+
         private void button1_Click(object sender, EventArgs e)
         {
             string texto = insertedText.Text;
@@ -264,5 +268,33 @@ namespace Project_Audio
         {
 
         }
+        private void geometricShapes_Click(object sender, EventArgs e)
+        {
+            Shape shape = new Shape();
+
+            Random random = new Random();
+            int randomNumber = random.Next(1, 4);
+
+            string shapeType;
+            switch (randomNumber)
+            {
+                case 1:
+                    shapeType = "Square";
+                    break;
+                case 2:
+                    shapeType = "Triangle";
+                    break;
+                case 3:
+                    shapeType = "Circle";
+                    break;
+                default:
+                    shapeType = "Square";
+                    break;
+            }
+            controller.GenerateImageListFromButton(shape.GenerateShape(shapeType));
+            pictureBox1.Image = controller.GetRandomImage();
+
+        }
+
     }
 }
