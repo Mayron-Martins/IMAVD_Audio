@@ -211,5 +211,10 @@ namespace Project_Audio
         {
             ActiveButton(voiceCommands, textToSpeech, speechToText);
         }
+
+        private void geometricShapes_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
