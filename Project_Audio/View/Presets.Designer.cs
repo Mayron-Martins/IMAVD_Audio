@@ -183,7 +183,9 @@
             "Rotate",
             "Move to",
             "Resize",
-            "Color"});
+            "Color",
+            "Create",
+            "Duplicate"});
             this.mainAction.Location = new System.Drawing.Point(8, 76);
             this.mainAction.Name = "mainAction";
             this.mainAction.Size = new System.Drawing.Size(68, 21);
