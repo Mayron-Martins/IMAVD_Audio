@@ -10,3 +10,15 @@ C:\Users\Mayro\source\repos\IMAVD_Audio\Project_Audio\obj\Debug\Project_Audio.ex
 C:\Users\Mayro\source\repos\IMAVD_Audio\Project_Audio\obj\Debug\Project_Audio.pdb
 C:\Users\Mayro\Source\Repos\IMAVD_Audio\Project_Audio\obj\Debug\Project_Audio.Principal.resources
 C:\Users\Mayro\Source\Repos\IMAVD_Audio\Project_Audio\obj\Debug\Project_Audio.View.Presets.resources
+C:\Users\wrbas\Source\Repos\IMAVD_Audio\Project_Audio\bin\Debug\Project_Audio.exe.config
+C:\Users\wrbas\Source\Repos\IMAVD_Audio\Project_Audio\bin\Debug\Project_Audio.exe
+C:\Users\wrbas\Source\Repos\IMAVD_Audio\Project_Audio\bin\Debug\Project_Audio.pdb
+C:\Users\wrbas\Source\Repos\IMAVD_Audio\Project_Audio\obj\Debug\Project_Audio.csproj.AssemblyReference.cache
+C:\Users\wrbas\Source\Repos\IMAVD_Audio\Project_Audio\obj\Debug\Project_Audio.csproj.SuggestedBindingRedirects.cache
+C:\Users\wrbas\Source\Repos\IMAVD_Audio\Project_Audio\obj\Debug\Project_Audio.Properties.Resources.resources
+C:\Users\wrbas\Source\Repos\IMAVD_Audio\Project_Audio\obj\Debug\Project_Audio.View.Presets.resources
+C:\Users\wrbas\Source\Repos\IMAVD_Audio\Project_Audio\obj\Debug\Project_Audio.Principal.resources
+C:\Users\wrbas\Source\Repos\IMAVD_Audio\Project_Audio\obj\Debug\Project_Audio.csproj.GenerateResource.cache
+C:\Users\wrbas\Source\Repos\IMAVD_Audio\Project_Audio\obj\Debug\Project_Audio.csproj.CoreCompileInputs.cache
+C:\Users\wrbas\Source\Repos\IMAVD_Audio\Project_Audio\obj\Debug\Project_Audio.exe
+C:\Users\wrbas\Source\Repos\IMAVD_Audio\Project_Audio\obj\Debug\Project_Audio.pdb
