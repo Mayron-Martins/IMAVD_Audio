@@ -226,8 +226,27 @@ namespace Project_Audio
         private void geometricShapes_Click(object sender, EventArgs e)
         {
             Shape shape = new Shape();
-            //pictureBox1.Image = shape.GenerateShape("Square");
-            controller.GenerateImageListFromButton(shape.GenerateShape("Square"));
+
+            Random random = new Random();
+            int randomNumber = random.Next(1, 4);
+
+            string shapeType;
+            switch (randomNumber)
+            {
+                case 1:
+                    shapeType = "Square";
+                    break;
+                case 2:
+                    shapeType = "Triangle";
+                    break;
+                case 3:
+                    shapeType = "Circle";
+                    break;
+                default:
+                    shapeType = "Square";
+                    break;
+            }
+            controller.GenerateImageListFromButton(shape.GenerateShape(shapeType));
             pictureBox1.Image = controller.GetRandomImage();
         }
     }

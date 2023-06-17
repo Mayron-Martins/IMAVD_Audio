@@ -38,7 +38,6 @@ namespace Project_Audio.Controller
             {
                 currentNode = currentNode.Next;
             }
-
             return currentNode.Value;
         }
     }
