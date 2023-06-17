@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Principal));
             this.panelTextInteraction = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.differenceTexts = new System.Windows.Forms.TextBox();
             this.compareTexts = new System.Windows.Forms.Button();
@@ -41,7 +42,6 @@
             this.description = new System.Windows.Forms.Label();
             this.pathAudioFile = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
             this.peoplesFaces = new System.Windows.Forms.Button();
             this.voiceCommands = new System.Windows.Forms.Button();
             this.geometricShapes = new System.Windows.Forms.Button();
@@ -75,6 +75,18 @@
             this.panelTextInteraction.Name = "panelTextInteraction";
             this.panelTextInteraction.Size = new System.Drawing.Size(262, 353);
             this.panelTextInteraction.TabIndex = 3;
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(103)))), ((int)(((byte)(136)))));
+            this.button1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.White;
+            this.button1.Location = new System.Drawing.Point(47, 211);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 30);
+            this.button1.TabIndex = 9;
+            this.button1.Text = "Generate";
+            this.button1.UseVisualStyleBackColor = false;
             // 
             // label3
             // 
@@ -184,18 +196,6 @@
             this.label4.Size = new System.Drawing.Size(120, 17);
             this.label4.TabIndex = 8;
             this.label4.Text = "Path to Audio File";
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(103)))), ((int)(((byte)(136)))));
-            this.button1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(47, 211);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 30);
-            this.button1.TabIndex = 9;
-            this.button1.Text = "Generate";
-            this.button1.UseVisualStyleBackColor = false;
             // 
             // peoplesFaces
             // 
@@ -316,6 +316,7 @@
             // 
             // pictureBox1
             // 
+            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBox1.Location = new System.Drawing.Point(498, 80);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(274, 353);
