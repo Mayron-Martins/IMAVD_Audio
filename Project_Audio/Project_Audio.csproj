@@ -68,6 +68,7 @@
   <ItemGroup>
     <Compile Include="Controller\PresetsController.cs" />
     <Compile Include="Controller\PrincipalController.cs" />
+    <Compile Include="Model\Object.cs" />
     <Compile Include="View\Presets.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -113,7 +114,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Model\" />
     <Folder Include="Presets\" />
     <Folder Include="Temp\" />
   </ItemGroup>
