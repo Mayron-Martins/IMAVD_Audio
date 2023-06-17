@@ -9,6 +9,7 @@ C:\Users\Mayro\source\repos\IMAVD_Audio\Project_Audio\obj\Debug\Project_Audio.cs
 C:\Users\Mayro\source\repos\IMAVD_Audio\Project_Audio\obj\Debug\Project_Audio.exe
 C:\Users\Mayro\source\repos\IMAVD_Audio\Project_Audio\obj\Debug\Project_Audio.pdb
 C:\Users\Mayro\Source\Repos\IMAVD_Audio\Project_Audio\obj\Debug\Project_Audio.Principal.resources
+<<<<<<< HEAD
 C:\Users\wrbas\Source\Repos\IMAVD_Audio\Project_Audio\bin\Debug\Project_Audio.exe.config
 C:\Users\wrbas\Source\Repos\IMAVD_Audio\Project_Audio\bin\Debug\Project_Audio.exe
 C:\Users\wrbas\Source\Repos\IMAVD_Audio\Project_Audio\bin\Debug\Project_Audio.pdb
@@ -20,3 +21,6 @@ C:\Users\wrbas\Source\Repos\IMAVD_Audio\Project_Audio\obj\Debug\Project_Audio.cs
 C:\Users\wrbas\Source\Repos\IMAVD_Audio\Project_Audio\obj\Debug\Project_Audio.csproj.CoreCompileInputs.cache
 C:\Users\wrbas\Source\Repos\IMAVD_Audio\Project_Audio\obj\Debug\Project_Audio.exe
 C:\Users\wrbas\Source\Repos\IMAVD_Audio\Project_Audio\obj\Debug\Project_Audio.pdb
+=======
+C:\Users\Mayro\Source\Repos\IMAVD_Audio\Project_Audio\obj\Debug\Project_Audio.View.Presets.resources
+>>>>>>> 70cdda9b4e7a995043fe3b13494ac90852be650c

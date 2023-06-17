@@ -19,20 +19,7 @@ namespace Project_Audio.Controller
         }
     }
 
-    //- CONVERTER TEXTO PARA AUDIO 
-
-    public byte[] ConverterTextoEmAudio(string texto)
-    {
-        using (var synthesizer = new SpeechSynthesizer())
-        {
-            using (var outputStream = new MemoryStream())
-            {
-                synthesizer.SetOutputToWaveStream(outputStream);
-                synthesizer.Speak(texto);
-                return outputStream.ToArray();
-            }
-        }
-    }
+    
 
 
 }

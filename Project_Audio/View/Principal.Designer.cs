@@ -215,21 +215,34 @@
             this.actualPresets.AutoSize = true;
             this.actualPresets.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.actualPresets.ForeColor = System.Drawing.Color.White;
+<<<<<<< HEAD
             this.actualPresets.Location = new System.Drawing.Point(664, 537);
             this.actualPresets.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.actualPresets.Name = "actualPresets";
             this.actualPresets.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.actualPresets.Size = new System.Drawing.Size(136, 23);
+=======
+            this.actualPresets.Location = new System.Drawing.Point(498, 436);
+            this.actualPresets.Name = "actualPresets";
+            this.actualPresets.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.actualPresets.Size = new System.Drawing.Size(106, 17);
+>>>>>>> 70cdda9b4e7a995043fe3b13494ac90852be650c
             this.actualPresets.TabIndex = 15;
             this.actualPresets.Text = "Presets: Default";
             // 
             // pictureBox1
             // 
             this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+<<<<<<< HEAD
             this.pictureBox1.Location = new System.Drawing.Point(664, 98);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(365, 434);
+=======
+            this.pictureBox1.Location = new System.Drawing.Point(498, 80);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(274, 353);
+>>>>>>> 70cdda9b4e7a995043fe3b13494ac90852be650c
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBox1.TabIndex = 14;
             this.pictureBox1.TabStop = false;
@@ -238,10 +251,16 @@
             // 
             this.cleanImages.BackColor = System.Drawing.Color.White;
             this.cleanImages.Image = global::Project_Audio.Properties.Resources.trashImages;
+<<<<<<< HEAD
             this.cleanImages.Location = new System.Drawing.Point(963, 15);
             this.cleanImages.Margin = new System.Windows.Forms.Padding(4);
             this.cleanImages.Name = "cleanImages";
             this.cleanImages.Size = new System.Drawing.Size(67, 62);
+=======
+            this.cleanImages.Location = new System.Drawing.Point(722, 12);
+            this.cleanImages.Name = "cleanImages";
+            this.cleanImages.Size = new System.Drawing.Size(50, 50);
+>>>>>>> 70cdda9b4e7a995043fe3b13494ac90852be650c
             this.cleanImages.TabIndex = 13;
             this.cleanImages.UseVisualStyleBackColor = false;
             this.cleanImages.MouseEnter += new System.EventHandler(this.trashImages_MouseEnter);
@@ -251,12 +270,21 @@
             // 
             this.listPresets.BackColor = System.Drawing.Color.White;
             this.listPresets.Image = global::Project_Audio.Properties.Resources.listPresets;
+<<<<<<< HEAD
             this.listPresets.Location = new System.Drawing.Point(888, 15);
             this.listPresets.Margin = new System.Windows.Forms.Padding(4);
             this.listPresets.Name = "listPresets";
             this.listPresets.Size = new System.Drawing.Size(67, 62);
             this.listPresets.TabIndex = 12;
             this.listPresets.UseVisualStyleBackColor = false;
+=======
+            this.listPresets.Location = new System.Drawing.Point(666, 12);
+            this.listPresets.Name = "listPresets";
+            this.listPresets.Size = new System.Drawing.Size(50, 50);
+            this.listPresets.TabIndex = 12;
+            this.listPresets.UseVisualStyleBackColor = false;
+            this.listPresets.Click += new System.EventHandler(this.listPresets_Click);
+>>>>>>> 70cdda9b4e7a995043fe3b13494ac90852be650c
             this.listPresets.MouseEnter += new System.EventHandler(this.listPresets_MouseEnter);
             this.listPresets.MouseLeave += new System.EventHandler(this.listPresets_MouseLeave);
             // 
@@ -421,7 +449,7 @@
         private System.Windows.Forms.Button listPresets;
         private System.Windows.Forms.Button cleanImages;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Label actualPresets;
+        public System.Windows.Forms.Label actualPresets;
     }
 }
 

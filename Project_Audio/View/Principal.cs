@@ -1,4 +1,5 @@
 ﻿using Project_Audio.Controller;
+using Project_Audio.View;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -17,6 +18,7 @@ namespace Project_Audio
             controller = new PrincipalController(this);
             microphoneStatus = false;
             imageStack = new LinkedList<Image>();
+            StartPosition = FormStartPosition.CenterScreen;
         }
 
         private void openFile_MouseEnter(object sender, EventArgs e)
@@ -212,9 +214,16 @@ namespace Project_Audio
             ActiveButton(voiceCommands, textToSpeech, speechToText);
         }
 
+<<<<<<< HEAD
         private void geometricShapes_Click(object sender, EventArgs e)
         {
 
+=======
+        private void listPresets_Click(object sender, EventArgs e)
+        {
+            Presets presets = new Presets(this);
+            presets.Show();
+>>>>>>> 70cdda9b4e7a995043fe3b13494ac90852be650c
         }
     }
 }
