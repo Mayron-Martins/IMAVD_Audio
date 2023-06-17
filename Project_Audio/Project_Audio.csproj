@@ -68,7 +68,7 @@
   <ItemGroup>
     <Compile Include="Controller\PresetsController.cs" />
     <Compile Include="Controller\PrincipalController.cs" />
-    <Compile Include="Model\Object.cs" />
+    <Compile Include="Model\Shape.cs" />
     <Compile Include="View\Presets.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -127,6 +127,9 @@
     <Content Include="View\Icons\listPresets.png" />
     <Content Include="View\Icons\removeCommand.png" />
     <Content Include="View\Icons\save.png" />
+    <Content Include="View\Icons\Shapes\Circle.png" />
+    <Content Include="View\Icons\Shapes\Square.png" />
+    <Content Include="View\Icons\Shapes\Triangle.png" />
     <Content Include="View\Icons\speechToText.png" />
     <Content Include="View\Icons\textToSpeech.png" />
     <Content Include="View\Icons\trashImages.png" />

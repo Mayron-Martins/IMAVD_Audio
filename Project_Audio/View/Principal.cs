@@ -1,12 +1,15 @@
 ﻿using Project_Audio.Controller;
 using Project_Audio.View;
+using Project_Audio.Model;
 using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
 namespace Project_Audio
 {
+    
     public partial class Principal : Form
     {
         private PrincipalController controller;
@@ -218,6 +221,14 @@ namespace Project_Audio
         {
             Presets presets = new Presets(this);
             presets.Show();
+        }
+
+        private void geometricShapes_Click(object sender, EventArgs e)
+        {
+            Shape shape = new Shape();
+            //pictureBox1.Image = shape.GenerateShape("Square");
+            controller.GenerateImageListFromButton(shape.GenerateShape("Square"));
+            pictureBox1.Image = controller.GetRandomImage();
         }
     }
 }

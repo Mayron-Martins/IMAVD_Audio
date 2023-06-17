@@ -22,3 +22,14 @@ C:\Users\wrbas\Source\Repos\IMAVD_Audio\Project_Audio\obj\Debug\Project_Audio.cs
 C:\Users\wrbas\Source\Repos\IMAVD_Audio\Project_Audio\obj\Debug\Project_Audio.csproj.CoreCompileInputs.cache
 C:\Users\wrbas\Source\Repos\IMAVD_Audio\Project_Audio\obj\Debug\Project_Audio.exe
 C:\Users\wrbas\Source\Repos\IMAVD_Audio\Project_Audio\obj\Debug\Project_Audio.pdb
+C:\Users\eddu_\OneDrive - Instituto Superior de Engenharia do Porto\Documentos\ISEP\IMAVD\IMAVD_Audio\Project_Audio\bin\Debug\Project_Audio.exe.config
+C:\Users\eddu_\OneDrive - Instituto Superior de Engenharia do Porto\Documentos\ISEP\IMAVD\IMAVD_Audio\Project_Audio\bin\Debug\Project_Audio.exe
+C:\Users\eddu_\OneDrive - Instituto Superior de Engenharia do Porto\Documentos\ISEP\IMAVD\IMAVD_Audio\Project_Audio\bin\Debug\Project_Audio.pdb
+C:\Users\eddu_\OneDrive - Instituto Superior de Engenharia do Porto\Documentos\ISEP\IMAVD\IMAVD_Audio\Project_Audio\obj\Debug\Project_Audio.csproj.AssemblyReference.cache
+C:\Users\eddu_\OneDrive - Instituto Superior de Engenharia do Porto\Documentos\ISEP\IMAVD\IMAVD_Audio\Project_Audio\obj\Debug\Project_Audio.Properties.Resources.resources
+C:\Users\eddu_\OneDrive - Instituto Superior de Engenharia do Porto\Documentos\ISEP\IMAVD\IMAVD_Audio\Project_Audio\obj\Debug\Project_Audio.View.Presets.resources
+C:\Users\eddu_\OneDrive - Instituto Superior de Engenharia do Porto\Documentos\ISEP\IMAVD\IMAVD_Audio\Project_Audio\obj\Debug\Project_Audio.Principal.resources
+C:\Users\eddu_\OneDrive - Instituto Superior de Engenharia do Porto\Documentos\ISEP\IMAVD\IMAVD_Audio\Project_Audio\obj\Debug\Project_Audio.csproj.GenerateResource.cache
+C:\Users\eddu_\OneDrive - Instituto Superior de Engenharia do Porto\Documentos\ISEP\IMAVD\IMAVD_Audio\Project_Audio\obj\Debug\Project_Audio.csproj.CoreCompileInputs.cache
+C:\Users\eddu_\OneDrive - Instituto Superior de Engenharia do Porto\Documentos\ISEP\IMAVD\IMAVD_Audio\Project_Audio\obj\Debug\Project_Audio.exe
+C:\Users\eddu_\OneDrive - Instituto Superior de Engenharia do Porto\Documentos\ISEP\IMAVD\IMAVD_Audio\Project_Audio\obj\Debug\Project_Audio.pdb
