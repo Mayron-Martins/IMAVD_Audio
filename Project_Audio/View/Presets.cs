@@ -200,6 +200,8 @@ namespace Project_Audio.View
 
         private void mainAction_SelectedIndexChanged(object sender, EventArgs e)
         {
+            Dictionary<string, string> commandAction = new Dictionary<string, string>();
+
 
         }
     }
