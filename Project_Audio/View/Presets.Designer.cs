@@ -364,7 +364,7 @@
         private System.Windows.Forms.Button addComand;
         private System.Windows.Forms.Button updateCommand;
         private System.Windows.Forms.Button removeCommand;
-        private System.Windows.Forms.Button microphone;
+        public System.Windows.Forms.Button microphone;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label description;
         private System.Windows.Forms.Label label2;

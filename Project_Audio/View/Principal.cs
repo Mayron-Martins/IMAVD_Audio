@@ -1,12 +1,16 @@
 ﻿using Project_Audio.Controller;
 using Project_Audio.View;
+using Project_Audio.Model;
 using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Project_Audio
 {
+
     public partial class Principal : Form
     {
         private PrincipalController controller;
@@ -80,9 +84,12 @@ namespace Project_Audio
                 (textToSpeech.BackColor == speechToText.BackColor) ? false : true;
         }
 
-        private void microphone_Click(object sender, EventArgs e)
+        private async void microphone_Click(object sender, EventArgs e)
         {
             Image img = microphone.Image;
+
+            string audioFilePath = pathAudioFile.Text;
+            string textoConvertido = string.Empty;
 
             bool status = CompareImages(microphone.Image, global::Project_Audio.Properties.Resources.audioOff);
 
@@ -91,6 +98,31 @@ namespace Project_Audio
             microphone.BackColor = status ? Color.White : Color.FromArgb(179, 179, 179);
 
             microphoneStatus = status;
+
+
+
+            if (!string.IsNullOrEmpty(audioFilePath))
+            {
+                // Converter o arquivo de áudio em texto
+                textoConvertido = await controller.ConverterAudioEmTexto(audioFilePath);
+            }
+            else
+            {
+                // Converter a fala em texto
+                textoConvertido = await controller.ConverterFalaEmTexto();
+            }
+
+            // Exibir o texto traduzido na TextBox
+            generatedText.Text = textoConvertido;
+
+
+
+
+
+
+
+
+
         }
 
         private bool CompareImages(Image img1, Image img2)
@@ -127,13 +159,13 @@ namespace Project_Audio
             fileDialog.Title = "Select an Audio or Image File";
             fileDialog.Filter = "Arquivos de Áudio|*.wav;*.mp3;*.ogg|Arquivos de Imagem|*.jpg;*.png;*.gif";
 
-            if(fileDialog.ShowDialog() == DialogResult.OK)
+            if (fileDialog.ShowDialog() == DialogResult.OK)
             {
                 string selectedFilePath = fileDialog.FileName;
                 string fileExtension = System.IO.Path.GetExtension(selectedFilePath);
 
                 string[] audioExtensions = { ".wav", ".mp3", ".ogg" };
-                bool fileTypeAudio = (Array.IndexOf(audioExtensions, 
+                bool fileTypeAudio = (Array.IndexOf(audioExtensions,
                     fileExtension.ToLower()) != -1);
 
                 if (fileTypeAudio)
@@ -219,5 +251,50 @@ namespace Project_Audio
             Presets presets = new Presets(this);
             presets.Show();
         }
+
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string texto = insertedText.Text;
+            controller.ConverterTextoEmAudio(texto);
+        }
+
+        private void generatedText_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pathAudioFile_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+        private void geometricShapes_Click(object sender, EventArgs e)
+        {
+            Shape shape = new Shape();
+
+            Random random = new Random();
+            int randomNumber = random.Next(1, 4);
+
+            string shapeType;
+            switch (randomNumber)
+            {
+                case 1:
+                    shapeType = "Square";
+                    break;
+                case 2:
+                    shapeType = "Triangle";
+                    break;
+                case 3:
+                    shapeType = "Circle";
+                    break;
+                default:
+                    shapeType = "Square";
+                    break;
+            }
+            controller.GenerateImageListFromButton(shape.GenerateShape(shapeType));
+            pictureBox1.Image = controller.GetRandomImage();
+
+        }
+
     }
 }
