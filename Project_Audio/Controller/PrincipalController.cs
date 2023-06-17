@@ -84,11 +84,6 @@ namespace Project_Audio.Controller
 
         //----------------------------------
 
-
-
-
-
-
         public void GenerateImageListFromButton(Image shape)
         {
             imageLinkedList.AddLast(shape);

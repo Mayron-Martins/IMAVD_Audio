@@ -133,9 +133,9 @@
     <Content Include="View\Icons\listPresets.png" />
     <Content Include="View\Icons\removeCommand.png" />
     <Content Include="View\Icons\save.png" />
-    <Content Include="View\Icons\Shapes\Circle.png" />
-    <Content Include="View\Icons\Shapes\Square.png" />
-    <Content Include="View\Icons\Shapes\Triangle.png" />
+    <Content Include="View\Shapes\Circle.png" />
+    <Content Include="View\Shapes\Square.png" />
+    <Content Include="View\Shapes\Triangle.png" />
     <Content Include="View\Icons\speechToText.png" />
     <Content Include="View\Icons\textToSpeech.png" />
     <Content Include="View\Icons\trashImages.png" />
