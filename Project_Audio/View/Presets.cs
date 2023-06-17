@@ -200,9 +200,18 @@ namespace Project_Audio.View
 
         private void mainAction_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Dictionary<string, string> commandAction = new Dictionary<string, string>();
+            Dictionary<string, object[]> commandAction = new Dictionary<string, object[]>();
 
+            //commandAction.Add("Rotate");
 
+                /*
+                 * Rotate
+Move to
+Resize
+Color
+Create
+Duplicate
+                 */
         }
     }
 }
