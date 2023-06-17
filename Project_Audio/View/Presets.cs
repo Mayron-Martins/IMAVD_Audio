@@ -197,5 +197,10 @@ namespace Project_Audio.View
         {
             principal.actualPresets.Text = "Presets: "+presetsList.SelectedItem.ToString();
         }
+
+        private void mainAction_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

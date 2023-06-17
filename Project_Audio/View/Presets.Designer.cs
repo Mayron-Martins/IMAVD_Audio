@@ -190,6 +190,7 @@
             this.mainAction.Name = "mainAction";
             this.mainAction.Size = new System.Drawing.Size(68, 21);
             this.mainAction.TabIndex = 14;
+            this.mainAction.SelectedIndexChanged += new System.EventHandler(this.mainAction_SelectedIndexChanged);
             // 
             // label4
             // 
