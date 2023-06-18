@@ -72,7 +72,7 @@
             this.panelTextInteraction.Controls.Add(this.insertedText);
             this.panelTextInteraction.Enabled = false;
             this.panelTextInteraction.Location = new System.Drawing.Point(16, 98);
-            this.panelTextInteraction.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelTextInteraction.Margin = new System.Windows.Forms.Padding(4);
             this.panelTextInteraction.Name = "panelTextInteraction";
             this.panelTextInteraction.Size = new System.Drawing.Size(349, 434);
             this.panelTextInteraction.TabIndex = 3;
@@ -83,7 +83,7 @@
             this.button1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.White;
             this.button1.Location = new System.Drawing.Point(63, 260);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(100, 37);
             this.button1.TabIndex = 9;
@@ -107,7 +107,7 @@
             // 
             this.differenceTexts.Enabled = false;
             this.differenceTexts.Location = new System.Drawing.Point(9, 334);
-            this.differenceTexts.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.differenceTexts.Margin = new System.Windows.Forms.Padding(4);
             this.differenceTexts.Multiline = true;
             this.differenceTexts.Name = "differenceTexts";
             this.differenceTexts.Size = new System.Drawing.Size(325, 80);
@@ -119,12 +119,13 @@
             this.compareTexts.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.compareTexts.ForeColor = System.Drawing.Color.White;
             this.compareTexts.Location = new System.Drawing.Point(185, 260);
-            this.compareTexts.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.compareTexts.Margin = new System.Windows.Forms.Padding(4);
             this.compareTexts.Name = "compareTexts";
             this.compareTexts.Size = new System.Drawing.Size(100, 37);
             this.compareTexts.TabIndex = 4;
             this.compareTexts.Text = "Compare";
             this.compareTexts.UseVisualStyleBackColor = false;
+            this.compareTexts.Click += new System.EventHandler(this.compareTexts_Click);
             // 
             // label2
             // 
@@ -142,7 +143,7 @@
             // 
             this.generatedText.Enabled = false;
             this.generatedText.Location = new System.Drawing.Point(9, 160);
-            this.generatedText.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.generatedText.Margin = new System.Windows.Forms.Padding(4);
             this.generatedText.Multiline = true;
             this.generatedText.Name = "generatedText";
             this.generatedText.Size = new System.Drawing.Size(325, 80);
@@ -164,18 +165,19 @@
             // insertedText
             // 
             this.insertedText.Location = new System.Drawing.Point(9, 39);
-            this.insertedText.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.insertedText.Margin = new System.Windows.Forms.Padding(4);
             this.insertedText.Multiline = true;
             this.insertedText.Name = "insertedText";
             this.insertedText.Size = new System.Drawing.Size(325, 80);
             this.insertedText.TabIndex = 4;
+            this.insertedText.TextChanged += new System.EventHandler(this.insertedText_TextChanged);
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(47)))), ((int)(((byte)(46)))));
             this.panel1.Controls.Add(this.description);
             this.panel1.Location = new System.Drawing.Point(0, 598);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1045, 31);
             this.panel1.TabIndex = 4;
@@ -195,7 +197,7 @@
             // 
             this.pathAudioFile.Enabled = false;
             this.pathAudioFile.Location = new System.Drawing.Point(16, 566);
-            this.pathAudioFile.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pathAudioFile.Margin = new System.Windows.Forms.Padding(4);
             this.pathAudioFile.Name = "pathAudioFile";
             this.pathAudioFile.Size = new System.Drawing.Size(348, 22);
             this.pathAudioFile.TabIndex = 6;
@@ -230,7 +232,7 @@
             // 
             this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBox1.Location = new System.Drawing.Point(664, 98);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(365, 434);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
@@ -242,11 +244,12 @@
             this.cleanImages.BackColor = System.Drawing.Color.White;
             this.cleanImages.Image = global::Project_Audio.Properties.Resources.trashImages;
             this.cleanImages.Location = new System.Drawing.Point(963, 15);
-            this.cleanImages.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cleanImages.Margin = new System.Windows.Forms.Padding(4);
             this.cleanImages.Name = "cleanImages";
             this.cleanImages.Size = new System.Drawing.Size(67, 62);
             this.cleanImages.TabIndex = 13;
             this.cleanImages.UseVisualStyleBackColor = false;
+            this.cleanImages.Click += new System.EventHandler(this.cleanImages_Click);
             this.cleanImages.MouseEnter += new System.EventHandler(this.trashImages_MouseEnter);
             this.cleanImages.MouseLeave += new System.EventHandler(this.cleanImages_MouseLeave);
             // 
@@ -255,7 +258,7 @@
             this.listPresets.BackColor = System.Drawing.Color.White;
             this.listPresets.Image = global::Project_Audio.Properties.Resources.listPresets;
             this.listPresets.Location = new System.Drawing.Point(888, 15);
-            this.listPresets.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.listPresets.Margin = new System.Windows.Forms.Padding(4);
             this.listPresets.Name = "listPresets";
             this.listPresets.Size = new System.Drawing.Size(67, 62);
             this.listPresets.TabIndex = 12;
@@ -269,7 +272,7 @@
             this.peoplesFaces.BackColor = System.Drawing.Color.White;
             this.peoplesFaces.Image = global::Project_Audio.Properties.Resources.faces;
             this.peoplesFaces.Location = new System.Drawing.Point(813, 15);
-            this.peoplesFaces.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.peoplesFaces.Margin = new System.Windows.Forms.Padding(4);
             this.peoplesFaces.Name = "peoplesFaces";
             this.peoplesFaces.Size = new System.Drawing.Size(67, 62);
             this.peoplesFaces.TabIndex = 11;
@@ -282,7 +285,7 @@
             this.voiceCommands.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(179)))), ((int)(((byte)(179)))), ((int)(((byte)(179)))));
             this.voiceCommands.Image = global::Project_Audio.Properties.Resources.voiceCommand;
             this.voiceCommands.Location = new System.Drawing.Point(739, 15);
-            this.voiceCommands.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.voiceCommands.Margin = new System.Windows.Forms.Padding(4);
             this.voiceCommands.Name = "voiceCommands";
             this.voiceCommands.Size = new System.Drawing.Size(67, 62);
             this.voiceCommands.TabIndex = 10;
@@ -296,7 +299,7 @@
             this.geometricShapes.BackColor = System.Drawing.Color.White;
             this.geometricShapes.Image = global::Project_Audio.Properties.Resources.geometricShapes;
             this.geometricShapes.Location = new System.Drawing.Point(664, 15);
-            this.geometricShapes.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.geometricShapes.Margin = new System.Windows.Forms.Padding(4);
             this.geometricShapes.Name = "geometricShapes";
             this.geometricShapes.Size = new System.Drawing.Size(67, 62);
             this.geometricShapes.TabIndex = 9;
@@ -311,7 +314,7 @@
             this.microphone.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.microphone.Image = global::Project_Audio.Properties.Resources.audioOff;
             this.microphone.Location = new System.Drawing.Point(491, 15);
-            this.microphone.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.microphone.Margin = new System.Windows.Forms.Padding(4);
             this.microphone.Name = "microphone";
             this.microphone.Size = new System.Drawing.Size(67, 62);
             this.microphone.TabIndex = 5;
@@ -326,7 +329,7 @@
             this.speechToText.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.speechToText.Image = global::Project_Audio.Properties.Resources.speechToText;
             this.speechToText.Location = new System.Drawing.Point(232, 15);
-            this.speechToText.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.speechToText.Margin = new System.Windows.Forms.Padding(4);
             this.speechToText.Name = "speechToText";
             this.speechToText.Size = new System.Drawing.Size(133, 62);
             this.speechToText.TabIndex = 2;
@@ -341,7 +344,7 @@
             this.textToSpeech.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.textToSpeech.Image = ((System.Drawing.Image)(resources.GetObject("textToSpeech.Image")));
             this.textToSpeech.Location = new System.Drawing.Point(91, 15);
-            this.textToSpeech.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textToSpeech.Margin = new System.Windows.Forms.Padding(4);
             this.textToSpeech.Name = "textToSpeech";
             this.textToSpeech.Size = new System.Drawing.Size(133, 62);
             this.textToSpeech.TabIndex = 1;
@@ -356,7 +359,7 @@
             this.openFile.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.openFile.Image = ((System.Drawing.Image)(resources.GetObject("openFile.Image")));
             this.openFile.Location = new System.Drawing.Point(16, 15);
-            this.openFile.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.openFile.Margin = new System.Windows.Forms.Padding(4);
             this.openFile.Name = "openFile";
             this.openFile.Size = new System.Drawing.Size(67, 62);
             this.openFile.TabIndex = 0;
@@ -386,7 +389,7 @@
             this.Controls.Add(this.speechToText);
             this.Controls.Add(this.textToSpeech);
             this.Controls.Add(this.openFile);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.Name = "Principal";
             this.Text = "Form1";
@@ -406,13 +409,13 @@
         private System.Windows.Forms.Button textToSpeech;
         private System.Windows.Forms.Button speechToText;
         private System.Windows.Forms.Panel panelTextInteraction;
-        private System.Windows.Forms.TextBox insertedText;
+        public System.Windows.Forms.TextBox insertedText;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox generatedText;
+        public System.Windows.Forms.TextBox generatedText;
         private System.Windows.Forms.Button compareTexts;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox differenceTexts;
+        public System.Windows.Forms.TextBox differenceTexts;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label description;
         private System.Windows.Forms.Button microphone;
