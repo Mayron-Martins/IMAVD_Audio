@@ -30,7 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Principal));
             this.panelTextInteraction = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
+            this.generateAudio = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.differenceTexts = new System.Windows.Forms.TextBox();
             this.compareTexts = new System.Windows.Forms.Button();
@@ -62,7 +62,7 @@
             // 
             this.panelTextInteraction.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(47)))), ((int)(((byte)(46)))));
             this.panelTextInteraction.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelTextInteraction.Controls.Add(this.button1);
+            this.panelTextInteraction.Controls.Add(this.generateAudio);
             this.panelTextInteraction.Controls.Add(this.label3);
             this.panelTextInteraction.Controls.Add(this.differenceTexts);
             this.panelTextInteraction.Controls.Add(this.compareTexts);
@@ -77,19 +77,20 @@
             this.panelTextInteraction.Size = new System.Drawing.Size(349, 434);
             this.panelTextInteraction.TabIndex = 3;
             // 
-            // button1
+            // generateAudio
             // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(103)))), ((int)(((byte)(136)))));
-            this.button1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(63, 260);
-            this.button1.Margin = new System.Windows.Forms.Padding(4);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(100, 37);
-            this.button1.TabIndex = 9;
-            this.button1.Text = "Generate";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.generateAudio.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(103)))), ((int)(((byte)(136)))));
+            this.generateAudio.Enabled = false;
+            this.generateAudio.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.generateAudio.ForeColor = System.Drawing.Color.White;
+            this.generateAudio.Location = new System.Drawing.Point(63, 260);
+            this.generateAudio.Margin = new System.Windows.Forms.Padding(4);
+            this.generateAudio.Name = "generateAudio";
+            this.generateAudio.Size = new System.Drawing.Size(100, 37);
+            this.generateAudio.TabIndex = 9;
+            this.generateAudio.Text = "Generate";
+            this.generateAudio.UseVisualStyleBackColor = false;
+            this.generateAudio.Click += new System.EventHandler(this.button1_Click);
             // 
             // label3
             // 
@@ -116,6 +117,7 @@
             // compareTexts
             // 
             this.compareTexts.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(109)))), ((int)(((byte)(36)))));
+            this.compareTexts.Enabled = false;
             this.compareTexts.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.compareTexts.ForeColor = System.Drawing.Color.White;
             this.compareTexts.Location = new System.Drawing.Point(185, 260);
@@ -424,7 +426,7 @@
         private System.Windows.Forms.Button geometricShapes;
         private System.Windows.Forms.Button voiceCommands;
         private System.Windows.Forms.Button peoplesFaces;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button generateAudio;
         private System.Windows.Forms.Button listPresets;
         private System.Windows.Forms.Button cleanImages;
         private System.Windows.Forms.PictureBox pictureBox1;
