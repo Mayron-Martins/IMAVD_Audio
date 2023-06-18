@@ -286,10 +286,12 @@ namespace Project_Audio
         }
         private void geometricShapes_Click(object sender, EventArgs e)
         {
-
-            shape = controller.GenerateImageListFromButton();
-            shapes.AddLast(shape);
-            CreateShapeInPictureBox(shape);
+            if (shapes.Count <= 11)
+            {
+                shape = controller.GenerateImageListFromButton();
+                shapes.AddLast(shape);
+                CreateShapeInPictureBox(shape); 
+            }
 
         }
 
@@ -394,6 +396,7 @@ namespace Project_Audio
             if (imageStack.Count != 0 && shapes.Count == 0)
             {
                 Image img = imageStack.Last.Value;
+                imageStack.RemoveLast();
                 RemoveImageFromPictureBox(img);
             }
         }
@@ -437,17 +440,19 @@ namespace Project_Audio
 
         private void peoplesFaces_Click(object sender, EventArgs e)
         {
-            Graphics g = pictureBox1.CreateGraphics();
-            Image faceImage = imageStack.Last.Value;
-            faceImage = shape.ResizeFace(faceImage, 50, 50);
-            point = GetAvailablePositions();
-            if (point.Count > positionInterator)
+            if (imageStack.Count > 0 && imageStack.Count <= 11)
             {
-                Point position = point[positionInterator];
-                g.DrawImage(faceImage, position.X, position.Y);
-                positionInterator++;
+                Graphics g = pictureBox1.CreateGraphics();
+                Image faceImage = imageStack.Last.Value;
+                faceImage = shape.ResizeFace(faceImage, 50, 50);
+                point = GetAvailablePositions();
+                if (point.Count > positionInterator)
+                {
+                    Point position = point[positionInterator];
+                    g.DrawImage(faceImage, position.X, position.Y);
+                    positionInterator++;
+                }
             }
         }
     } 
-
 }
