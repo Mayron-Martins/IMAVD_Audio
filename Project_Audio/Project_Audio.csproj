@@ -106,7 +106,11 @@
   <ItemGroup>
     <Compile Include="Controller\PresetsController.cs" />
     <Compile Include="Controller\PrincipalController.cs" />
+<<<<<<< HEAD
     <Compile Include="Controller\RecognitionController.cs" />
+=======
+    <Compile Include="Model\ShapeType.cs" />
+>>>>>>> 0dfa0892a54ca1a5cb83ca671dd8df861d96f320
     <Compile Include="Model\Shape.cs" />
     <Compile Include="View\Presets.cs">
       <SubType>Form</SubType>

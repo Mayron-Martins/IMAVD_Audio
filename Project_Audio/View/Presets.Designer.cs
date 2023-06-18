@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Presets));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.presetsList = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -82,6 +83,7 @@
             this.presetsList.Name = "presetsList";
             this.presetsList.Size = new System.Drawing.Size(200, 25);
             this.presetsList.TabIndex = 1;
+            this.presetsList.SelectedIndexChanged += new System.EventHandler(this.presetsList_SelectedIndexChanged);
             // 
             // panel1
             // 
@@ -334,13 +336,23 @@
             // 
             // presetDetails
             // 
+            this.presetDetails.AllowUserToAddRows = false;
+            this.presetDetails.AllowUserToDeleteRows = false;
             dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
             this.presetDetails.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.presetDetails.BackgroundColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.presetDetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.presetDetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.presetDetails.Location = new System.Drawing.Point(15, 60);
+            this.presetDetails.MultiSelect = false;
             this.presetDetails.Name = "presetDetails";
-            this.presetDetails.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.presetDetails.Size = new System.Drawing.Size(200, 243);
             this.presetDetails.TabIndex = 15;
             // 

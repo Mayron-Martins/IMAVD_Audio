@@ -237,6 +237,12 @@ namespace Project_Audio.View
         private void savePreset_Click(object sender, EventArgs e)
         {
             controller.createPreset(presetName.Text);
+            
+        }
+
+        private void presetsList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            controller.updateTable();
         }
     }
 }

@@ -1,7 +1,9 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using Project_Audio.View;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Windows.Forms;
 
@@ -117,12 +119,48 @@ namespace Project_Audio.Controller
             {
                 view.presetsList.Items.Add(Path.GetFileNameWithoutExtension(file));
             }
+
+            view.presetsList.SelectedItem = "Default";
             
         }
 
         public void updateTable()
         {
+            string presetName = view.presetsList.SelectedItem.ToString();
 
+            if (String.IsNullOrEmpty(presetName))
+            {
+                return;
+            }
+
+            string preset = Path.Combine(pathPresets, presetName + ".json");
+
+            string contentJson = File.ReadAllText(preset);
+
+            if (contentJson.Equals("{}"))
+            {
+                view.presetDetails.DataSource = new DataTable();
+                return;
+            }
+            
+            List<CommandAction> objectList = JsonConvert.DeserializeObject<List<CommandAction>>(contentJson);
+
+            DataTable table = new DataTable();
+            table.Columns.Add("Command");
+            table.Columns.Add("Action");
+
+            foreach(CommandAction obj in objectList)
+            {
+                table.Rows.Add(obj.name, obj.action);
+            }
+
+            view.presetDetails.DataSource = table;
+        }
+
+        private class CommandAction
+        {
+            public string name { get; set; }
+            public string action { get; set; }
         }
     }
 }
