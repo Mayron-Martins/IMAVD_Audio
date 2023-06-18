@@ -102,5 +102,13 @@ namespace Project_Audio.Controller
             return currentNode.Value;
         }
 
+        public void DeleteImageListFromButton()
+        {
+            while (imageLinkedList.Count != 0)
+            {
+                imageLinkedList.RemoveLast();
+            }
+        }
+
     }
 }

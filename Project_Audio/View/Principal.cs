@@ -16,6 +16,8 @@ namespace Project_Audio
         private PrincipalController controller;
         public bool microphoneStatus;
         public LinkedList<Image> imageStack;
+        private int positionInterator;
+        private List<Image> randomShape;
         public Principal()
         {
             InitializeComponent();
@@ -23,6 +25,7 @@ namespace Project_Audio
             microphoneStatus = false;
             imageStack = new LinkedList<Image>();
             StartPosition = FormStartPosition.CenterScreen;
+            positionInterator = 0;
         }
 
         private void openFile_MouseEnter(object sender, EventArgs e)
@@ -292,9 +295,63 @@ namespace Project_Audio
                     break;
             }
             controller.GenerateImageListFromButton(shape.GenerateShape(shapeType));
-            pictureBox1.Image = controller.GetRandomImage();
+            List<Point> point = new List<Point>();
+            point = GetAvailablePositions();
+            using (Graphics graphics = pictureBox1.CreateGraphics())
+            {
+                try
+                {
+                    if (point.Count >= positionInterator)
+                    {
+                        randomShape = new List<Image>();
+                        randomShape.Add(controller.GetRandomImage());
+                        Point position = point[positionInterator];
 
+                        graphics.DrawImage(randomShape[randomShape.Count - 1], position.X, position.Y);
+                    }
+                }
+                catch (Exception erro)
+                {
+                    Console.WriteLine(erro.Message);
+                }
+
+            }
+            positionInterator++;
         }
 
+        private List<Point> GetAvailablePositions()
+        {
+            List<Point> positions = new List<Point>();
+
+            int cellSize = 80;
+            int offsetX = -10;
+            int offsetY = -10;
+
+            int rows = pictureBox1.Height / cellSize;
+            int columns = pictureBox1.Width / cellSize;
+
+            for (int row = 0; row < rows; row++)
+            {
+                for (int col = 0; col < columns; col++)
+                {
+                    int x = col * cellSize + offsetX + cellSize / 2;
+                    int y = row * cellSize + offsetY + cellSize / 2;
+                    positions.Add(new Point(x, y));
+                }
+            }
+
+            return positions;
+        }
+
+        private void cleanImages_Click(object sender, EventArgs e)
+        {
+            using (Graphics graphics = pictureBox1.CreateGraphics())
+            {
+                graphics.Clear(Color.FromArgb(26, 26, 26));
+                //randomShape.RemoveAt(randomShape.Count - 1);
+                controller.DeleteImageListFromButton();
+                positionInterator = 0;
+            }
+        }
     }
 }

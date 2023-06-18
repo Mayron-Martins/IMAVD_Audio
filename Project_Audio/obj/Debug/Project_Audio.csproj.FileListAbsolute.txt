@@ -52,3 +52,29 @@ C:\Users\Mayro\Source\Repos\IMAVD_Audio\Project_Audio\obj\Debug\Project_Audio.cs
 C:\Users\Mayro\Source\Repos\IMAVD_Audio\Project_Audio\obj\Debug\Project_Audio.csproj.CopyComplete
 C:\Users\Mayro\Source\Repos\IMAVD_Audio\Project_Audio\obj\Debug\Project_Audio.exe
 C:\Users\Mayro\Source\Repos\IMAVD_Audio\Project_Audio\obj\Debug\Project_Audio.pdb
+C:\Users\eddu_\OneDrive - Instituto Superior de Engenharia do Porto\Documentos\ISEP\IMAVD\IMAVD_Audio\Project_Audio\bin\Debug\Microsoft.CognitiveServices.Speech.core.dll
+C:\Users\eddu_\OneDrive - Instituto Superior de Engenharia do Porto\Documentos\ISEP\IMAVD\IMAVD_Audio\Project_Audio\bin\Debug\Microsoft.CognitiveServices.Speech.extension.audio.sys.dll
+C:\Users\eddu_\OneDrive - Instituto Superior de Engenharia do Porto\Documentos\ISEP\IMAVD\IMAVD_Audio\Project_Audio\bin\Debug\Microsoft.CognitiveServices.Speech.extension.kws.dll
+C:\Users\eddu_\OneDrive - Instituto Superior de Engenharia do Porto\Documentos\ISEP\IMAVD\IMAVD_Audio\Project_Audio\bin\Debug\Microsoft.CognitiveServices.Speech.extension.lu.dll
+C:\Users\eddu_\OneDrive - Instituto Superior de Engenharia do Porto\Documentos\ISEP\IMAVD\IMAVD_Audio\Project_Audio\bin\Debug\Microsoft.CognitiveServices.Speech.extension.codec.dll
+C:\Users\eddu_\OneDrive - Instituto Superior de Engenharia do Porto\Documentos\ISEP\IMAVD\IMAVD_Audio\Project_Audio\bin\Debug\Microsoft.CognitiveServices.Speech.extension.mas.dll
+C:\Users\eddu_\OneDrive - Instituto Superior de Engenharia do Porto\Documentos\ISEP\IMAVD\IMAVD_Audio\Project_Audio\bin\Debug\x86\Microsoft.CognitiveServices.Speech.core.dll
+C:\Users\eddu_\OneDrive - Instituto Superior de Engenharia do Porto\Documentos\ISEP\IMAVD\IMAVD_Audio\Project_Audio\bin\Debug\x86\Microsoft.CognitiveServices.Speech.extension.audio.sys.dll
+C:\Users\eddu_\OneDrive - Instituto Superior de Engenharia do Porto\Documentos\ISEP\IMAVD\IMAVD_Audio\Project_Audio\bin\Debug\x86\Microsoft.CognitiveServices.Speech.extension.kws.dll
+C:\Users\eddu_\OneDrive - Instituto Superior de Engenharia do Porto\Documentos\ISEP\IMAVD\IMAVD_Audio\Project_Audio\bin\Debug\x86\Microsoft.CognitiveServices.Speech.extension.lu.dll
+C:\Users\eddu_\OneDrive - Instituto Superior de Engenharia do Porto\Documentos\ISEP\IMAVD\IMAVD_Audio\Project_Audio\bin\Debug\x86\Microsoft.CognitiveServices.Speech.extension.codec.dll
+C:\Users\eddu_\OneDrive - Instituto Superior de Engenharia do Porto\Documentos\ISEP\IMAVD\IMAVD_Audio\Project_Audio\bin\Debug\x86\Microsoft.CognitiveServices.Speech.extension.mas.dll
+C:\Users\eddu_\OneDrive - Instituto Superior de Engenharia do Porto\Documentos\ISEP\IMAVD\IMAVD_Audio\Project_Audio\bin\Debug\Project_Audio.exe.config
+C:\Users\eddu_\OneDrive - Instituto Superior de Engenharia do Porto\Documentos\ISEP\IMAVD\IMAVD_Audio\Project_Audio\bin\Debug\Project_Audio.exe
+C:\Users\eddu_\OneDrive - Instituto Superior de Engenharia do Porto\Documentos\ISEP\IMAVD\IMAVD_Audio\Project_Audio\bin\Debug\Project_Audio.pdb
+C:\Users\eddu_\OneDrive - Instituto Superior de Engenharia do Porto\Documentos\ISEP\IMAVD\IMAVD_Audio\Project_Audio\bin\Debug\Microsoft.CognitiveServices.Speech.csharp.dll
+C:\Users\eddu_\OneDrive - Instituto Superior de Engenharia do Porto\Documentos\ISEP\IMAVD\IMAVD_Audio\Project_Audio\bin\Debug\Microsoft.CognitiveServices.Speech.csharp.xml
+C:\Users\eddu_\OneDrive - Instituto Superior de Engenharia do Porto\Documentos\ISEP\IMAVD\IMAVD_Audio\Project_Audio\obj\Debug\Project_Audio.csproj.AssemblyReference.cache
+C:\Users\eddu_\OneDrive - Instituto Superior de Engenharia do Porto\Documentos\ISEP\IMAVD\IMAVD_Audio\Project_Audio\obj\Debug\Project_Audio.Properties.Resources.resources
+C:\Users\eddu_\OneDrive - Instituto Superior de Engenharia do Porto\Documentos\ISEP\IMAVD\IMAVD_Audio\Project_Audio\obj\Debug\Project_Audio.View.Presets.resources
+C:\Users\eddu_\OneDrive - Instituto Superior de Engenharia do Porto\Documentos\ISEP\IMAVD\IMAVD_Audio\Project_Audio\obj\Debug\Project_Audio.Principal.resources
+C:\Users\eddu_\OneDrive - Instituto Superior de Engenharia do Porto\Documentos\ISEP\IMAVD\IMAVD_Audio\Project_Audio\obj\Debug\Project_Audio.csproj.GenerateResource.cache
+C:\Users\eddu_\OneDrive - Instituto Superior de Engenharia do Porto\Documentos\ISEP\IMAVD\IMAVD_Audio\Project_Audio\obj\Debug\Project_Audio.csproj.CoreCompileInputs.cache
+C:\Users\eddu_\OneDrive - Instituto Superior de Engenharia do Porto\Documentos\ISEP\IMAVD\IMAVD_Audio\Project_Audio\obj\Debug\Project_Audio.csproj.CopyComplete
+C:\Users\eddu_\OneDrive - Instituto Superior de Engenharia do Porto\Documentos\ISEP\IMAVD\IMAVD_Audio\Project_Audio\obj\Debug\Project_Audio.exe
+C:\Users\eddu_\OneDrive - Instituto Superior de Engenharia do Porto\Documentos\ISEP\IMAVD\IMAVD_Audio\Project_Audio\obj\Debug\Project_Audio.pdb
