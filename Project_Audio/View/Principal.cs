@@ -405,14 +405,13 @@ namespace Project_Audio
                     textoDiferenca.Append($"{palavrasEscritas[i]} ");
                 }
             }
-<<<<<<< HEAD
+
 
             differenceTexts.Text = $@"{{\rtf1\ansi\ansicpg1252\deff0\deflang1033{{\fonttbl{{\f0\fnil\fcharset0 Microsoft Sans Serif;}}}}
 {{\colortbl ;\red255\green0\blue0;}}
 \viewkind4\uc1\pard\f0\fs17 {textoDiferenca.ToString()}\par}}";
 
-=======
->>>>>>> b0d2186789fab0063a37496243e2cc6a3d9328a5
+
         }
     } 
 }
