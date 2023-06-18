@@ -339,25 +339,23 @@ namespace Project_Audio
             string[] palavrasEscritas = textoEscrito.Split(' ');
             string[] palavrasFaladas = textoFalado.Split(' ');
 
-            differenceTexts.Clear();
+            StringBuilder textoDiferenca = new StringBuilder();
 
-            for (int i = 0; i < palavrasFaladas.Length; i++)
+            for (int i = 0; i < palavrasEscritas.Length; i++)
             {
-                if (i < palavrasEscritas.Length && palavrasFaladas[i] != palavrasEscritas[i])
+                if (i < palavrasFaladas.Length && palavrasEscritas[i] != palavrasFaladas[i])
                 {
-                    differenceTexts.SelectionStart = differenceTexts.TextLength;
-                    differenceTexts.SelectionLength = palavrasFaladas[i].Length;
-                    differenceTexts.ForeColor = Color.Red;
-                    differenceTexts.AppendText(palavrasFaladas[i] + " ");
+                    textoDiferenca.Append($"<span style=\"color:red\">{palavrasEscritas[i]}</span> ");
                 }
                 else
                 {
-                    differenceTexts.SelectionStart = differenceTexts.TextLength;
-                    differenceTexts.SelectionLength = palavrasFaladas[i].Length;
-                    differenceTexts.ForeColor = differenceTexts.ForeColor;
-                    differenceTexts.AppendText(palavrasFaladas[i] + " ");
+                    textoDiferenca.Append($"{palavrasEscritas[i]} ");
                 }
             }
+
+            differenceTexts.Text = $@"{{\rtf1\ansi\ansicpg1252\deff0\deflang1033{{\fonttbl{{\f0\fnil\fcharset0 Microsoft Sans Serif;}}}}
+{{\colortbl ;\red255\green0\blue0;}}
+\viewkind4\uc1\pard\f0\fs17 {textoDiferenca.ToString()}\par}}";
 
         }
 
