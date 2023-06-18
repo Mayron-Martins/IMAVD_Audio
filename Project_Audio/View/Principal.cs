@@ -71,7 +71,7 @@ namespace Project_Audio
             ActiveButton(textToSpeech, speechToText, voiceCommands);
         }
 
-        private  async void speechToText_Click(object sender, EventArgs e)
+        private async void speechToText_Click(object sender, EventArgs e)
         {
             bool active = ActiveButton(speechToText, textToSpeech, voiceCommands);
             if (!active)
@@ -81,16 +81,15 @@ namespace Project_Audio
             string audioFilePath = pathAudioFile.Text;
             string textoConvertido = string.Empty;
 
-
-            if (!string.IsNullOrEmpty(audioFilePath))
-            {
-                // Converter o arquivo de áudio em texto
-                textoConvertido =  controller.ConverterAudioEmTexto(audioFilePath);
-            }
-            else
+            if (microphoneStatus)
             {
                 // Converter a fala em texto
                 textoConvertido = await controller.ConverterFalaEmTexto();
+            }
+            else if (!string.IsNullOrEmpty(audioFilePath))
+            {
+                // Converter o arquivo de áudio em texto
+                textoConvertido = await controller.ConverterAudioEmTextoAsync(audioFilePath);
             }
 
             // Exibir o texto traduzido na TextBox
@@ -127,7 +126,7 @@ namespace Project_Audio
 
             return active;
         }
-        
+
         private void microphone_Click(object sender, EventArgs e)
         {
             Image img = microphone.Image;
@@ -312,7 +311,7 @@ namespace Project_Audio
                         g.DrawImage(shape.GenerateShape(shape.type.ToString()), position.X, position.Y);
                         positionInterator++;
                     }
-                    
+
                     break;
                 case ShapeType.Square:
                     if (point.Count > positionInterator)
@@ -333,7 +332,7 @@ namespace Project_Audio
                     }
                     break;
             }
-            
+
             g.Dispose();
         }
 
@@ -435,6 +434,9 @@ namespace Project_Audio
 
 
         }
+
+    
+
 
         private void peoplesFaces_Click(object sender, EventArgs e)
         {

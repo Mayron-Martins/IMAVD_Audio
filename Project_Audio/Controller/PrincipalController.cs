@@ -2,12 +2,10 @@
 using System.Collections.Generic;
 using Project_Audio.Model;
 using System.Threading.Tasks;
-
 using Microsoft.CognitiveServices.Speech;
-
-
-
-
+using Microsoft.CognitiveServices.Speech.Audio;
+using System.IO;
+using NAudio.Wave;
 
 namespace Project_Audio.Controller
 {
@@ -38,12 +36,44 @@ namespace Project_Audio.Controller
 
         //--TRANSFORMAÇÃO DE ÁUDIO EM TEXTO--
 
-        public string ConverterAudioEmTexto(string audioFilePath)
+        public async Task<string> ConverterAudioEmTextoAsync(string audioFilePath)
         {
-            RecognitionController recognitionController = new RecognitionController();
+            string extension = Path.GetExtension(audioFilePath).ToLower();
 
-            return recognitionController.ConvertAudioToText(audioFilePath);
+            string pathWAV = (extension.Equals(".wav")) ? audioFilePath :
+                ConvertToWav(audioFilePath);
 
+            var config = SpeechConfig.FromSubscription("53819328f1534023a155cd721fbe9a31", "brazilsouth");
+
+            using (var audioInput = AudioConfig.FromWavFileInput(pathWAV))
+            {
+                using (var recognizer = new SpeechRecognizer(config, audioInput))
+                {
+                    var result = await recognizer.RecognizeOnceAsync();
+
+                    if (result.Reason == ResultReason.RecognizedSpeech)
+                    {
+                        return result.Text;
+                    }
+                    else
+                    {
+                        return string.Empty;
+                    }
+                }
+            }
+
+        }
+
+        private string ConvertToWav(string audioFilePath)
+        {
+            string wavFilePath = Path.ChangeExtension(audioFilePath, ".wav");
+
+            using (var reader = new Mp3FileReader(audioFilePath))
+            {
+                WaveFileWriter.CreateWaveFile(wavFilePath, reader);
+            }
+
+            return wavFilePath;
         }
 
         //-----------------------------------
@@ -58,7 +88,7 @@ namespace Project_Audio.Controller
             }
             var config = SpeechConfig.FromSubscription("53819328f1534023a155cd721fbe9a31", "brazilsouth");
 
-            using (var recognizer = new Microsoft.CognitiveServices.Speech.SpeechRecognizer(config))
+            using (var recognizer = new SpeechRecognizer(config))
             {
                 var resultado = await recognizer.RecognizeOnceAsync();
 
