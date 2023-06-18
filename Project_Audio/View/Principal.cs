@@ -18,7 +18,10 @@ namespace Project_Audio
         public bool microphoneStatus;
         public LinkedList<Image> imageStack;
         private int positionInterator;
-        private List<Image> randomShape;
+        private List<ShapeType> randomShape;
+        private LinkedList<Shape> shapes;
+        private List<Point> point;
+        Shape shape = new Shape();
         public Principal()
         {
             InitializeComponent();
@@ -27,6 +30,9 @@ namespace Project_Audio
             imageStack = new LinkedList<Image>();
             StartPosition = FormStartPosition.CenterScreen;
             positionInterator = 0;
+            randomShape = new List<ShapeType>();
+            shapes = new LinkedList<Shape>();
+            point = new List<Point>();
         }
 
         private void openFile_MouseEnter(object sender, EventArgs e)
@@ -278,89 +284,51 @@ namespace Project_Audio
         }
         private void geometricShapes_Click(object sender, EventArgs e)
         {
-            Shape shape = new Shape();
+            shape = controller.GenerateImageListFromButton();
+            shapes.AddLast(shape);
+            CreateShapeInPictureBox(shape); 
+        }
 
-            Random random = new Random();
-            int randomNumber = random.Next(1, 4);
+        private void CreateShapeInPictureBox(Shape shape)
+        {
+            Graphics g = pictureBox1.CreateGraphics();
 
-            string shapeType;
-            switch (randomNumber)
-            {
-                case 1:
-                    shapeType = "Square";
-                    break;
-                case 2:
-                    shapeType = "Triangle";
-                    break;
-                case 3:
-                    shapeType = "Circle";
-                    break;
-                default:
-                    shapeType = "Square";
-                    break;
-            }
-            controller.GenerateImageListFromButton(shape.GenerateShape(shapeType));
-            List<Point> point = new List<Point>();
             point = GetAvailablePositions();
-            using (Graphics graphics = pictureBox1.CreateGraphics())
+
+            switch (shape.type)
             {
-                try
-                {
+                case ShapeType.Triangle:
                     if (point.Count >= positionInterator)
                     {
-                        randomShape = new List<Image>();
                         randomShape.Add(controller.GetRandomImage());
                         Point position = point[positionInterator];
-
-                        graphics.DrawImage(randomShape[randomShape.Count - 1], position.X, position.Y);
+                        g.DrawImage(shape.GenerateShape(shape.type.ToString()), position.X, position.Y);
+                        positionInterator++;
                     }
-                }
-                catch (Exception erro)
-                {
-                    Console.WriteLine(erro.Message);
-                }
-
+                    
+                    break;
+                case ShapeType.Square:
+                    if (point.Count >= positionInterator)
+                    {
+                        randomShape.Add(controller.GetRandomImage());
+                        Point position = point[positionInterator];
+                        g.DrawImage(shape.GenerateShape(shape.type.ToString()), position.X, position.Y);
+                        positionInterator++;
+                    }
+                    break;
+                case ShapeType.Circle:
+                    if (point.Count >= positionInterator)
+                    {
+                        randomShape.Add(controller.GetRandomImage());
+                        Point position = point[positionInterator];
+                        g.DrawImage(shape.GenerateShape(shape.type.ToString()), position.X, position.Y);
+                        positionInterator++;
+                    }
+                    break;
             }
-            positionInterator++;
+            
+            g.Dispose();
         }
-
-
-        private void insertedText_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void compareTexts_Click(object sender, EventArgs e)
-        {
-
-            string textoEscrito = insertedText.Text;
-            string textoFalado = generatedText.Text;
-
-            string[] palavrasEscritas = textoEscrito.Split(' ');
-            string[] palavrasFaladas = textoFalado.Split(' ');
-
-            differenceTexts.Clear();
-
-            for (int i = 0; i < palavrasFaladas.Length; i++)
-            {
-                if (i < palavrasEscritas.Length && palavrasFaladas[i] != palavrasEscritas[i])
-                {
-                    differenceTexts.SelectionStart = differenceTexts.TextLength;
-                    differenceTexts.SelectionLength = palavrasFaladas[i].Length;
-                    differenceTexts.ForeColor = Color.Red;
-                    differenceTexts.AppendText(palavrasFaladas[i] + " ");
-                }
-                else
-                {
-                    differenceTexts.SelectionStart = differenceTexts.TextLength;
-                    differenceTexts.SelectionLength = palavrasFaladas[i].Length;
-                    differenceTexts.ForeColor = differenceTexts.ForeColor;
-                    differenceTexts.AppendText(palavrasFaladas[i] + " ");
-                }
-            }
-
-        }
-
 
         private List<Point> GetAvailablePositions()
         {
@@ -386,19 +354,65 @@ namespace Project_Audio
             return positions;
         }
 
+        public void RemoveShapesFromPictureBox(Shape shape)
+        {
+            Graphics g = pictureBox1.CreateGraphics();
+            g.Clear(Color.FromArgb(26, 26, 26));
+
+            shapes.Remove(shape);
+            positionInterator = 0;
+            foreach (Shape s in shapes)
+            {
+                CreateShapeInPictureBox(s);
+            }
+
+            g.Dispose();
+        }
+
         private void cleanImages_Click(object sender, EventArgs e)
         {
-            using (Graphics graphics = pictureBox1.CreateGraphics())
+            if (shapes.Count > 0)
             {
-                graphics.Clear(Color.FromArgb(26, 26, 26));
-                //randomShape.RemoveAt(randomShape.Count - 1);
-                controller.DeleteImageListFromButton();
-                positionInterator = 0;
+                shape = shapes.Last.Value;
+                RemoveShapesFromPictureBox(shape);
             }
         }
 
-    }
+        private void insertedText_TextChanged(object sender, EventArgs e)
+        {
 
-        
-    
+        }
+
+        private void compareTexts_Click(object sender, EventArgs e)
+        {
+
+            string textoEscrito = insertedText.Text;
+            string textoFalado = generatedText.Text;
+
+            string[] palavrasEscritas = textoEscrito.Split(' ');
+            string[] palavrasFaladas = textoFalado.Split(' ');
+
+            StringBuilder textoDiferenca = new StringBuilder();
+
+            for (int i = 0; i < palavrasEscritas.Length; i++)
+            {
+                if (i < palavrasFaladas.Length && palavrasEscritas[i] != palavrasFaladas[i])
+                {
+                    textoDiferenca.Append($"<span style=\"color:red\">{palavrasEscritas[i]}</span> ");
+                }
+                else
+                {
+                    textoDiferenca.Append($"{palavrasEscritas[i]} ");
+                }
+            }
+<<<<<<< HEAD
+
+            differenceTexts.Text = $@"{{\rtf1\ansi\ansicpg1252\deff0\deflang1033{{\fonttbl{{\f0\fnil\fcharset0 Microsoft Sans Serif;}}}}
+{{\colortbl ;\red255\green0\blue0;}}
+\viewkind4\uc1\pard\f0\fs17 {textoDiferenca.ToString()}\par}}";
+
+=======
+>>>>>>> b0d2186789fab0063a37496243e2cc6a3d9328a5
+        }
+    } 
 }

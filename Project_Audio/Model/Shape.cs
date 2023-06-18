@@ -7,15 +7,21 @@ using System.Threading.Tasks;
 
 namespace Project_Audio.Model
 {
+    public enum ShapeType{
+        Triangle,
+        Square,
+        Circle
+    }
     public class Shape
     {
         private Image shape;
-        private string type;
+        public ShapeType type { get; set; }
+        public string shapeName;
 
-        public Shape(String shape)
+        public Shape(string shapeName, ShapeType shapeType)
         {
-            this.shape = this.GenerateShape(shape);
-            this.type = shape;
+            this.shape = this.GenerateShape(shapeName);
+            this.type = shapeType;
         }
 
         public Shape()
