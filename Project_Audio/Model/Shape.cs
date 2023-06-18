@@ -45,22 +45,19 @@ namespace Project_Audio.Model
 
         public Bitmap LoadSquareImage()
         {
-            string imagePath = @"C:\Users\eddu_\OneDrive - Instituto Superior de Engenharia do Porto\Documentos\ISEP\IMAVD\IMAVD_Audio\Project_Audio\View\Icons\Shapes\Square.png";
-            Bitmap squareBitmap = new Bitmap(imagePath);
+            Bitmap squareBitmap = global::Project_Audio.Properties.Resources.Square;
             return ResizeImage (squareBitmap, 50, 50);
         }
 
         public Bitmap LoadTriangleImage()
         {
-            string imagePath = @"C:\Users\eddu_\OneDrive - Instituto Superior de Engenharia do Porto\Documentos\ISEP\IMAVD\IMAVD_Audio\Project_Audio\View\Icons\Shapes\Triangle.png";
-            Bitmap triangleBitmap = new Bitmap(imagePath);
+            Bitmap triangleBitmap = global::Project_Audio.Properties.Resources.Triangle;
             return ResizeImage(triangleBitmap, 50, 50);
         }
 
         public Bitmap LoadCircleImage()
-        {
-            string imagePath = @"C:\Users\eddu_\OneDrive - Instituto Superior de Engenharia do Porto\Documentos\ISEP\IMAVD\IMAVD_Audio\Project_Audio\View\Icons\Shapes\Circle.png";
-            Bitmap circleBitmap = new Bitmap(imagePath);
+        { 
+            Bitmap circleBitmap = global::Project_Audio.Properties.Resources.Circle;
             return ResizeImage(circleBitmap, 50, 50);
             
         }

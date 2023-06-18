@@ -249,6 +249,7 @@
             this.cleanImages.Size = new System.Drawing.Size(67, 62);
             this.cleanImages.TabIndex = 13;
             this.cleanImages.UseVisualStyleBackColor = false;
+            this.cleanImages.Click += new System.EventHandler(this.cleanImages_Click);
             this.cleanImages.MouseEnter += new System.EventHandler(this.trashImages_MouseEnter);
             this.cleanImages.MouseLeave += new System.EventHandler(this.cleanImages_MouseLeave);
             // 

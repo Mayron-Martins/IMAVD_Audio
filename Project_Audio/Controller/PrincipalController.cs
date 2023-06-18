@@ -84,6 +84,7 @@ namespace Project_Audio.Controller
 
         //----------------------------------
 
+<<<<<<< HEAD
         //--COMPARAÇÃO DE TEXTO--
       
         
@@ -94,6 +95,8 @@ namespace Project_Audio.Controller
 
 
 
+=======
+>>>>>>> b9e204491eff1bc6b14376d74c768e53dd1c44bb
         public void GenerateImageListFromButton(Image shape)
         {
             imageLinkedList.AddLast(shape);
@@ -110,6 +113,14 @@ namespace Project_Audio.Controller
                 currentNode = currentNode.Next;
             }
             return currentNode.Value;
+        }
+
+        public void DeleteImageListFromButton()
+        {
+            while (imageLinkedList.Count != 0)
+            {
+                imageLinkedList.RemoveLast();
+            }
         }
 
     }

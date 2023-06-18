@@ -19,6 +19,7 @@ namespace Project_Audio.View
         private Dictionary<Button, Panel> panelList;
         private Principal principal;
         private PresetsController controller;
+        private Dictionary<string, object[]> commandAction;
         public Presets(Principal principal)
         {
             InitializeComponent();
@@ -40,6 +41,15 @@ namespace Project_Audio.View
             panelList.Add(updateCommand, panelCommands);
 
             StartPosition = FormStartPosition.CenterScreen;
+
+            commandAction = new Dictionary<string, object[]>();
+
+            commandAction.Add("Rotate", new object[] { "Right", "Left", "Horizontal", "Vertical" });
+            commandAction.Add("Move to", new object[] { "Right", "Left", "Up", "Down" });
+            commandAction.Add("Resize", new object[] { "Grow", "Reduce" });
+            commandAction.Add("Color", new object[] { "red", "blue", "green", "white", "black", "yellow", "orange", "brown", "purple" });
+            commandAction.Add("Create", new object[] { "Square", "Triangle", "Circle", "Human Face" });
+            commandAction.Add("Duplicate", new object[] { "Square", "Triangle", "Circle", "Human Face" });
         }
 
         private void addPreset_MouseEnter(object sender, EventArgs e)
@@ -196,6 +206,27 @@ namespace Project_Audio.View
         private void definePreset_Click(object sender, EventArgs e)
         {
             principal.actualPresets.Text = "Presets: "+presetsList.SelectedItem.ToString();
+        }
+
+        private void mainAction_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selectValue = mainAction.SelectedItem.ToString();
+
+            specificAction.Items.Clear();
+
+            specificAction.Items.AddRange(commandAction[selectValue]);
+            
+            if(selectValue != "Create" && selectValue != "Duplicate")
+            {
+                diretiveAction.Visible = true;
+                diretiveAction.Enabled = true;
+            }
+            else
+            {
+                diretiveAction.Visible = false;
+                diretiveAction.Enabled = false;
+            }
+            
         }
     }
 }

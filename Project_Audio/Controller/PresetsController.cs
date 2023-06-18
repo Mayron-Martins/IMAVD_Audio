@@ -12,6 +12,12 @@ namespace Project_Audio.Controller
         private Presets view;
         public PresetsController(Presets view) {
             this.view = view;
+            this.generateDefault();
+        }
+
+        private void generateDefault()
+        {
+
         }
     }
 }
