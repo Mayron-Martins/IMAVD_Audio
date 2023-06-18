@@ -18,7 +18,10 @@ namespace Project_Audio
         public bool microphoneStatus;
         public LinkedList<Image> imageStack;
         private int positionInterator;
-        private List<Image> randomShape;
+        private List<ShapeType> randomShape;
+        private LinkedList<Shape> shapes;
+        private List<Point> point;
+        Shape shape = new Shape();
         public Principal()
         {
             InitializeComponent();
@@ -27,6 +30,9 @@ namespace Project_Audio
             imageStack = new LinkedList<Image>();
             StartPosition = FormStartPosition.CenterScreen;
             positionInterator = 0;
+            randomShape = new List<ShapeType>();
+            shapes = new LinkedList<Shape>();
+            point = new List<Point>();
         }
 
         private void openFile_MouseEnter(object sender, EventArgs e)
@@ -278,52 +284,99 @@ namespace Project_Audio
         }
         private void geometricShapes_Click(object sender, EventArgs e)
         {
-            Shape shape = new Shape();
-
-            Random random = new Random();
-            int randomNumber = random.Next(1, 4);
-
-            string shapeType;
-            switch (randomNumber)
-            {
-                case 1:
-                    shapeType = "Square";
-                    break;
-                case 2:
-                    shapeType = "Triangle";
-                    break;
-                case 3:
-                    shapeType = "Circle";
-                    break;
-                default:
-                    shapeType = "Square";
-                    break;
-            }
-            controller.GenerateImageListFromButton(shape.GenerateShape(shapeType));
-            List<Point> point = new List<Point>();
-            point = GetAvailablePositions();
-            using (Graphics graphics = pictureBox1.CreateGraphics())
-            {
-                try
-                {
-                    if (point.Count >= positionInterator)
-                    {
-                        randomShape = new List<Image>();
-                        randomShape.Add(controller.GetRandomImage());
-                        Point position = point[positionInterator];
-
-                        graphics.DrawImage(randomShape[randomShape.Count - 1], position.X, position.Y);
-                    }
-                }
-                catch (Exception erro)
-                {
-                    Console.WriteLine(erro.Message);
-                }
-
-            }
-            positionInterator++;
+            shape = controller.GenerateImageListFromButton();
+            shapes.AddLast(shape);
+            CreateShapeInPictureBox(shape); 
         }
 
+        private void CreateShapeInPictureBox(Shape shape)
+        {
+            Graphics g = pictureBox1.CreateGraphics();
+
+            point = GetAvailablePositions();
+
+            switch (shape.type)
+            {
+                case ShapeType.Triangle:
+                    if (point.Count >= positionInterator)
+                    {
+                        randomShape.Add(controller.GetRandomImage());
+                        Point position = point[positionInterator];
+                        g.DrawImage(shape.GenerateShape(shape.type.ToString()), position.X, position.Y);
+                        positionInterator++;
+                    }
+                    
+                    break;
+                case ShapeType.Square:
+                    if (point.Count >= positionInterator)
+                    {
+                        randomShape.Add(controller.GetRandomImage());
+                        Point position = point[positionInterator];
+                        g.DrawImage(shape.GenerateShape(shape.type.ToString()), position.X, position.Y);
+                        positionInterator++;
+                    }
+                    break;
+                case ShapeType.Circle:
+                    if (point.Count >= positionInterator)
+                    {
+                        randomShape.Add(controller.GetRandomImage());
+                        Point position = point[positionInterator];
+                        g.DrawImage(shape.GenerateShape(shape.type.ToString()), position.X, position.Y);
+                        positionInterator++;
+                    }
+                    break;
+            }
+            
+            g.Dispose();
+        }
+
+        private List<Point> GetAvailablePositions()
+        {
+            List<Point> positions = new List<Point>();
+
+            int cellSize = 80;
+            int offsetX = -10;
+            int offsetY = -10;
+
+            int rows = pictureBox1.Height / cellSize;
+            int columns = pictureBox1.Width / cellSize;
+
+            for (int row = 0; row < rows; row++)
+            {
+                for (int col = 0; col < columns; col++)
+                {
+                    int x = col * cellSize + offsetX + cellSize / 2;
+                    int y = row * cellSize + offsetY + cellSize / 2;
+                    positions.Add(new Point(x, y));
+                }
+            }
+
+            return positions;
+        }
+
+        public void RemoveShapesFromPictureBox(Shape shape)
+        {
+            Graphics g = pictureBox1.CreateGraphics();
+            g.Clear(Color.FromArgb(26, 26, 26));
+
+            shapes.Remove(shape);
+            positionInterator = 0;
+            foreach (Shape s in shapes)
+            {
+                CreateShapeInPictureBox(s);
+            }
+
+            g.Dispose();
+        }
+
+        private void cleanImages_Click(object sender, EventArgs e)
+        {
+            if (shapes.Count > 0)
+            {
+                shape = shapes.Last.Value;
+                RemoveShapesFromPictureBox(shape);
+            }
+        }
 
         private void insertedText_TextChanged(object sender, EventArgs e)
         {
@@ -358,47 +411,6 @@ namespace Project_Audio
                     differenceTexts.AppendText(palavrasFaladas[i] + " ");
                 }
             }
-
         }
-
-
-        private List<Point> GetAvailablePositions()
-        {
-            List<Point> positions = new List<Point>();
-
-            int cellSize = 80;
-            int offsetX = -10;
-            int offsetY = -10;
-
-            int rows = pictureBox1.Height / cellSize;
-            int columns = pictureBox1.Width / cellSize;
-
-            for (int row = 0; row < rows; row++)
-            {
-                for (int col = 0; col < columns; col++)
-                {
-                    int x = col * cellSize + offsetX + cellSize / 2;
-                    int y = row * cellSize + offsetY + cellSize / 2;
-                    positions.Add(new Point(x, y));
-                }
-            }
-
-            return positions;
-        }
-
-        private void cleanImages_Click(object sender, EventArgs e)
-        {
-            using (Graphics graphics = pictureBox1.CreateGraphics())
-            {
-                graphics.Clear(Color.FromArgb(26, 26, 26));
-                //randomShape.RemoveAt(randomShape.Count - 1);
-                controller.DeleteImageListFromButton();
-                positionInterator = 0;
-            }
-        }
-
-    }
-
-        
-    
+    } 
 }
