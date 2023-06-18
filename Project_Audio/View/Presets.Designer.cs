@@ -29,15 +29,16 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Presets));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.presetsList = new System.Windows.Forms.ComboBox();
-            this.presetDetails = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.description = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.panelNewPreset = new System.Windows.Forms.Panel();
             this.presetName = new System.Windows.Forms.TextBox();
             this.panelCommands = new System.Windows.Forms.Panel();
+            this.diretiveAction = new System.Windows.Forms.ComboBox();
             this.specificAction = new System.Windows.Forms.ComboBox();
             this.mainAction = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -51,10 +52,11 @@
             this.addComand = new System.Windows.Forms.Button();
             this.addPreset = new System.Windows.Forms.Button();
             this.definePreset = new System.Windows.Forms.Button();
-            this.diretiveAction = new System.Windows.Forms.ComboBox();
+            this.presetDetails = new System.Windows.Forms.DataGridView();
             this.panel1.SuspendLayout();
             this.panelNewPreset.SuspendLayout();
             this.panelCommands.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.presetDetails)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -80,22 +82,6 @@
             this.presetsList.Name = "presetsList";
             this.presetsList.Size = new System.Drawing.Size(200, 25);
             this.presetsList.TabIndex = 1;
-            // 
-            // presetDetails
-            // 
-            this.presetDetails.AutoScroll = true;
-            this.presetDetails.BackColor = System.Drawing.Color.White;
-            this.presetDetails.ColumnCount = 2;
-            this.presetDetails.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.presetDetails.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.presetDetails.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.presetDetails.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
-            this.presetDetails.Location = new System.Drawing.Point(15, 65);
-            this.presetDetails.Name = "presetDetails";
-            this.presetDetails.RowCount = 1;
-            this.presetDetails.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 245F));
-            this.presetDetails.Size = new System.Drawing.Size(200, 238);
-            this.presetDetails.TabIndex = 2;
             // 
             // panel1
             // 
@@ -163,6 +149,24 @@
             this.panelCommands.Size = new System.Drawing.Size(246, 106);
             this.panelCommands.TabIndex = 11;
             this.panelCommands.EnabledChanged += new System.EventHandler(this.panelCommands_EnabledChanged);
+            // 
+            // diretiveAction
+            // 
+            this.diretiveAction.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.diretiveAction.Enabled = false;
+            this.diretiveAction.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.diretiveAction.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
+            this.diretiveAction.FormattingEnabled = true;
+            this.diretiveAction.Items.AddRange(new object[] {
+            "Square",
+            "Triangle",
+            "Circle",
+            "Face"});
+            this.diretiveAction.Location = new System.Drawing.Point(170, 76);
+            this.diretiveAction.Name = "diretiveAction";
+            this.diretiveAction.Size = new System.Drawing.Size(68, 21);
+            this.diretiveAction.TabIndex = 16;
+            this.diretiveAction.Visible = false;
             // 
             // specificAction
             // 
@@ -248,6 +252,7 @@
             this.savePreset.TabIndex = 12;
             this.savePreset.UseVisualStyleBackColor = false;
             this.savePreset.Visible = false;
+            this.savePreset.Click += new System.EventHandler(this.savePreset_Click);
             // 
             // microphone
             // 
@@ -327,23 +332,17 @@
             this.definePreset.UseVisualStyleBackColor = false;
             this.definePreset.Click += new System.EventHandler(this.definePreset_Click);
             // 
-            // diretiveAction
+            // presetDetails
             // 
-            this.diretiveAction.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.diretiveAction.Enabled = false;
-            this.diretiveAction.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.diretiveAction.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
-            this.diretiveAction.FormattingEnabled = true;
-            this.diretiveAction.Items.AddRange(new object[] {
-            "Square",
-            "Triangle",
-            "Circle",
-            "Human Face"});
-            this.diretiveAction.Location = new System.Drawing.Point(170, 76);
-            this.diretiveAction.Name = "diretiveAction";
-            this.diretiveAction.Size = new System.Drawing.Size(68, 21);
-            this.diretiveAction.TabIndex = 16;
-            this.diretiveAction.Visible = false;
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
+            this.presetDetails.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.presetDetails.BackgroundColor = System.Drawing.Color.White;
+            this.presetDetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.presetDetails.Location = new System.Drawing.Point(15, 60);
+            this.presetDetails.Name = "presetDetails";
+            this.presetDetails.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.presetDetails.Size = new System.Drawing.Size(200, 243);
+            this.presetDetails.TabIndex = 15;
             // 
             // Presets
             // 
@@ -351,6 +350,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
             this.ClientSize = new System.Drawing.Size(602, 335);
+            this.Controls.Add(this.presetDetails);
             this.Controls.Add(this.definePreset);
             this.Controls.Add(this.saveCommand);
             this.Controls.Add(this.savePreset);
@@ -362,17 +362,18 @@
             this.Controls.Add(this.updateCommand);
             this.Controls.Add(this.addComand);
             this.Controls.Add(this.addPreset);
-            this.Controls.Add(this.presetDetails);
             this.Controls.Add(this.presetsList);
             this.Controls.Add(this.label1);
             this.Name = "Presets";
             this.Text = "Form1";
+            this.Shown += new System.EventHandler(this.Presets_Shown);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panelNewPreset.ResumeLayout(false);
             this.panelNewPreset.PerformLayout();
             this.panelCommands.ResumeLayout(false);
             this.panelCommands.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.presetDetails)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -381,8 +382,7 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox presetsList;
-        private System.Windows.Forms.TableLayoutPanel presetDetails;
+        public System.Windows.Forms.ComboBox presetsList;
         private System.Windows.Forms.Button addPreset;
         private System.Windows.Forms.Button addComand;
         private System.Windows.Forms.Button updateCommand;
@@ -403,5 +403,6 @@
         private System.Windows.Forms.Button saveCommand;
         private System.Windows.Forms.Button definePreset;
         private System.Windows.Forms.ComboBox diretiveAction;
+        public System.Windows.Forms.DataGridView presetDetails;
     }
 }

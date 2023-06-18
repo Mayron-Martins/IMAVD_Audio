@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Project_Audio.Model;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,7 +19,7 @@ namespace Project_Audio.Controller
 
         private SpeechRecognizer recognizer;
 
-        LinkedList<Image> imageLinkedList = new LinkedList<Image>();
+        LinkedList<ShapeType> imageLinkedList = new LinkedList<ShapeType>();
 
 
         public PrincipalController(Principal view)
@@ -84,7 +85,7 @@ namespace Project_Audio.Controller
 
         //----------------------------------
 
-<<<<<<< HEAD
+
         //--COMPARAÇÃO DE TEXTO--
       
         
@@ -95,19 +96,32 @@ namespace Project_Audio.Controller
 
 
 
-=======
->>>>>>> b9e204491eff1bc6b14376d74c768e53dd1c44bb
-        public void GenerateImageListFromButton(Image shape)
+
+        /*public Shape GenerateImageListFromButton(Image shape)
         {
             imageLinkedList.AddLast(shape);
+        }*/
+
+        public Shape GenerateImageListFromButton()
+        {
+            Random random = new Random();
+
+            int tipoIndex = random.Next(0, 3);
+
+            ShapeType tipo = (ShapeType)tipoIndex;
+            imageLinkedList.AddLast(tipo);
+
+            //Color cor = Color.FromArgb(random.Next(256), random.Next(256), random.Next(256));
+
+            return new Shape {type = tipo};
         }
 
-        public Image GetRandomImage()
+        public ShapeType GetRandomImage()
         {
             Random random = new Random();
             int randomIndex = random.Next(0, imageLinkedList.Count);
 
-            LinkedListNode<Image> currentNode = imageLinkedList.First;
+            LinkedListNode<ShapeType> currentNode = imageLinkedList.First;
             for (int i = 0; i < randomIndex; i++)
             {
                 currentNode = currentNode.Next;
@@ -117,10 +131,7 @@ namespace Project_Audio.Controller
 
         public void DeleteImageListFromButton()
         {
-            while (imageLinkedList.Count != 0)
-            {
-                imageLinkedList.RemoveLast();
-            }
+             imageLinkedList.RemoveLast();
         }
 
     }
