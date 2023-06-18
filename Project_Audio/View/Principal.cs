@@ -431,9 +431,9 @@ namespace Project_Audio
 
 
         }
-<<<<<<< HEAD
-    }
-=======
+
+    
+
 
         private void peoplesFaces_Click(object sender, EventArgs e)
         {
@@ -449,5 +449,5 @@ namespace Project_Audio
             }
         }
     } 
->>>>>>> 556e25e31aa5a0bba5610e39d14a6663c08cd36a
+
 }
