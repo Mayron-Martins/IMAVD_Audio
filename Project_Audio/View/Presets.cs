@@ -47,9 +47,9 @@ namespace Project_Audio.View
             commandAction.Add("Rotate", new object[] { "Right", "Left", "Horizontal", "Vertical" });
             commandAction.Add("Move to", new object[] { "Right", "Left", "Up", "Down" });
             commandAction.Add("Resize", new object[] { "Grow", "Reduce" });
-            commandAction.Add("Color", new object[] { "red", "blue", "green", "white", "black", "yellow", "orange", "brown", "purple" });
-            commandAction.Add("Create", new object[] { "Square", "Triangle", "Circle", "Human Face" });
-            commandAction.Add("Duplicate", new object[] { "Square", "Triangle", "Circle", "Human Face" });
+            commandAction.Add("Color", new object[] { "Red", "Blue", "Green", "White", "Black", "Yellow", "Orange", "Brown", "Purple" });
+            commandAction.Add("Create", new object[] { "Square", "Triangle", "Circle", "Face" });
+            commandAction.Add("Duplicate", new object[] { "Square", "Triangle", "Circle", "Face" });
         }
 
         private void addPreset_MouseEnter(object sender, EventArgs e)
@@ -227,6 +227,16 @@ namespace Project_Audio.View
                 diretiveAction.Enabled = false;
             }
             
+        }
+
+        private void Presets_Shown(object sender, EventArgs e)
+        {
+            controller.generateDefault(commandAction);
+        }
+
+        private void savePreset_Click(object sender, EventArgs e)
+        {
+            controller.createPreset(presetName.Text);
         }
     }
 }

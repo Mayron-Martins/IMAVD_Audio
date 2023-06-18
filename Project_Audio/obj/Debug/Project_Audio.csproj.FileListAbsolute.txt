@@ -52,3 +52,5 @@ C:\Users\Mayro\Source\Repos\IMAVD_Audio\Project_Audio\obj\Debug\Project_Audio.cs
 C:\Users\Mayro\Source\Repos\IMAVD_Audio\Project_Audio\obj\Debug\Project_Audio.csproj.CopyComplete
 C:\Users\Mayro\Source\Repos\IMAVD_Audio\Project_Audio\obj\Debug\Project_Audio.exe
 C:\Users\Mayro\Source\Repos\IMAVD_Audio\Project_Audio\obj\Debug\Project_Audio.pdb
+C:\Users\Mayro\Source\Repos\IMAVD_Audio\Project_Audio\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Mayro\Source\Repos\IMAVD_Audio\Project_Audio\bin\Debug\Newtonsoft.Json.xml
