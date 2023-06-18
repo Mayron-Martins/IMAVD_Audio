@@ -77,8 +77,6 @@
             this.presetsList.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.presetsList.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
             this.presetsList.FormattingEnabled = true;
-            this.presetsList.Items.AddRange(new object[] {
-            "Default"});
             this.presetsList.Location = new System.Drawing.Point(15, 29);
             this.presetsList.Name = "presetsList";
             this.presetsList.Size = new System.Drawing.Size(200, 25);
@@ -173,6 +171,7 @@
             // specificAction
             // 
             this.specificAction.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.specificAction.Enabled = false;
             this.specificAction.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.specificAction.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
             this.specificAction.FormattingEnabled = true;
@@ -184,6 +183,7 @@
             // mainAction
             // 
             this.mainAction.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.mainAction.Enabled = false;
             this.mainAction.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mainAction.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
             this.mainAction.FormattingEnabled = true;
@@ -242,6 +242,7 @@
             this.saveCommand.TabIndex = 13;
             this.saveCommand.UseVisualStyleBackColor = false;
             this.saveCommand.Visible = false;
+            this.saveCommand.Click += new System.EventHandler(this.saveCommand_Click);
             // 
             // savePreset
             // 
@@ -355,6 +356,7 @@
             this.presetDetails.Name = "presetDetails";
             this.presetDetails.Size = new System.Drawing.Size(200, 243);
             this.presetDetails.TabIndex = 15;
+            this.presetDetails.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.presetDetails_CellClick);
             // 
             // Presets
             // 
@@ -378,7 +380,6 @@
             this.Controls.Add(this.label1);
             this.Name = "Presets";
             this.Text = "Form1";
-            this.Shown += new System.EventHandler(this.Presets_Shown);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panelNewPreset.ResumeLayout(false);

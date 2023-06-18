@@ -27,7 +27,6 @@ namespace Project_Audio.View
             this.controller = new PresetsController(this);
 
             microphoneStatus = false;
-            presetsList.SelectedIndex = 0;
             buttonList = new LinkedList<Button> ();
             panelList = new Dictionary<Button, Panel>();
 
@@ -50,6 +49,8 @@ namespace Project_Audio.View
             commandAction.Add("Color", new object[] { "Red", "Blue", "Green", "White", "Black", "Yellow", "Orange", "Brown", "Purple" });
             commandAction.Add("Create", new object[] { "Square", "Triangle", "Circle", "Face" });
             commandAction.Add("Duplicate", new object[] { "Square", "Triangle", "Circle", "Face" });
+
+            controller.generateDefault(commandAction);
         }
 
         private void addPreset_MouseEnter(object sender, EventArgs e)
@@ -126,8 +127,17 @@ namespace Project_Audio.View
                 button.BackColor = Color.FromArgb(179, 179, 179);
             }
 
-            if (panelList.ContainsKey(button)) 
+            if (panelList.ContainsKey(button))
+            {
                 panelList[button].Enabled = panelList[button].Enabled ? false : true;
+            }
+
+            bool enableActions = (updateCommand.BackColor == Color.White) ?
+                false : true;
+            mainAction.Enabled = enableActions;
+            specificAction.Enabled = enableActions;
+            diretiveAction.Enabled = enableActions;
+
         }
 
         private void addPreset_Click(object sender, EventArgs e)
@@ -229,11 +239,6 @@ namespace Project_Audio.View
             
         }
 
-        private void Presets_Shown(object sender, EventArgs e)
-        {
-            controller.generateDefault(commandAction);
-        }
-
         private void savePreset_Click(object sender, EventArgs e)
         {
             controller.createPreset(presetName.Text);
@@ -243,6 +248,69 @@ namespace Project_Audio.View
         private void presetsList_SelectedIndexChanged(object sender, EventArgs e)
         {
             controller.updateTable();
+        }
+
+        private void presetDetails_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            CommandAction command = controller.getCommand(e);
+
+            if (string.IsNullOrEmpty(command.name))
+            {
+                return;
+            }
+
+            commandName.Text = command.name;
+
+            string[] actions = command.action.Split(';');
+
+            string main = actions[0];
+            string specific = actions[1];
+            string diretive = (actions.Length == 3) ? actions[2] : "";
+
+            mainAction.SelectedItem = main;
+            specificAction.SelectedItem = specific;
+            if (!string.IsNullOrEmpty(diretive))
+            {
+                diretiveAction.SelectedItem = diretive;
+            }
+        }
+
+        private void saveCommand_Click(object sender, EventArgs e)
+        {
+            string name = commandName.Text;
+
+            string main = mainAction.SelectedItem.ToString();
+            string specific = specificAction.SelectedItem.ToString();
+            string diretive = diretiveAction.SelectedItem.ToString();
+
+            if(string.IsNullOrEmpty(name) || string.IsNullOrEmpty(main)
+                || string.IsNullOrEmpty(specific))
+            {
+                return;
+            }
+
+            string action = main + ";" + specific;
+
+            if(main != "Duplicate" && main != "Create")
+            {
+                if (string.IsNullOrEmpty(diretive))
+                {
+                    return;
+                }
+
+                action += ";" + diretive;
+            }
+
+            if(addComand.BackColor == Color.White)
+            {
+                controller.addComand(name, action);
+            }
+            else
+            {
+                controller.updateCommand(name, action);
+            }
+
+            presetsList.SelectedItem = presetsList.SelectedItem;
         }
     }
 }
