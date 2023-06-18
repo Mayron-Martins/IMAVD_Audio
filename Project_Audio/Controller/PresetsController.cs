@@ -119,6 +119,7 @@ namespace Project_Audio.Controller
             {
                 view.presetsList.Items.Add(Path.GetFileNameWithoutExtension(file));
             }
+            
 
             view.presetsList.SelectedItem = "Default";
             
