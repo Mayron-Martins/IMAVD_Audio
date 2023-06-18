@@ -51,6 +51,7 @@
             this.addComand = new System.Windows.Forms.Button();
             this.addPreset = new System.Windows.Forms.Button();
             this.definePreset = new System.Windows.Forms.Button();
+            this.diretiveAction = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.panelNewPreset.SuspendLayout();
             this.panelCommands.SuspendLayout();
@@ -134,7 +135,7 @@
             this.panelNewPreset.Enabled = false;
             this.panelNewPreset.Location = new System.Drawing.Point(308, 29);
             this.panelNewPreset.Name = "panelNewPreset";
-            this.panelNewPreset.Size = new System.Drawing.Size(172, 50);
+            this.panelNewPreset.Size = new System.Drawing.Size(246, 50);
             this.panelNewPreset.TabIndex = 10;
             this.panelNewPreset.EnabledChanged += new System.EventHandler(this.panelNewPreset_EnabledChanged);
             // 
@@ -144,12 +145,13 @@
             this.presetName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
             this.presetName.Location = new System.Drawing.Point(8, 24);
             this.presetName.Name = "presetName";
-            this.presetName.Size = new System.Drawing.Size(156, 23);
+            this.presetName.Size = new System.Drawing.Size(230, 23);
             this.presetName.TabIndex = 10;
             // 
             // panelCommands
             // 
             this.panelCommands.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(47)))), ((int)(((byte)(46)))));
+            this.panelCommands.Controls.Add(this.diretiveAction);
             this.panelCommands.Controls.Add(this.specificAction);
             this.panelCommands.Controls.Add(this.mainAction);
             this.panelCommands.Controls.Add(this.label4);
@@ -158,7 +160,7 @@
             this.panelCommands.Enabled = false;
             this.panelCommands.Location = new System.Drawing.Point(308, 85);
             this.panelCommands.Name = "panelCommands";
-            this.panelCommands.Size = new System.Drawing.Size(172, 106);
+            this.panelCommands.Size = new System.Drawing.Size(246, 106);
             this.panelCommands.TabIndex = 11;
             this.panelCommands.EnabledChanged += new System.EventHandler(this.panelCommands_EnabledChanged);
             // 
@@ -168,9 +170,9 @@
             this.specificAction.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.specificAction.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
             this.specificAction.FormattingEnabled = true;
-            this.specificAction.Location = new System.Drawing.Point(82, 76);
+            this.specificAction.Location = new System.Drawing.Point(88, 76);
             this.specificAction.Name = "specificAction";
-            this.specificAction.Size = new System.Drawing.Size(82, 21);
+            this.specificAction.Size = new System.Drawing.Size(76, 21);
             this.specificAction.TabIndex = 15;
             // 
             // mainAction
@@ -188,7 +190,7 @@
             "Duplicate"});
             this.mainAction.Location = new System.Drawing.Point(8, 76);
             this.mainAction.Name = "mainAction";
-            this.mainAction.Size = new System.Drawing.Size(68, 21);
+            this.mainAction.Size = new System.Drawing.Size(74, 21);
             this.mainAction.TabIndex = 14;
             this.mainAction.SelectedIndexChanged += new System.EventHandler(this.mainAction_SelectedIndexChanged);
             // 
@@ -209,7 +211,7 @@
             this.commandName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
             this.commandName.Location = new System.Drawing.Point(8, 27);
             this.commandName.Name = "commandName";
-            this.commandName.Size = new System.Drawing.Size(156, 23);
+            this.commandName.Size = new System.Drawing.Size(230, 23);
             this.commandName.TabIndex = 12;
             // 
             // label3
@@ -228,7 +230,7 @@
             this.saveCommand.BackColor = System.Drawing.Color.White;
             this.saveCommand.Enabled = false;
             this.saveCommand.Image = ((System.Drawing.Image)(resources.GetObject("saveCommand.Image")));
-            this.saveCommand.Location = new System.Drawing.Point(486, 161);
+            this.saveCommand.Location = new System.Drawing.Point(560, 161);
             this.saveCommand.Name = "saveCommand";
             this.saveCommand.Size = new System.Drawing.Size(30, 30);
             this.saveCommand.TabIndex = 13;
@@ -240,7 +242,7 @@
             this.savePreset.BackColor = System.Drawing.Color.White;
             this.savePreset.Enabled = false;
             this.savePreset.Image = ((System.Drawing.Image)(resources.GetObject("savePreset.Image")));
-            this.savePreset.Location = new System.Drawing.Point(486, 49);
+            this.savePreset.Location = new System.Drawing.Point(560, 49);
             this.savePreset.Name = "savePreset";
             this.savePreset.Size = new System.Drawing.Size(30, 30);
             this.savePreset.TabIndex = 12;
@@ -319,18 +321,36 @@
             this.definePreset.ForeColor = System.Drawing.Color.White;
             this.definePreset.Location = new System.Drawing.Point(308, 273);
             this.definePreset.Name = "definePreset";
-            this.definePreset.Size = new System.Drawing.Size(171, 30);
+            this.definePreset.Size = new System.Drawing.Size(246, 30);
             this.definePreset.TabIndex = 14;
             this.definePreset.Text = "Define Default Preset";
             this.definePreset.UseVisualStyleBackColor = false;
             this.definePreset.Click += new System.EventHandler(this.definePreset_Click);
+            // 
+            // diretiveAction
+            // 
+            this.diretiveAction.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.diretiveAction.Enabled = false;
+            this.diretiveAction.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.diretiveAction.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
+            this.diretiveAction.FormattingEnabled = true;
+            this.diretiveAction.Items.AddRange(new object[] {
+            "Square",
+            "Triangle",
+            "Circle",
+            "Human Face"});
+            this.diretiveAction.Location = new System.Drawing.Point(170, 76);
+            this.diretiveAction.Name = "diretiveAction";
+            this.diretiveAction.Size = new System.Drawing.Size(68, 21);
+            this.diretiveAction.TabIndex = 16;
+            this.diretiveAction.Visible = false;
             // 
             // Presets
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
-            this.ClientSize = new System.Drawing.Size(529, 335);
+            this.ClientSize = new System.Drawing.Size(602, 335);
             this.Controls.Add(this.definePreset);
             this.Controls.Add(this.saveCommand);
             this.Controls.Add(this.savePreset);
@@ -382,5 +402,6 @@
         private System.Windows.Forms.Button savePreset;
         private System.Windows.Forms.Button saveCommand;
         private System.Windows.Forms.Button definePreset;
+        private System.Windows.Forms.ComboBox diretiveAction;
     }
 }
