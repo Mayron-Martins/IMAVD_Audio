@@ -173,8 +173,8 @@ namespace Project_Audio
         {
             OpenFileDialog fileDialog = new OpenFileDialog();
             fileDialog.Title = "Select an Audio or Image File";
-            fileDialog.Filter = "Arquivos de Áudio|*.wav;*.mp3;*.ogg|Arquivos de Imagem|*.jpg;*.png;*.gif";
-
+            fileDialog.Filter = "Arquivos de Áudio(*.wav,*.mp3,*.ogg,*.jpg,*.png,*.gif)|*.wav;*.mp3;*.ogg;*.jpg;*.png;*.gif";
+            
             if (fileDialog.ShowDialog() == DialogResult.OK)
             {
                 string selectedFilePath = fileDialog.FileName;
@@ -373,12 +373,28 @@ namespace Project_Audio
             g.Dispose();
         }
 
+        public void RemoveImageFromPictureBox(Image pBImage)
+        {
+            Graphics g = pictureBox1.CreateGraphics();
+            g.Clear(Color.FromArgb(26, 26, 26));
+
+            positionInterator = 0;
+
+            g.Dispose();
+        }
+
         private void cleanImages_Click(object sender, EventArgs e)
         {
             if (shapes.Count > 0)
             {
                 shape = shapes.Last.Value;
                 RemoveShapesFromPictureBox(shape);
+            }
+
+            if (imageStack.Count != 0 && shapes.Count == 0)
+            {
+                Image img = imageStack.Last.Value;
+                RemoveImageFromPictureBox(img);
             }
         }
 
@@ -415,5 +431,23 @@ namespace Project_Audio
 
 
         }
+<<<<<<< HEAD
     }
+=======
+
+        private void peoplesFaces_Click(object sender, EventArgs e)
+        {
+            Graphics g = pictureBox1.CreateGraphics();
+            Image faceImage = imageStack.Last.Value;
+            faceImage = shape.ResizeFace(faceImage, 50, 50);
+            point = GetAvailablePositions();
+            if (point.Count > positionInterator)
+            {
+                Point position = point[positionInterator];
+                g.DrawImage(faceImage, position.X, position.Y);
+                positionInterator++;
+            }
+        }
+    } 
+>>>>>>> 556e25e31aa5a0bba5610e39d14a6663c08cd36a
 }

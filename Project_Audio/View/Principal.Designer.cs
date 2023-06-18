@@ -279,6 +279,7 @@
             this.peoplesFaces.Size = new System.Drawing.Size(67, 62);
             this.peoplesFaces.TabIndex = 11;
             this.peoplesFaces.UseVisualStyleBackColor = false;
+            this.peoplesFaces.Click += new System.EventHandler(this.peoplesFaces_Click);
             this.peoplesFaces.MouseEnter += new System.EventHandler(this.peoplesFaces_MouseEnter);
             this.peoplesFaces.MouseLeave += new System.EventHandler(this.peoplesFaces_MouseLeave);
             // 
