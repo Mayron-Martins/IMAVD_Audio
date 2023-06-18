@@ -7,11 +7,6 @@ using System.Threading.Tasks;
 
 namespace Project_Audio.Model
 {
-    public enum ShapeType{
-        Triangle,
-        Square,
-        Circle
-    }
     public class Shape
     {
         private Image shape;
@@ -29,24 +24,24 @@ namespace Project_Audio.Model
 
         }
 
-        public Image GenerateShape(String shape)
+        public Image GenerateShape(String shapeName)
         {
-            Image shapeImage = null;
+            shape = null;
 
-            if (shape.Equals("square", StringComparison.OrdinalIgnoreCase))
+            if (shapeName.Equals("square", StringComparison.OrdinalIgnoreCase))
             {
-                shapeImage = LoadSquareImage();
+                shape = LoadSquareImage();
             }
-            else if (shape.Equals("triangle", StringComparison.OrdinalIgnoreCase))
+            else if (shapeName.Equals("triangle", StringComparison.OrdinalIgnoreCase))
             {
-                shapeImage = LoadTriangleImage();
+                shape = LoadTriangleImage();
             }
-            else if (shape.Equals("circle", StringComparison.OrdinalIgnoreCase))
+            else if (shapeName.Equals("circle", StringComparison.OrdinalIgnoreCase))
             {
-                shapeImage = LoadCircleImage();
+                shape = LoadCircleImage();
             }
 
-            return shapeImage;
+            return shape;
         }
 
         public Bitmap LoadSquareImage()

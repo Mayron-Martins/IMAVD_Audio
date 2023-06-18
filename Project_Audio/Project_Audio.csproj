@@ -76,6 +76,7 @@
   <ItemGroup>
     <Compile Include="Controller\PresetsController.cs" />
     <Compile Include="Controller\PrincipalController.cs" />
+    <Compile Include="Model\ShapeType.cs" />
     <Compile Include="Model\Shape.cs" />
     <Compile Include="View\Presets.cs">
       <SubType>Form</SubType>

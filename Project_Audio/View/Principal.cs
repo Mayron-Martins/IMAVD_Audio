@@ -21,6 +21,7 @@ namespace Project_Audio
         private List<ShapeType> randomShape;
         private LinkedList<Shape> shapes;
         private List<Point> point;
+        private List<Point> positions;
         Shape shape = new Shape();
         public Principal()
         {
@@ -284,9 +285,11 @@ namespace Project_Audio
         }
         private void geometricShapes_Click(object sender, EventArgs e)
         {
+
             shape = controller.GenerateImageListFromButton();
             shapes.AddLast(shape);
             CreateShapeInPictureBox(shape); 
+
         }
 
         private void CreateShapeInPictureBox(Shape shape)
@@ -298,7 +301,7 @@ namespace Project_Audio
             switch (shape.type)
             {
                 case ShapeType.Triangle:
-                    if (point.Count >= positionInterator)
+                    if (point.Count > positionInterator)
                     {
                         randomShape.Add(controller.GetRandomImage());
                         Point position = point[positionInterator];
@@ -308,7 +311,7 @@ namespace Project_Audio
                     
                     break;
                 case ShapeType.Square:
-                    if (point.Count >= positionInterator)
+                    if (point.Count > positionInterator)
                     {
                         randomShape.Add(controller.GetRandomImage());
                         Point position = point[positionInterator];
@@ -317,7 +320,7 @@ namespace Project_Audio
                     }
                     break;
                 case ShapeType.Circle:
-                    if (point.Count >= positionInterator)
+                    if (point.Count > positionInterator)
                     {
                         randomShape.Add(controller.GetRandomImage());
                         Point position = point[positionInterator];
@@ -332,7 +335,7 @@ namespace Project_Audio
 
         private List<Point> GetAvailablePositions()
         {
-            List<Point> positions = new List<Point>();
+            positions = new List<Point>();
 
             int cellSize = 80;
             int offsetX = -10;
@@ -405,14 +408,13 @@ namespace Project_Audio
                     textoDiferenca.Append($"{palavrasEscritas[i]} ");
                 }
             }
-<<<<<<< HEAD
+
 
             differenceTexts.Text = $@"{{\rtf1\ansi\ansicpg1252\deff0\deflang1033{{\fonttbl{{\f0\fnil\fcharset0 Microsoft Sans Serif;}}}}
 {{\colortbl ;\red255\green0\blue0;}}
 \viewkind4\uc1\pard\f0\fs17 {textoDiferenca.ToString()}\par}}";
 
-=======
->>>>>>> b0d2186789fab0063a37496243e2cc6a3d9328a5
+
         }
     } 
 }
