@@ -272,7 +272,7 @@
             // 
             // removeCommand
             // 
-            this.removeCommand.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(179)))), ((int)(((byte)(179)))), ((int)(((byte)(179)))));
+            this.removeCommand.BackColor = System.Drawing.Color.White;
             this.removeCommand.Image = global::Project_Audio.Properties.Resources.removeCommand;
             this.removeCommand.Location = new System.Drawing.Point(243, 197);
             this.removeCommand.Name = "removeCommand";
@@ -354,6 +354,7 @@
             this.presetDetails.Location = new System.Drawing.Point(15, 60);
             this.presetDetails.MultiSelect = false;
             this.presetDetails.Name = "presetDetails";
+            this.presetDetails.ReadOnly = true;
             this.presetDetails.Size = new System.Drawing.Size(200, 243);
             this.presetDetails.TabIndex = 15;
             this.presetDetails.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.presetDetails_CellClick);

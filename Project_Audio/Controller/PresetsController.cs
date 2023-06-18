@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace Project_Audio.Controller
 {
@@ -20,7 +21,8 @@ namespace Project_Audio.Controller
         private string pathPresets;
 
         private Presets view;
-        public PresetsController(Presets view) {
+        public PresetsController(Presets view)
+        {
             this.view = view;
 
             createPathPresets();
@@ -46,15 +48,16 @@ namespace Project_Audio.Controller
             {
                 JArray contentJson = new JArray();
 
-                object[] shapes = { "Square", "Triangle", "Circle", "Face" }; 
+                object[] shapes = { "Square", "Triangle", "Circle", "Face" };
 
-                foreach(string mainCommand in commandList.Keys)
+                foreach (string mainCommand in commandList.Keys)
                 {
-                    if(mainCommand != "Create" && mainCommand != "Duplicate")
+                    if (mainCommand != "Create" && mainCommand != "Duplicate")
                     {
-                        foreach(object action in commandList[mainCommand])
+                        foreach (object action in commandList[mainCommand])
                         {
-                            foreach(object shape in shapes){
+                            foreach (object shape in shapes)
+                            {
                                 JObject command = new JObject();
                                 command["name"] = shape + " " + mainCommand + " " + action;
                                 command["action"] = mainCommand + ";" + action + ";" + shape;
@@ -67,12 +70,12 @@ namespace Project_Audio.Controller
                     {
                         foreach (object action in commandList[mainCommand])
                         {
-                            
-                                JObject command = new JObject();
-                                command["name"] = mainCommand + " " + action;
-                                command["action"] = mainCommand + ";" + action;
 
-                                contentJson.Add(command);
+                            JObject command = new JObject();
+                            command["name"] = mainCommand + " " + action;
+                            command["action"] = mainCommand + ";" + action;
+
+                            contentJson.Add(command);
                         }
                     }
                 }
@@ -88,7 +91,7 @@ namespace Project_Audio.Controller
         {
             if (!String.IsNullOrEmpty(presetName))
             {
-                string preset = Path.Combine(pathPresets, presetName+".json");
+                string preset = Path.Combine(pathPresets, presetName + ".json");
                 if (!File.Exists(preset))
                 {
                     File.WriteAllText(preset, "{}");
@@ -101,7 +104,7 @@ namespace Project_Audio.Controller
                 {
                     ErrorMensage("It is not possible to create a file with this name, it currently already exists.");
                 }
-                
+
             }
         }
 
@@ -125,10 +128,10 @@ namespace Project_Audio.Controller
             {
                 view.presetsList.Items.Add(Path.GetFileNameWithoutExtension(file));
             }
-            
+
 
             view.presetsList.SelectedItem = "Default";
-            
+
         }
 
         public void updateTable()
@@ -149,14 +152,14 @@ namespace Project_Audio.Controller
                 view.presetDetails.DataSource = new DataTable();
                 return;
             }
-            
+
             List<CommandAction> objectList = JsonConvert.DeserializeObject<List<CommandAction>>(contentJson);
 
             DataTable table = new DataTable();
             table.Columns.Add("Command");
             table.Columns.Add("Action");
 
-            foreach(CommandAction obj in objectList)
+            foreach (CommandAction obj in objectList)
             {
                 table.Rows.Add(obj.name, obj.action);
             }
@@ -164,7 +167,7 @@ namespace Project_Audio.Controller
             view.presetDetails.DataSource = table;
         }
 
-        
+
 
         public CommandAction getCommand(DataGridViewCellEventArgs e)
         {
@@ -221,12 +224,14 @@ namespace Project_Audio.Controller
                     return;
                 }
             }
-            
+
             contentJson.Add(command);
 
             File.WriteAllText(pathPreset, contentJson.ToString());
 
             SucessfullMessage("Command successfully added.");
+
+            updateTable();
         }
 
         public void updateCommand(string name, string action)
@@ -267,6 +272,7 @@ namespace Project_Audio.Controller
 
                 File.WriteAllText(pathPreset, contentJson.ToString());
                 SucessfullMessage("Command successfully updated.");
+                updateTable();
             }
         }
 
@@ -298,7 +304,63 @@ namespace Project_Audio.Controller
             bool contentExist = !string.IsNullOrEmpty(contentJson) && !contentJson.Equals("{}");
 
             return (contentExist) ? JArray.Parse(contentJson) :
-                new JArray(); 
+                new JArray();
+        }
+
+        public CommandAction removeCommand(CommandAction command)
+        {
+            
+            
+            if (string.IsNullOrEmpty(command.name))
+            {
+                return command;
+            }
+
+            DialogResult question = MessageBox.Show("Do you wish to remove the " + command.name + " command?", "Alert", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if(question != DialogResult.Yes)
+            {
+                return command;
+            }
+
+            string pathPreset = getPathPreset();
+            if (string.IsNullOrEmpty(pathPreset))
+            {
+                ErrorMensage("Failed to locate preset folder.");
+                return command;
+            }
+            JArray contentJson = getContentPreset();
+
+            if (contentJson.Equals("{}"))
+            {
+                return command;
+            }
+
+            bool commandExist = false;
+            int commandIndex = -1;
+            foreach (JObject obj in contentJson)
+            {
+                commandIndex++;
+                if (obj["action"]?.ToString() == command.action)
+                {
+                    commandExist = true;
+                    contentJson.RemoveAt(commandIndex);
+                    break;
+                }
+            }
+
+            if (!commandExist)
+            {
+                return command;
+            }
+
+            File.WriteAllText(pathPreset, contentJson.ToString());
+            SucessfullMessage("Command successfully removed.");
+
+            updateTable();
+
+            return new CommandAction();
+
         }
     }
 }

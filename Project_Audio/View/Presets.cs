@@ -20,6 +20,7 @@ namespace Project_Audio.View
         private Principal principal;
         private PresetsController controller;
         private Dictionary<string, object[]> commandAction;
+        private CommandAction selectedCommand;
         public Presets(Principal principal)
         {
             InitializeComponent();
@@ -33,7 +34,6 @@ namespace Project_Audio.View
             buttonList.AddLast(addPreset);
             buttonList.AddLast(addComand);
             buttonList.AddLast(updateCommand);
-            buttonList.AddLast(removeCommand);
 
             panelList.Add(addPreset, panelNewPreset);
             panelList.Add(addComand, panelCommands);
@@ -51,6 +51,8 @@ namespace Project_Audio.View
             commandAction.Add("Duplicate", new object[] { "Square", "Triangle", "Circle", "Face" });
 
             controller.generateDefault(commandAction);
+            
+            selectedCommand = new CommandAction();
         }
 
         private void addPreset_MouseEnter(object sender, EventArgs e)
@@ -157,7 +159,7 @@ namespace Project_Audio.View
 
         private void removeCommand_Click(object sender, EventArgs e)
         {
-            ActiveButton(removeCommand);
+           selectedCommand = controller.removeCommand(selectedCommand);
         }
 
         private void microphone_Click(object sender, EventArgs e)
@@ -273,6 +275,8 @@ namespace Project_Audio.View
             {
                 diretiveAction.SelectedItem = diretive;
             }
+
+            selectedCommand = command;
         }
 
         private void saveCommand_Click(object sender, EventArgs e)
