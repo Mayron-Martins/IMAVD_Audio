@@ -1,15 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using Project_Audio.Model;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using System.Drawing;
-using System.Windows.Forms;
-using System.IO;
+
 using Microsoft.CognitiveServices.Speech;
-using System.Speech.Synthesis;
-using Microsoft.CognitiveServices.Speech.Audio;
+
+
+
+
 
 namespace Project_Audio.Controller
 {
@@ -17,7 +15,7 @@ namespace Project_Audio.Controller
     {
         private Principal view;
 
-        private SpeechRecognizer recognizer;
+        
 
         LinkedList<ShapeType> imageLinkedList = new LinkedList<ShapeType>();
 
@@ -30,26 +28,22 @@ namespace Project_Audio.Controller
         //--TRANSFORMAÇÃO DE TEXTO EM AUDIO--
         public void ConverterTextoEmAudio(string texto)
         {
-            using (var synthesizer = new System.Speech.Synthesis.SpeechSynthesizer())
-            {
-                synthesizer.Speak(texto);
-            }
+            RecognitionController recognitionController = new RecognitionController();
+
+            recognitionController.ConvertTextToAudio(texto);
+
         }
 
         //-------------------------------------
 
         //--TRANSFORMAÇÃO DE ÁUDIO EM TEXTO--
 
-        public async Task<string> ConverterAudioEmTexto(string audioFilePath)
+        public string ConverterAudioEmTexto(string audioFilePath)
         {
-            var config = SpeechConfig.FromSubscription("53819328f1534023a155cd721fbe9a31", "brazilsouth");
-            recognizer = new SpeechRecognizer(config);
+            RecognitionController recognitionController = new RecognitionController();
 
-            using (var audioInput = AudioConfig.FromWavFileInput(audioFilePath))
-            {
-                var result = await recognizer.RecognizeOnceAsync();
-                return result.Text;
-            }
+            return recognitionController.ConvertAudioToText(audioFilePath);
+
         }
 
         //-----------------------------------
@@ -58,9 +52,13 @@ namespace Project_Audio.Controller
 
         public async Task<string> ConverterFalaEmTexto()
         {
+            if (!view.microphoneStatus)
+            {
+                return string.Empty;
+            }
             var config = SpeechConfig.FromSubscription("53819328f1534023a155cd721fbe9a31", "brazilsouth");
 
-            using (var recognizer = new SpeechRecognizer(config))
+            using (var recognizer = new Microsoft.CognitiveServices.Speech.SpeechRecognizer(config))
             {
                 var resultado = await recognizer.RecognizeOnceAsync();
 
@@ -87,8 +85,8 @@ namespace Project_Audio.Controller
 
 
         //--COMPARAÇÃO DE TEXTO--
-      
-        
+
+
 
         //-----------------------
 
@@ -113,7 +111,7 @@ namespace Project_Audio.Controller
 
             //Color cor = Color.FromArgb(random.Next(256), random.Next(256), random.Next(256));
 
-            return new Shape {type = tipo};
+            return new Shape { type = tipo };
         }
 
         public ShapeType GetRandomImage()
@@ -131,7 +129,7 @@ namespace Project_Audio.Controller
 
         public void DeleteImageListFromButton()
         {
-             imageLinkedList.RemoveLast();
+            imageLinkedList.RemoveLast();
         }
 
     }

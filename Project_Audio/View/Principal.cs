@@ -21,6 +21,7 @@ namespace Project_Audio
         private List<ShapeType> randomShape;
         private LinkedList<Shape> shapes;
         private List<Point> point;
+        private List<Point> positions;
         Shape shape = new Shape();
         public Principal()
         {
@@ -70,13 +71,37 @@ namespace Project_Audio
             ActiveButton(textToSpeech, speechToText, voiceCommands);
         }
 
-        private void speechToText_Click(object sender, EventArgs e)
+        private  async void speechToText_Click(object sender, EventArgs e)
         {
-            ActiveButton(speechToText, textToSpeech, voiceCommands);
+            bool active = ActiveButton(speechToText, textToSpeech, voiceCommands);
+            if (!active)
+            {
+                return;
+            }
+            string audioFilePath = pathAudioFile.Text;
+            string textoConvertido = string.Empty;
+
+
+            if (!string.IsNullOrEmpty(audioFilePath))
+            {
+                // Converter o arquivo de áudio em texto
+                textoConvertido =  controller.ConverterAudioEmTexto(audioFilePath);
+            }
+            else
+            {
+                // Converter a fala em texto
+                textoConvertido = await controller.ConverterFalaEmTexto();
+            }
+
+            // Exibir o texto traduzido na TextBox
+            generatedText.Text = textoConvertido;
+
+
         }
 
-        private void ActiveButton(Button button, Button otherButton1, Button otherButton2)
+        private bool ActiveButton(Button button, Button otherButton1, Button otherButton2)
         {
+            bool active = false;
             Color bg = button.BackColor;
 
             if (bg.Equals(Color.FromArgb(179, 179, 179)))
@@ -84,58 +109,36 @@ namespace Project_Audio
                 button.BackColor = Color.White;
                 otherButton1.BackColor = Color.FromArgb(179, 179, 179);
                 otherButton2.BackColor = Color.FromArgb(179, 179, 179);
+
+                active = true;
             }
             else
             {
                 button.BackColor = Color.FromArgb(179, 179, 179);
+                active = false;
             }
 
             panelTextInteraction.Enabled =
                 (textToSpeech.BackColor == speechToText.BackColor) ? false : true;
+
+            generateAudio.Enabled = (textToSpeech.BackColor == Color.White) ? true : false;
+
+            compareTexts.Enabled = (speechToText.BackColor == Color.White) ? true : false;
+
+            return active;
         }
         
-        private async void microphone_Click(object sender, EventArgs e)
+        private void microphone_Click(object sender, EventArgs e)
         {
-            // Verificar o status atual do microfone
-            if (microphoneStatus)
-            {
-                // Se estiver ligado, desligar o microfone
-                microphoneStatus = false;
-                microphone.Image = global::Project_Audio.Properties.Resources.audioOff;
-                microphone.BackColor = Color.FromArgb(179, 179, 179);
-            }
-            else
-            {
-                // Se estiver desligado, ligar o microfone
-                microphoneStatus = true;
-                microphone.Image = global::Project_Audio.Properties.Resources.audioOn;
-                microphone.BackColor = Color.White;
+            Image img = microphone.Image;
 
-                string audioFilePath = pathAudioFile.Text;
-                string textoConvertido = string.Empty;
+            bool status = CompareImages(microphone.Image, global::Project_Audio.Properties.Resources.audioOff);
 
-                if (!string.IsNullOrEmpty(audioFilePath))
-                {
-                    // Converter o arquivo de áudio em texto
-                    textoConvertido = await controller.ConverterAudioEmTexto(audioFilePath);
-                }
-                else
-                {
-                    // Converter a fala em texto
-                    textoConvertido = await controller.ConverterFalaEmTexto();
-                }
+            microphone.Image = status ? global::Project_Audio.Properties.Resources.audioOn : global::Project_Audio.Properties.Resources.audioOff;
 
-                // Exibir o texto traduzido na TextBox
-                generatedText.Text = textoConvertido;
-            }
+            microphone.BackColor = status ? Color.White : Color.FromArgb(179, 179, 179);
 
-
-
-
-
-
-
-
+            microphoneStatus = status;
 
         }
 
@@ -284,9 +287,11 @@ namespace Project_Audio
         }
         private void geometricShapes_Click(object sender, EventArgs e)
         {
+
             shape = controller.GenerateImageListFromButton();
             shapes.AddLast(shape);
             CreateShapeInPictureBox(shape); 
+
         }
 
         private void CreateShapeInPictureBox(Shape shape)
@@ -298,7 +303,7 @@ namespace Project_Audio
             switch (shape.type)
             {
                 case ShapeType.Triangle:
-                    if (point.Count >= positionInterator)
+                    if (point.Count > positionInterator)
                     {
                         randomShape.Add(controller.GetRandomImage());
                         Point position = point[positionInterator];
@@ -308,7 +313,7 @@ namespace Project_Audio
                     
                     break;
                 case ShapeType.Square:
-                    if (point.Count >= positionInterator)
+                    if (point.Count > positionInterator)
                     {
                         randomShape.Add(controller.GetRandomImage());
                         Point position = point[positionInterator];
@@ -317,7 +322,7 @@ namespace Project_Audio
                     }
                     break;
                 case ShapeType.Circle:
-                    if (point.Count >= positionInterator)
+                    if (point.Count > positionInterator)
                     {
                         randomShape.Add(controller.GetRandomImage());
                         Point position = point[positionInterator];
@@ -332,7 +337,7 @@ namespace Project_Audio
 
         private List<Point> GetAvailablePositions()
         {
-            List<Point> positions = new List<Point>();
+            positions = new List<Point>();
 
             int cellSize = 80;
             int offsetX = -10;
@@ -385,7 +390,6 @@ namespace Project_Audio
 
         private void compareTexts_Click(object sender, EventArgs e)
         {
-
             string textoEscrito = insertedText.Text;
             string textoFalado = generatedText.Text;
 
@@ -394,24 +398,29 @@ namespace Project_Audio
 
             StringBuilder textoDiferenca = new StringBuilder();
 
-            for (int i = 0; i < palavrasEscritas.Length; i++)
+            for (int i = 0; i < palavrasFaladas.Length; i++)
             {
-                if (i < palavrasFaladas.Length && palavrasEscritas[i] != palavrasFaladas[i])
+                if (i < palavrasEscritas.Length && palavrasEscritas[i] != palavrasFaladas[i])
                 {
-                    textoDiferenca.Append($"<span style=\"color:red\">{palavrasEscritas[i]}</span> ");
+                    textoDiferenca.Append($"\"{palavrasFaladas[i]}\" ");
                 }
                 else
                 {
-                    textoDiferenca.Append($"{palavrasEscritas[i]} ");
+                    textoDiferenca.Append($"{palavrasFaladas[i]} ");
                 }
             }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 0dfa0892a54ca1a5cb83ca671dd8df861d96f320
+
+            differenceTexts.Text = textoDiferenca.ToString();
 
 
-            differenceTexts.Text = $@"{{\rtf1\ansi\ansicpg1252\deff0\deflang1033{{\fonttbl{{\f0\fnil\fcharset0 Microsoft Sans Serif;}}}}
-{{\colortbl ;\red255\green0\blue0;}}
-\viewkind4\uc1\pard\f0\fs17 {textoDiferenca.ToString()}\par}}";
+<<<<<<< HEAD
+=======
 
-
+>>>>>>> 0dfa0892a54ca1a5cb83ca671dd8df861d96f320
         }
     } 
 }
