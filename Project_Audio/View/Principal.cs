@@ -2,12 +2,11 @@
 using Project_Audio.View;
 using Project_Audio.Model;
 using System;
-using System.IO;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Text;
+using System.Linq;
 
 namespace Project_Audio
 {
@@ -19,10 +18,12 @@ namespace Project_Audio
         public LinkedList<Image> imageStack;
         private int positionInterator;
         private List<ShapeType> randomShape;
-        private LinkedList<Shape> shapes;
+        public LinkedList<Shape> shapes;
         private List<Point> point;
         private List<Point> positions;
+        private Presets presets;
         Shape shape = new Shape();
+        private string shapeOnPicture = "Shape";
         public Principal()
         {
             InitializeComponent();
@@ -34,6 +35,8 @@ namespace Project_Audio
             randomShape = new List<ShapeType>();
             shapes = new LinkedList<Shape>();
             point = new List<Point>();
+            presets = new Presets(this);
+            actualPresets.Text = "Presets: Default";
         }
 
         private void openFile_MouseEnter(object sender, EventArgs e)
@@ -173,8 +176,8 @@ namespace Project_Audio
         {
             OpenFileDialog fileDialog = new OpenFileDialog();
             fileDialog.Title = "Select an Audio or Image File";
-            fileDialog.Filter = "Arquivos de Áudio(*.wav,*.mp3,*.ogg,*.jpg,*.png,*.gif)|*.wav;*.mp3;*.ogg;*.jpg;*.png;*.gif";
-            
+            fileDialog.Filter = "Arquivos de Áudio|*.wav;*.mp3;*.ogg|Arquivos de Imagem|*.jpg;*.png;*.gif";
+
             if (fileDialog.ShowDialog() == DialogResult.OK)
             {
                 string selectedFilePath = fileDialog.FileName;
@@ -191,6 +194,10 @@ namespace Project_Audio
                 }
                 else
                 {
+                    if (imageStack.Count == 11)
+                    {
+                        imageStack.RemoveFirst();
+                    }
                     imageStack.AddLast(Image.FromFile(selectedFilePath));
                 }
             }
@@ -259,44 +266,50 @@ namespace Project_Audio
 
         private void voiceCommands_Click(object sender, EventArgs e)
         {
-            ActiveButton(voiceCommands, textToSpeech, speechToText);
+            bool active = ActiveButton(voiceCommands, textToSpeech, speechToText);
+
+            if (active && microphoneStatus)
+            {
+                controller.LaunchVoiceCommands();
+            }
+            else
+            {
+                ActiveButton(voiceCommands, textToSpeech, speechToText);
+            }
         }
 
         private void listPresets_Click(object sender, EventArgs e)
         {
-            Presets presets = new Presets(this);
+            presets = new Presets(this);
             presets.Show();
         }
 
 
-        private void button1_Click(object sender, EventArgs e)
+        private void generateAudio_Click(object sender, EventArgs e)
         {
             string texto = insertedText.Text;
             controller.ConverterTextoEmAudio(texto);
         }
 
-        private void generatedText_TextChanged(object sender, EventArgs e)
-        {
 
-        }
-
-        private void pathAudioFile_TextChanged(object sender, EventArgs e)
-        {
-
-        }
         private void geometricShapes_Click(object sender, EventArgs e)
         {
             if (shapes.Count <= 11)
             {
                 shape = controller.GenerateImageListFromButton();
                 shapes.AddLast(shape);
-                CreateShapeInPictureBox(shape); 
+                CreateShapeInPictureBox(shape);
             }
 
         }
 
-        private void CreateShapeInPictureBox(Shape shape)
+        public void CreateShapeInPictureBox(Shape shape)
         {
+            if (shapeOnPicture.Equals("Face"))
+            {
+                removeAllImages();
+            }
+
             Graphics g = pictureBox1.CreateGraphics();
 
             point = GetAvailablePositions();
@@ -334,6 +347,8 @@ namespace Project_Audio
             }
 
             g.Dispose();
+
+            shapeOnPicture = "Shape";
         }
 
         private List<Point> GetAvailablePositions()
@@ -387,24 +402,25 @@ namespace Project_Audio
 
         private void cleanImages_Click(object sender, EventArgs e)
         {
-            if (shapes.Count > 0)
+            if (shapeOnPicture.Equals("Shape"))
             {
-                shape = shapes.Last.Value;
-                RemoveShapesFromPictureBox(shape);
+                if (shapes.Count > 0)
+                {
+                    shape = shapes.Last.Value;
+                    RemoveShapesFromPictureBox(shape);
+                }
             }
-
-            if (imageStack.Count != 0 && shapes.Count == 0)
+            else
             {
-                Image img = imageStack.Last.Value;
-                imageStack.RemoveLast();
-                RemoveImageFromPictureBox(img);
+                if (imageStack.Count != 0 && shapes.Count == 0)
+                {
+                    Image img = imageStack.Last.Value;
+                    imageStack.RemoveLast();
+                    RemoveImageFromPictureBox(img);
+                }
             }
         }
 
-        private void insertedText_TextChanged(object sender, EventArgs e)
-        {
-
-        }
 
         private void compareTexts_Click(object sender, EventArgs e)
         {
@@ -435,15 +451,22 @@ namespace Project_Audio
 
         }
 
-    
+
 
 
         private void peoplesFaces_Click(object sender, EventArgs e)
         {
-            if (imageStack.Count > 0 && imageStack.Count <= 11)
+            if (imageStack.Count > 0)
             {
+                if (shapeOnPicture.Equals("Shape"))
+                {
+                    removeAllShapes();
+                }
                 Graphics g = pictureBox1.CreateGraphics();
-                Image faceImage = imageStack.Last.Value;
+                Random random = new Random();
+                int randomIndex = random.Next(0, imageStack.Count);
+
+                Image faceImage = imageStack.ElementAt(randomIndex);
                 faceImage = shape.ResizeFace(faceImage, 50, 50);
                 point = GetAvailablePositions();
                 if (point.Count > positionInterator)
@@ -452,7 +475,43 @@ namespace Project_Audio
                     g.DrawImage(faceImage, position.X, position.Y);
                     positionInterator++;
                 }
+
+                shapeOnPicture = "Face";
             }
         }
-    } 
+
+        private void actualPresets_TextChanged(object sender, EventArgs e)
+        {
+            string presetName = actualPresets.Text.Remove(0, 9);
+            controller.DefineCommandList(presetName);
+        }
+
+        private void removeAllShapes()
+        {
+            Graphics g = pictureBox1.CreateGraphics();
+            g.Clear(Color.FromArgb(26, 26, 26));
+
+            positionInterator = 0;
+            while (shapes.Count > 0)
+            {
+                shapes.RemoveLast();
+            }
+
+            g.Dispose();
+        }
+
+        private void removeAllImages()
+        {
+            Graphics g = pictureBox1.CreateGraphics();
+            g.Clear(Color.FromArgb(26, 26, 26));
+
+            positionInterator = 0;
+            while (imageStack.Count > 0)
+            {
+                imageStack.RemoveLast();
+            }
+
+            g.Dispose();
+        }
+    }
 }

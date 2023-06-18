@@ -6,21 +6,26 @@ using Microsoft.CognitiveServices.Speech;
 using Microsoft.CognitiveServices.Speech.Audio;
 using System.IO;
 using NAudio.Wave;
+using Newtonsoft.Json;
+using System.Drawing;
 
 namespace Project_Audio.Controller
 {
     public class PrincipalController
     {
         private Principal view;
-
-        
-
         LinkedList<ShapeType> imageLinkedList = new LinkedList<ShapeType>();
+        private Dictionary<string, Action> voiceCommands;
+        private List<CommandAction> commandList;
+        private string actualAction;
 
 
         public PrincipalController(Principal view)
         {
             this.view = view;
+            voiceCommands = new Dictionary<string, Action>();
+            commandList = new List<CommandAction>();
+            setVoiceCommands();
         }
 
         //--TRANSFORMAÇÃO DE TEXTO EM AUDIO--
@@ -111,24 +116,6 @@ namespace Project_Audio.Controller
             }
         }
 
-        //----------------------------------
-
-
-        //--COMPARAÇÃO DE TEXTO--
-
-
-
-        //-----------------------
-
-
-
-
-
-
-        /*public Shape GenerateImageListFromButton(Image shape)
-        {
-            imageLinkedList.AddLast(shape);
-        }*/
 
         public Shape GenerateImageListFromButton()
         {
@@ -160,6 +147,92 @@ namespace Project_Audio.Controller
         public void DeleteImageListFromButton()
         {
             imageLinkedList.RemoveLast();
+        }
+
+        public void DefineCommandList(string presetName)
+        {
+            string pathPresets = Path.Combine(AppContext.BaseDirectory, "Presets");
+
+            string preset = Path.Combine(pathPresets, presetName + ".json");
+
+            string contentJson = File.ReadAllText(preset);
+
+            if (contentJson.Equals("{}"))
+            {
+                return;
+            }
+
+            commandList = JsonConvert.DeserializeObject<List<CommandAction>>(contentJson);
+        }
+
+        public async void LaunchVoiceCommands()
+        {
+            string captureVoice = await ConverterFalaEmTexto();
+            captureVoice = captureVoice.Replace(".", "");
+
+            bool existCommand = false;
+            foreach (CommandAction command in commandList)
+            {
+                if (command.name.ToLower() == captureVoice.ToLower())
+                {
+                    existCommand = true;
+                    actualAction = command.action;
+                    break;
+                }
+            }
+
+            if (!existCommand)
+            {
+                view.voiceCommands.BackColor = Color.FromArgb(179, 179, 179);
+                return;
+            }
+
+            string[] action = actualAction.Split(';');
+
+            voiceCommands[action[0]]();
+
+            view.voiceCommands.BackColor = Color.FromArgb(179, 179, 179);
+        }
+
+        private void setVoiceCommands()
+        {
+            voiceCommands.Add("Rotate", ActionRotate);
+            voiceCommands.Add("Move To", ActionMoveTo);
+            voiceCommands.Add("Resize", ActionResize);
+            voiceCommands.Add("Color", ActionColor);
+            voiceCommands.Add("Create", ActionCreate);
+            voiceCommands.Add("Duplicate", ActionDuplicate);
+
+        }
+
+        private void ActionRotate()
+        {
+
+        }
+
+        private void ActionMoveTo()
+        {
+
+        }
+
+        private void ActionResize()
+        {
+
+        }
+
+        private void ActionColor()
+        {
+
+        }
+
+        private void ActionCreate()
+        {
+
+        }
+
+        private void ActionDuplicate()
+        {
+
         }
 
     }

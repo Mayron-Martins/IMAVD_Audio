@@ -1,13 +1,7 @@
 ﻿using Project_Audio.Controller;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Project_Audio.View
@@ -50,7 +44,7 @@ namespace Project_Audio.View
             commandAction.Add("Create", new object[] { "Square", "Triangle", "Circle", "Face" });
             commandAction.Add("Duplicate", new object[] { "Square", "Triangle", "Circle", "Face" });
 
-            controller.generateDefault(commandAction);
+            controller.GenerateDefault(commandAction);
             
             selectedCommand = new CommandAction();
         }
@@ -159,7 +153,7 @@ namespace Project_Audio.View
 
         private void removeCommand_Click(object sender, EventArgs e)
         {
-           selectedCommand = controller.removeCommand(selectedCommand);
+           selectedCommand = controller.RemoveCommand(selectedCommand);
         }
 
         private void microphone_Click(object sender, EventArgs e)
@@ -243,18 +237,18 @@ namespace Project_Audio.View
 
         private void savePreset_Click(object sender, EventArgs e)
         {
-            controller.createPreset(presetName.Text);
+            controller.CreatePreset(presetName.Text);
             
         }
 
         private void presetsList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            controller.updateTable();
+            controller.UpdateTable();
         }
 
         private void presetDetails_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            CommandAction command = controller.getCommand(e);
+            CommandAction command = controller.GetCommand(e);
 
             if (string.IsNullOrEmpty(command.name))
             {
@@ -307,11 +301,11 @@ namespace Project_Audio.View
 
             if(addComand.BackColor == Color.White)
             {
-                controller.addComand(name, action);
+                controller.AddComand(name, action);
             }
             else
             {
-                controller.updateCommand(name, action);
+                controller.UpdateCommand(name, action);
             }
 
             presetsList.SelectedItem = presetsList.SelectedItem;

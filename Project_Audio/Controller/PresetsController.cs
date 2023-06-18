@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Windows.Forms;
-using System.Xml.Linq;
 
 namespace Project_Audio.Controller
 {
@@ -25,10 +24,10 @@ namespace Project_Audio.Controller
         {
             this.view = view;
 
-            createPathPresets();
+            CreatePathPresets();
         }
 
-        private void createPathPresets()
+        private void CreatePathPresets()
         {
             string pathPresets = Path.Combine(AppContext.BaseDirectory, "Presets");
 
@@ -40,7 +39,7 @@ namespace Project_Audio.Controller
             this.pathPresets = pathPresets;
         }
 
-        public void generateDefault(Dictionary<string, object[]> commandList)
+        public void GenerateDefault(Dictionary<string, object[]> commandList)
         {
             string defaultPreset = Path.Combine(pathPresets, "Default.json");
 
@@ -84,10 +83,10 @@ namespace Project_Audio.Controller
                 File.WriteAllText(defaultPreset, strContent);
             }
 
-            updateList();
+            UpdateList();
         }
 
-        public void createPreset(string presetName)
+        public void CreatePreset(string presetName)
         {
             if (!String.IsNullOrEmpty(presetName))
             {
@@ -96,7 +95,7 @@ namespace Project_Audio.Controller
                 {
                     File.WriteAllText(preset, "{}");
 
-                    updateList();
+                    UpdateList();
 
                     SucessfullMessage("Success in saving new preset.");
                 }
@@ -118,7 +117,7 @@ namespace Project_Audio.Controller
             MessageBox.Show(message, "Sucessfull", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        private void updateList()
+        private void UpdateList()
         {
             string[] presets = Directory.GetFiles(pathPresets);
 
@@ -134,7 +133,7 @@ namespace Project_Audio.Controller
 
         }
 
-        public void updateTable()
+        public void UpdateTable()
         {
             string presetName = view.presetsList.SelectedItem.ToString();
 
@@ -169,7 +168,7 @@ namespace Project_Audio.Controller
 
 
 
-        public CommandAction getCommand(DataGridViewCellEventArgs e)
+        public CommandAction GetCommand(DataGridViewCellEventArgs e)
         {
             CommandAction command = new CommandAction();
 
@@ -191,15 +190,15 @@ namespace Project_Audio.Controller
             return command;
         }
 
-        public void addComand(string name, string action)
+        public void AddComand(string name, string action)
         {
-            string pathPreset = getPathPreset();
+            string pathPreset = GetPathPreset();
             if (string.IsNullOrEmpty(pathPreset))
             {
                 ErrorMensage("Failed to locate preset folder.");
                 return;
             }
-            JArray contentJson = getContentPreset();
+            JArray contentJson = GetContentPreset();
 
             JObject command = new JObject();
             command["name"] = name;
@@ -231,18 +230,18 @@ namespace Project_Audio.Controller
 
             SucessfullMessage("Command successfully added.");
 
-            updateTable();
+            UpdateTable();
         }
 
-        public void updateCommand(string name, string action)
+        public void UpdateCommand(string name, string action)
         {
-            string pathPreset = getPathPreset();
+            string pathPreset = GetPathPreset();
             if (string.IsNullOrEmpty(pathPreset))
             {
                 ErrorMensage("Failed to locate preset folder.");
                 return;
             }
-            JArray contentJson = getContentPreset();
+            JArray contentJson = GetContentPreset();
 
             JObject command = new JObject();
             command["name"] = name;
@@ -272,11 +271,11 @@ namespace Project_Audio.Controller
 
                 File.WriteAllText(pathPreset, contentJson.ToString());
                 SucessfullMessage("Command successfully updated.");
-                updateTable();
+                UpdateTable();
             }
         }
 
-        private string getPathPreset()
+        private string GetPathPreset()
         {
             string presetName = view.presetsList.SelectedItem.ToString();
 
@@ -290,9 +289,9 @@ namespace Project_Audio.Controller
             return preset;
         }
 
-        private JArray getContentPreset()
+        private JArray GetContentPreset()
         {
-            string preset = getPathPreset();
+            string preset = GetPathPreset();
 
             if (string.IsNullOrEmpty(preset))
             {
@@ -307,7 +306,7 @@ namespace Project_Audio.Controller
                 new JArray();
         }
 
-        public CommandAction removeCommand(CommandAction command)
+        public CommandAction RemoveCommand(CommandAction command)
         {
             
             
@@ -323,13 +322,13 @@ namespace Project_Audio.Controller
                 return command;
             }
 
-            string pathPreset = getPathPreset();
+            string pathPreset = GetPathPreset();
             if (string.IsNullOrEmpty(pathPreset))
             {
                 ErrorMensage("Failed to locate preset folder.");
                 return command;
             }
-            JArray contentJson = getContentPreset();
+            JArray contentJson = GetContentPreset();
 
             if (contentJson.Equals("{}"))
             {
@@ -357,7 +356,7 @@ namespace Project_Audio.Controller
             File.WriteAllText(pathPreset, contentJson.ToString());
             SucessfullMessage("Command successfully removed.");
 
-            updateTable();
+            UpdateTable();
 
             return new CommandAction();
 
