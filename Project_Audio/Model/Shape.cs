@@ -75,5 +75,18 @@ namespace Project_Audio.Model
 
             return resizedImage;
         }
+
+        public Bitmap ResizeFace(Image originalImage, int newWidth, int newHeight)
+        {
+            Bitmap resizedImage = new Bitmap(newWidth, newHeight);
+
+            using (Graphics graphics = Graphics.FromImage(resizedImage))
+            {
+                graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+                graphics.DrawImage(originalImage, 0, 0, newWidth, newHeight);
+            }
+
+            return resizedImage;
+        }
     }
 }
