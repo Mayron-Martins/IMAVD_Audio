@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Text;
 
 namespace Project_Audio
 {
@@ -83,37 +84,41 @@ namespace Project_Audio
             panelTextInteraction.Enabled =
                 (textToSpeech.BackColor == speechToText.BackColor) ? false : true;
         }
-
+        
         private async void microphone_Click(object sender, EventArgs e)
         {
-            Image img = microphone.Image;
-
-            string audioFilePath = pathAudioFile.Text;
-            string textoConvertido = string.Empty;
-
-            bool status = CompareImages(microphone.Image, global::Project_Audio.Properties.Resources.audioOff);
-
-            microphone.Image = status ? global::Project_Audio.Properties.Resources.audioOn : global::Project_Audio.Properties.Resources.audioOff;
-
-            microphone.BackColor = status ? Color.White : Color.FromArgb(179, 179, 179);
-
-            microphoneStatus = status;
-
-
-
-            if (!string.IsNullOrEmpty(audioFilePath))
+            // Verificar o status atual do microfone
+            if (microphoneStatus)
             {
-                // Converter o arquivo de áudio em texto
-                textoConvertido = await controller.ConverterAudioEmTexto(audioFilePath);
+                // Se estiver ligado, desligar o microfone
+                microphoneStatus = false;
+                microphone.Image = global::Project_Audio.Properties.Resources.audioOff;
+                microphone.BackColor = Color.FromArgb(179, 179, 179);
             }
             else
             {
-                // Converter a fala em texto
-                textoConvertido = await controller.ConverterFalaEmTexto();
-            }
+                // Se estiver desligado, ligar o microfone
+                microphoneStatus = true;
+                microphone.Image = global::Project_Audio.Properties.Resources.audioOn;
+                microphone.BackColor = Color.White;
 
-            // Exibir o texto traduzido na TextBox
-            generatedText.Text = textoConvertido;
+                string audioFilePath = pathAudioFile.Text;
+                string textoConvertido = string.Empty;
+
+                if (!string.IsNullOrEmpty(audioFilePath))
+                {
+                    // Converter o arquivo de áudio em texto
+                    textoConvertido = await controller.ConverterAudioEmTexto(audioFilePath);
+                }
+                else
+                {
+                    // Converter a fala em texto
+                    textoConvertido = await controller.ConverterFalaEmTexto();
+                }
+
+                // Exibir o texto traduzido na TextBox
+                generatedText.Text = textoConvertido;
+            }
 
 
 
@@ -296,5 +301,44 @@ namespace Project_Audio
 
         }
 
+        private void insertedText_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void compareTexts_Click(object sender, EventArgs e)
+        {
+
+            string textoEscrito = insertedText.Text;
+            string textoFalado = generatedText.Text;
+
+            string[] palavrasEscritas = textoEscrito.Split(' ');
+            string[] palavrasFaladas = textoFalado.Split(' ');
+
+            differenceTexts.Clear();
+
+            for (int i = 0; i < palavrasFaladas.Length; i++)
+            {
+                if (i < palavrasEscritas.Length && palavrasFaladas[i] != palavrasEscritas[i])
+                {
+                    differenceTexts.SelectionStart = differenceTexts.TextLength;
+                    differenceTexts.SelectionLength = palavrasFaladas[i].Length;
+                    differenceTexts.ForeColor = Color.Red;
+                    differenceTexts.AppendText(palavrasFaladas[i] + " ");
+                }
+                else
+                {
+                    differenceTexts.SelectionStart = differenceTexts.TextLength;
+                    differenceTexts.SelectionLength = palavrasFaladas[i].Length;
+                    differenceTexts.ForeColor = differenceTexts.ForeColor;
+                    differenceTexts.AppendText(palavrasFaladas[i] + " ");
+                }
+            }
+
+        }
+
     }
+
+        
+    
 }

@@ -84,6 +84,11 @@ namespace Project_Audio.Controller
 
         //----------------------------------
 
+        //--COMPARAÇÃO DE TEXTO--
+      
+        
+
+        //-----------------------
 
 
 
