@@ -409,18 +409,12 @@ namespace Project_Audio
                     textoDiferenca.Append($"{palavrasFaladas[i]} ");
                 }
             }
-<<<<<<< HEAD
-=======
 
->>>>>>> 0dfa0892a54ca1a5cb83ca671dd8df861d96f320
 
             differenceTexts.Text = textoDiferenca.ToString();
 
 
-<<<<<<< HEAD
-=======
 
->>>>>>> 0dfa0892a54ca1a5cb83ca671dd8df861d96f320
         }
     } 
 }
