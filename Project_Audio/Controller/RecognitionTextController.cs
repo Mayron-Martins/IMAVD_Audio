@@ -2,7 +2,7 @@
 
 namespace Project_Audio.Controller
 {
-    public class RecognitionController
+    public class RecognitionTextController
     {
         public void ConvertTextToAudio(string texto, string language)
         {

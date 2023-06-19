@@ -219,7 +219,7 @@
             // porLanguage
             // 
             this.porLanguage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(179)))), ((int)(((byte)(179)))), ((int)(((byte)(179)))));
-            this.porLanguage.Image = global::Project_Audio.Properties.Resources.porLanguageDisabled;
+            this.porLanguage.Image = ((System.Drawing.Image)(resources.GetObject("porLanguage.Image")));
             this.porLanguage.Location = new System.Drawing.Point(732, 440);
             this.porLanguage.Name = "porLanguage";
             this.porLanguage.Size = new System.Drawing.Size(40, 40);
@@ -392,6 +392,7 @@
             this.Controls.Add(this.speechToText);
             this.Controls.Add(this.textToSpeech);
             this.Controls.Add(this.openFile);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "Principal";
             this.Text = "Form1";

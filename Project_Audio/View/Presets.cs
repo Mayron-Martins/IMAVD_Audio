@@ -8,7 +8,6 @@ namespace Project_Audio.View
 {
     public partial class Presets : Form
     {
-        public bool microphoneStatus;
         private LinkedList<Button> buttonList;
         private Dictionary<Button, Panel> panelList;
         private Principal principal;
@@ -21,8 +20,6 @@ namespace Project_Audio.View
             InitializeComponent();
             this.principal = principal;
             this.controller = new PresetsController(this);
-
-            microphoneStatus = false;
             buttonList = new LinkedList<Button> ();
             panelList = new Dictionary<Button, Panel>();
 
@@ -101,10 +98,9 @@ namespace Project_Audio.View
             description.Text = "";
         }
 
-        private void microphone_MouseEnter(object sender, EventArgs e)
+        private void automaticCommands_MouseEnter(object sender, EventArgs e)
         {
-            description.Text = microphoneStatus ? "Microphone is activated" :
-                "Microphone is disabled";
+            description.Text = "Automatic Commands: Generate a list of commands for automatic execution of actions when called.";
         }
 
         private void microphone_MouseLeave(object sender, EventArgs e)
@@ -168,46 +164,12 @@ namespace Project_Audio.View
            selectedCommand = controller.RemoveCommand(selectedCommand);
         }
 
-        private void microphone_Click(object sender, EventArgs e)
+        private void automaticCommands_Click(object sender, EventArgs e)
         {
-            Image img = microphone.Image;
-
-            bool status = CompareImages(microphone.Image, global::Project_Audio.Properties.Resources.audioOff);
-
-            microphone.Image = status ? global::Project_Audio.Properties.Resources.audioOn : global::Project_Audio.Properties.Resources.audioOff;
-
-            microphone.BackColor = status ? Color.White : Color.FromArgb(179, 179, 179);
-
-            microphoneStatus = status;
+            Automatic automatic = new Automatic(this);
+            automatic.Show();
         }
 
-        private bool CompareImages(Image img1, Image img2)
-        {
-            using (Bitmap image1 = new Bitmap(img1))
-            using (Bitmap image2 = new Bitmap(img2))
-            {
-                if (image1.Width != image2.Width || image1.Height != image2.Height)
-                {
-                    return false;
-                }
-
-                for (int x = 0; x < image1.Width; x++)
-                {
-                    for (int y = 0; y < image1.Height; y++)
-                    {
-                        Color pixel1 = image1.GetPixel(x, y);
-                        Color pixel2 = image2.GetPixel(x, y);
-
-                        if (pixel1 != pixel2)
-                        {
-                            return false;
-                        }
-                    }
-                }
-            }
-
-            return true;
-        }
 
         private void panelNewPreset_EnabledChanged(object sender, EventArgs e)
         {
@@ -224,6 +186,8 @@ namespace Project_Audio.View
         private void definePreset_Click(object sender, EventArgs e)
         {
             principal.actualPresets.Text = "Presets: "+presetsList.SelectedItem.ToString();
+
+            principal.defaultPreset = presetsList.SelectedItem.ToString();
         }
 
         private void mainAction_SelectedIndexChanged(object sender, EventArgs e)
@@ -322,6 +286,21 @@ namespace Project_Audio.View
             }
 
             presetsList.SelectedItem = presetsList.SelectedItem;
+        }
+
+        public bool getMicrophoneStatus()
+        {
+            return principal.microphoneStatus;
+        }
+
+        public string getDefaultPreset()
+        {
+            return principal.defaultPreset;
+        }
+
+        public string getDefaultLanguage()
+        {
+            return principal.defaultLanguage;
         }
     }
 }

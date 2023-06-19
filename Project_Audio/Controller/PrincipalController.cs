@@ -11,6 +11,8 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Globalization;
+using Newtonsoft.Json.Linq;
+using System.Threading;
 
 namespace Project_Audio.Controller
 {
@@ -37,7 +39,7 @@ namespace Project_Audio.Controller
         //--TRANSFORMAÇÃO DE TEXTO EM AUDIO--
         public void ConverterTextoEmAudio(string texto)
         {
-            RecognitionController recognitionController = new RecognitionController();
+            RecognitionTextController recognitionController = new RecognitionTextController();
 
             recognitionController.ConvertTextToAudio(texto, view.defaultLanguage);
 
@@ -94,34 +96,9 @@ namespace Project_Audio.Controller
 
         public async Task<string> ConverterFalaEmTexto()
         {
-            if (!view.microphoneStatus)
-            {
-                return string.Empty;
-            }
-            var config = SpeechConfig.FromSubscription("53819328f1534023a155cd721fbe9a31", "brazilsouth");
-            config.SpeechRecognitionLanguage = view.defaultLanguage;
+            RecognitionVoiceController recognizeVoice = new RecognitionVoiceController();
 
-            using (var recognizer = new SpeechRecognizer(config))
-            {
-                var resultado = await recognizer.RecognizeOnceAsync();
-
-                if (resultado.Reason == ResultReason.RecognizedSpeech)
-                {
-                    return resultado.Text;
-                }
-                else if (resultado.Reason == ResultReason.NoMatch)
-                {
-                    return "Não foi possível reconhecer a fala.";
-                }
-                else if (resultado.Reason == ResultReason.Canceled)
-                {
-                    var cancellation = CancellationDetails.FromResult(resultado);
-
-                    return $"Cancelado. Motivo: {cancellation.Reason}. Detalhes: {cancellation.ErrorDetails}";
-                }
-
-                return string.Empty;
-            }
+            return await recognizeVoice.ConvertVoiceToText(view.defaultLanguage, view.microphoneStatus);
         }
 
 
@@ -179,15 +156,31 @@ namespace Project_Audio.Controller
             commandList = JsonConvert.DeserializeObject<List<CommandAction>>(contentJson);
         }
 
-        public async void LaunchVoiceCommands()
+        public async
+        Task
+LaunchVoiceCommands()
         {
             string captureVoice = await ConverterFalaEmTexto();
-            captureVoice = captureVoice.Replace(".", "").Replace(",","");
+
+            if (string.IsNullOrEmpty(captureVoice))
+            {
+                return;
+            }
+
+            captureVoice = captureVoice.Replace(".", "").Replace(",", "");
+
+            string normalizedVoice = NormalizeString(captureVoice);
+
+            if (normalizedVoice.Contains("iniciar lista") || normalizedVoice.Contains("init list"))
+            {
+                InitAutomaticList(normalizedVoice);
+                return;
+            }
 
             bool existCommand = false;
             foreach (CommandAction command in commandList)
             {
-                if (NormalizeString(command.name) == NormalizeString(captureVoice))
+                if (NormalizeString(command.name) == normalizedVoice)
                 {
                     existCommand = true;
                     actualAction = command.action;
@@ -197,7 +190,6 @@ namespace Project_Audio.Controller
 
             if (!existCommand)
             {
-                view.voiceCommands.BackColor = Color.FromArgb(179, 179, 179);
                 return;
             }
 
@@ -398,7 +390,7 @@ namespace Project_Audio.Controller
                 view.removeAllShapes();
                 for (int i = 0; i < shapes.Count; i++)
                 {
-                    
+
                     if (shapes.ElementAt(i).type.ToString().ToLower() == action[2].ToLower())
                     {
                         shapes.ElementAt(i).Paint(color);
@@ -497,5 +489,70 @@ namespace Project_Audio.Controller
             }
         }
 
+        private void InitAutomaticList(string listName)
+        {
+            string initList = listName.Substring(0, 9);
+            string name = (initList.Equals("init list")) ? listName.Replace(initList + " ", "") : listName.Replace("iniciar lista ", "");
+
+            string pathCommand = GetPathCommandList(name);
+
+            if (string.IsNullOrEmpty(pathCommand))
+            {
+                return;
+            }
+
+            JArray contentJson = GetContentCommandList(pathCommand);
+
+            foreach (JObject obj in contentJson)
+            {
+                actualAction = obj["action"]?.ToString();
+                string[] action = actualAction.Split(';');
+
+                voiceCommands[action[0]]();
+
+                Thread.Sleep(2000);
+            }
+        }
+
+        private string GetPathCommandList(string path)
+        {
+            string pathCommands = Path.Combine(AppContext.BaseDirectory, "Automatic Commands");
+
+            if (!Directory.Exists(pathCommands))
+            {
+                return null;
+            }
+
+            string listName = path;
+
+            if (String.IsNullOrEmpty(listName))
+            {
+                return null;
+            }
+
+            string command = Path.Combine(pathCommands, listName + ".json");
+
+            if (!File.Exists(command))
+            {
+                return null;
+            }
+
+            return command;
+        }
+
+        private JArray GetContentCommandList(string commandList)
+        {
+            if (string.IsNullOrEmpty(commandList))
+            {
+                return new JArray();
+            }
+
+            string contentJson = File.ReadAllText(commandList);
+
+            bool contentExist = !string.IsNullOrEmpty(contentJson) && !contentJson.Equals("{}");
+
+            return (contentExist) ? JArray.Parse(contentJson) :
+                new JArray();
+        }
     }
 }

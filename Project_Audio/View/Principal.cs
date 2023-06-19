@@ -26,6 +26,7 @@ namespace Project_Audio
         Shape shape = new Shape();
         public string shapeOnPicture = "Shape";
         public string defaultLanguage = "en-US";
+        public string defaultPreset = "Default";
         public Principal()
         {
             InitializeComponent();
@@ -267,13 +268,14 @@ namespace Project_Audio
             description.Text = "";
         }
 
-        private void voiceCommands_Click(object sender, EventArgs e)
+        private async void voiceCommands_Click(object sender, EventArgs e)
         {
             bool active = ActiveButton(voiceCommands, textToSpeech, speechToText);
 
             if (active && microphoneStatus)
             {
-                controller.LaunchVoiceCommands();
+                await controller.LaunchVoiceCommands();
+                ActiveButton(voiceCommands, textToSpeech, speechToText);
             }
             else
             {

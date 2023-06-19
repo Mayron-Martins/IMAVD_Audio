@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Presets));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Presets));
             this.label1 = new System.Windows.Forms.Label();
             this.presetsList = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -45,15 +45,15 @@
             this.label4 = new System.Windows.Forms.Label();
             this.commandName = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.definePreset = new System.Windows.Forms.Button();
+            this.presetDetails = new System.Windows.Forms.DataGridView();
             this.saveCommand = new System.Windows.Forms.Button();
             this.savePreset = new System.Windows.Forms.Button();
-            this.microphone = new System.Windows.Forms.Button();
+            this.automaticCommands = new System.Windows.Forms.Button();
             this.removeCommand = new System.Windows.Forms.Button();
             this.updateCommand = new System.Windows.Forms.Button();
             this.addComand = new System.Windows.Forms.Button();
             this.addPreset = new System.Windows.Forms.Button();
-            this.definePreset = new System.Windows.Forms.Button();
-            this.presetDetails = new System.Windows.Forms.DataGridView();
             this.panel1.SuspendLayout();
             this.panelNewPreset.SuspendLayout();
             this.panelCommands.SuspendLayout();
@@ -89,7 +89,7 @@
             this.panel1.Controls.Add(this.description);
             this.panel1.Location = new System.Drawing.Point(1, 310);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(800, 25);
+            this.panel1.Size = new System.Drawing.Size(605, 25);
             this.panel1.TabIndex = 8;
             // 
             // description
@@ -231,6 +231,43 @@
             this.label3.TabIndex = 11;
             this.label3.Text = "Command";
             // 
+            // definePreset
+            // 
+            this.definePreset.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(109)))), ((int)(((byte)(36)))));
+            this.definePreset.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.definePreset.ForeColor = System.Drawing.Color.White;
+            this.definePreset.Location = new System.Drawing.Point(308, 273);
+            this.definePreset.Name = "definePreset";
+            this.definePreset.Size = new System.Drawing.Size(246, 30);
+            this.definePreset.TabIndex = 14;
+            this.definePreset.Text = "Define Default Preset";
+            this.definePreset.UseVisualStyleBackColor = false;
+            this.definePreset.Click += new System.EventHandler(this.definePreset_Click);
+            // 
+            // presetDetails
+            // 
+            this.presetDetails.AllowUserToAddRows = false;
+            this.presetDetails.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
+            this.presetDetails.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.presetDetails.BackgroundColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.presetDetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.presetDetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.presetDetails.Location = new System.Drawing.Point(15, 60);
+            this.presetDetails.MultiSelect = false;
+            this.presetDetails.Name = "presetDetails";
+            this.presetDetails.ReadOnly = true;
+            this.presetDetails.Size = new System.Drawing.Size(200, 243);
+            this.presetDetails.TabIndex = 15;
+            this.presetDetails.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.presetDetails_CellClick);
+            // 
             // saveCommand
             // 
             this.saveCommand.BackColor = System.Drawing.Color.White;
@@ -257,18 +294,18 @@
             this.savePreset.Visible = false;
             this.savePreset.Click += new System.EventHandler(this.savePreset_Click);
             // 
-            // microphone
+            // automaticCommands
             // 
-            this.microphone.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(179)))), ((int)(((byte)(179)))), ((int)(((byte)(179)))));
-            this.microphone.Image = global::Project_Audio.Properties.Resources.audioOff;
-            this.microphone.Location = new System.Drawing.Point(243, 253);
-            this.microphone.Name = "microphone";
-            this.microphone.Size = new System.Drawing.Size(50, 50);
-            this.microphone.TabIndex = 7;
-            this.microphone.UseVisualStyleBackColor = false;
-            this.microphone.Click += new System.EventHandler(this.microphone_Click);
-            this.microphone.MouseEnter += new System.EventHandler(this.microphone_MouseEnter);
-            this.microphone.MouseLeave += new System.EventHandler(this.microphone_MouseLeave);
+            this.automaticCommands.BackColor = System.Drawing.Color.White;
+            this.automaticCommands.Image = global::Project_Audio.Properties.Resources.automaticCommands;
+            this.automaticCommands.Location = new System.Drawing.Point(243, 253);
+            this.automaticCommands.Name = "automaticCommands";
+            this.automaticCommands.Size = new System.Drawing.Size(50, 50);
+            this.automaticCommands.TabIndex = 7;
+            this.automaticCommands.UseVisualStyleBackColor = false;
+            this.automaticCommands.Click += new System.EventHandler(this.automaticCommands_Click);
+            this.automaticCommands.MouseEnter += new System.EventHandler(this.automaticCommands_MouseEnter);
+            this.automaticCommands.MouseLeave += new System.EventHandler(this.microphone_MouseLeave);
             // 
             // removeCommand
             // 
@@ -322,43 +359,6 @@
             this.addPreset.MouseEnter += new System.EventHandler(this.addPreset_MouseEnter);
             this.addPreset.MouseLeave += new System.EventHandler(this.addPreset_MouseLeave);
             // 
-            // definePreset
-            // 
-            this.definePreset.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(109)))), ((int)(((byte)(36)))));
-            this.definePreset.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.definePreset.ForeColor = System.Drawing.Color.White;
-            this.definePreset.Location = new System.Drawing.Point(308, 273);
-            this.definePreset.Name = "definePreset";
-            this.definePreset.Size = new System.Drawing.Size(246, 30);
-            this.definePreset.TabIndex = 14;
-            this.definePreset.Text = "Define Default Preset";
-            this.definePreset.UseVisualStyleBackColor = false;
-            this.definePreset.Click += new System.EventHandler(this.definePreset_Click);
-            // 
-            // presetDetails
-            // 
-            this.presetDetails.AllowUserToAddRows = false;
-            this.presetDetails.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
-            this.presetDetails.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.presetDetails.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.presetDetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.presetDetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.presetDetails.Location = new System.Drawing.Point(15, 60);
-            this.presetDetails.MultiSelect = false;
-            this.presetDetails.Name = "presetDetails";
-            this.presetDetails.ReadOnly = true;
-            this.presetDetails.Size = new System.Drawing.Size(200, 243);
-            this.presetDetails.TabIndex = 15;
-            this.presetDetails.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.presetDetails_CellClick);
-            // 
             // Presets
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -372,15 +372,16 @@
             this.Controls.Add(this.panelCommands);
             this.Controls.Add(this.panelNewPreset);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.microphone);
+            this.Controls.Add(this.automaticCommands);
             this.Controls.Add(this.removeCommand);
             this.Controls.Add(this.updateCommand);
             this.Controls.Add(this.addComand);
             this.Controls.Add(this.addPreset);
             this.Controls.Add(this.presetsList);
             this.Controls.Add(this.label1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Presets";
-            this.Text = "Form1";
+            this.Text = "Presets";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panelNewPreset.ResumeLayout(false);
@@ -401,7 +402,7 @@
         private System.Windows.Forms.Button addComand;
         private System.Windows.Forms.Button updateCommand;
         private System.Windows.Forms.Button removeCommand;
-        public System.Windows.Forms.Button microphone;
+        public System.Windows.Forms.Button automaticCommands;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label description;
         private System.Windows.Forms.Label label2;
