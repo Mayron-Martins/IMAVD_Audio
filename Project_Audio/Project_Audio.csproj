@@ -107,6 +107,7 @@
     <Compile Include="Controller\PresetsController.cs" />
     <Compile Include="Controller\PrincipalController.cs" />
     <Compile Include="Controller\RecognitionController.cs" />
+    <Compile Include="Model\Face.cs" />
     <Compile Include="Model\ShapeType.cs" />
     <Compile Include="Model\Shape.cs" />
     <Compile Include="View\Presets.cs">

@@ -9,9 +9,10 @@ namespace Project_Audio.Model
 {
     public class Shape
     {
-        private Image shape;
+        public Image shape = null;
         public ShapeType type { get; set; }
         public string shapeName;
+        public int x=0, y=0;
 
         public Shape(string shapeName, ShapeType shapeType)
         {
@@ -26,8 +27,6 @@ namespace Project_Audio.Model
 
         public Image GenerateShape(String shapeName)
         {
-            shape = null;
-
             if (shapeName.Equals("square", StringComparison.OrdinalIgnoreCase))
             {
                 shape = LoadSquareImage();
@@ -76,17 +75,15 @@ namespace Project_Audio.Model
             return resizedImage;
         }
 
-        public Bitmap ResizeFace(Image originalImage, int newWidth, int newHeight)
+        public void rotate(RotateFlipType type)
         {
-            Bitmap resizedImage = new Bitmap(newWidth, newHeight);
+            shape.RotateFlip(type);
+        }
 
-            using (Graphics graphics = Graphics.FromImage(resizedImage))
-            {
-                graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
-                graphics.DrawImage(originalImage, 0, 0, newWidth, newHeight);
-            }
-
-            return resizedImage;
+        public void moveShape(int x, int y)
+        {
+            this.x = this.x + x;
+            this.y = this.y + y;
         }
     }
 }

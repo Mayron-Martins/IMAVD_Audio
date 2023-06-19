@@ -15,7 +15,8 @@ namespace Project_Audio
     {
         private PrincipalController controller;
         public bool microphoneStatus;
-        public LinkedList<Image> imageStack;
+        public LinkedList<Face> imageStack;
+        public LinkedList<Face> faces;
         private int positionInterator;
         private List<ShapeType> randomShape;
         public LinkedList<Shape> shapes;
@@ -23,18 +24,19 @@ namespace Project_Audio
         private List<Point> positions;
         private Presets presets;
         Shape shape = new Shape();
-        private string shapeOnPicture = "Shape";
+        public string shapeOnPicture = "Shape";
         public Principal()
         {
             InitializeComponent();
             controller = new PrincipalController(this);
             microphoneStatus = false;
-            imageStack = new LinkedList<Image>();
+            imageStack = new LinkedList<Face>();
             StartPosition = FormStartPosition.CenterScreen;
             positionInterator = 0;
             randomShape = new List<ShapeType>();
             shapes = new LinkedList<Shape>();
-            point = new List<Point>();
+            faces = new LinkedList<Face>();
+            point = GetAvailablePositions();
             presets = new Presets(this);
             actualPresets.Text = "Presets: Default";
         }
@@ -198,7 +200,7 @@ namespace Project_Audio
                     {
                         imageStack.RemoveFirst();
                     }
-                    imageStack.AddLast(Image.FromFile(selectedFilePath));
+                    imageStack.AddLast(new Face(Image.FromFile(selectedFilePath)));
                 }
             }
         }
@@ -312,38 +314,21 @@ namespace Project_Audio
 
             Graphics g = pictureBox1.CreateGraphics();
 
-            point = GetAvailablePositions();
 
-            switch (shape.type)
+            if (point.Count > positionInterator)
             {
-                case ShapeType.Triangle:
-                    if (point.Count > positionInterator)
-                    {
-                        randomShape.Add(controller.GetRandomImage());
-                        Point position = point[positionInterator];
-                        g.DrawImage(shape.GenerateShape(shape.type.ToString()), position.X, position.Y);
-                        positionInterator++;
-                    }
-
-                    break;
-                case ShapeType.Square:
-                    if (point.Count > positionInterator)
-                    {
-                        randomShape.Add(controller.GetRandomImage());
-                        Point position = point[positionInterator];
-                        g.DrawImage(shape.GenerateShape(shape.type.ToString()), position.X, position.Y);
-                        positionInterator++;
-                    }
-                    break;
-                case ShapeType.Circle:
-                    if (point.Count > positionInterator)
-                    {
-                        randomShape.Add(controller.GetRandomImage());
-                        Point position = point[positionInterator];
-                        g.DrawImage(shape.GenerateShape(shape.type.ToString()), position.X, position.Y);
-                        positionInterator++;
-                    }
-                    break;
+                randomShape.Add(controller.GetRandomImage());
+                Point position = point[positionInterator];
+                if(shape.shape == null)
+                {
+                    g.DrawImage(shape.GenerateShape(shape.type.ToString()), position.X, position.Y);
+                }
+                else
+                {      
+                    g.DrawImage(shape.shape, position.X + shape.x, position.Y + shape.y);
+                }
+                
+                positionInterator++;
             }
 
             g.Dispose();
@@ -375,12 +360,12 @@ namespace Project_Audio
             return positions;
         }
 
-        public void RemoveShapesFromPictureBox(Shape shape)
+        public void RemoveShapesFromPictureBox()
         {
             Graphics g = pictureBox1.CreateGraphics();
             g.Clear(Color.FromArgb(26, 26, 26));
 
-            shapes.Remove(shape);
+            shapes.RemoveLast();
             positionInterator = 0;
             foreach (Shape s in shapes)
             {
@@ -390,12 +375,18 @@ namespace Project_Audio
             g.Dispose();
         }
 
-        public void RemoveImageFromPictureBox(Image pBImage)
+        public void RemoveImageFromPictureBox()
         {
             Graphics g = pictureBox1.CreateGraphics();
             g.Clear(Color.FromArgb(26, 26, 26));
 
+            faces.RemoveLast();
             positionInterator = 0;
+
+            foreach(Face face in faces)
+            {
+                CreateImageInPictureBox(face);
+            }
 
             g.Dispose();
         }
@@ -406,17 +397,14 @@ namespace Project_Audio
             {
                 if (shapes.Count > 0)
                 {
-                    shape = shapes.Last.Value;
-                    RemoveShapesFromPictureBox(shape);
+                    RemoveShapesFromPictureBox();
                 }
             }
             else
             {
-                if (imageStack.Count != 0 && shapes.Count == 0)
+                if (faces.Count > 0)
                 {
-                    Image img = imageStack.Last.Value;
-                    imageStack.RemoveLast();
-                    RemoveImageFromPictureBox(img);
+                    RemoveImageFromPictureBox();
                 }
             }
         }
@@ -458,26 +446,36 @@ namespace Project_Audio
         {
             if (imageStack.Count > 0)
             {
-                if (shapeOnPicture.Equals("Shape"))
-                {
-                    removeAllShapes();
-                }
-                Graphics g = pictureBox1.CreateGraphics();
+               
                 Random random = new Random();
                 int randomIndex = random.Next(0, imageStack.Count);
 
-                Image faceImage = imageStack.ElementAt(randomIndex);
-                faceImage = shape.ResizeFace(faceImage, 50, 50);
-                point = GetAvailablePositions();
-                if (point.Count > positionInterator)
-                {
-                    Point position = point[positionInterator];
-                    g.DrawImage(faceImage, position.X, position.Y);
-                    positionInterator++;
-                }
+                Face faceImage = imageStack.ElementAt(randomIndex);
+                CreateImageInPictureBox(faceImage);
 
-                shapeOnPicture = "Face";
+                if (faces.Count <= 11)
+                {
+                    faces.AddLast(faceImage);
+                }
             }
+        }
+
+        public void CreateImageInPictureBox(Face faceImage)
+        {
+            if (shapeOnPicture.Equals("Shape"))
+            {
+                removeAllShapes();
+            }
+            Graphics g = pictureBox1.CreateGraphics();
+            if (point.Count > positionInterator)
+            {
+                Point position = point[positionInterator];
+                g.DrawImage(faceImage.image, position.X + faceImage.x, position.Y +faceImage.y);
+                positionInterator++;
+            }
+
+            shapeOnPicture = "Face";
+
         }
 
         private void actualPresets_TextChanged(object sender, EventArgs e)
@@ -486,7 +484,7 @@ namespace Project_Audio
             controller.DefineCommandList(presetName);
         }
 
-        private void removeAllShapes()
+        public void removeAllShapes()
         {
             Graphics g = pictureBox1.CreateGraphics();
             g.Clear(Color.FromArgb(26, 26, 26));
@@ -500,15 +498,15 @@ namespace Project_Audio
             g.Dispose();
         }
 
-        private void removeAllImages()
+        public void removeAllImages()
         {
             Graphics g = pictureBox1.CreateGraphics();
             g.Clear(Color.FromArgb(26, 26, 26));
 
             positionInterator = 0;
-            while (imageStack.Count > 0)
+            while (faces.Count > 0)
             {
-                imageStack.RemoveLast();
+                faces.RemoveLast();
             }
 
             g.Dispose();

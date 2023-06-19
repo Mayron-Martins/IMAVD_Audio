@@ -8,6 +8,7 @@ using System.IO;
 using NAudio.Wave;
 using Newtonsoft.Json;
 using System.Drawing;
+using System.Linq;
 
 namespace Project_Audio.Controller
 {
@@ -188,7 +189,7 @@ namespace Project_Audio.Controller
             }
 
             string[] action = actualAction.Split(';');
-
+            
             voiceCommands[action[0]]();
 
             view.voiceCommands.BackColor = Color.FromArgb(179, 179, 179);
@@ -197,7 +198,7 @@ namespace Project_Audio.Controller
         private void setVoiceCommands()
         {
             voiceCommands.Add("Rotate", ActionRotate);
-            voiceCommands.Add("Move To", ActionMoveTo);
+            voiceCommands.Add("Move to", ActionMoveTo);
             voiceCommands.Add("Resize", ActionResize);
             voiceCommands.Add("Color", ActionColor);
             voiceCommands.Add("Create", ActionCreate);
@@ -207,12 +208,105 @@ namespace Project_Audio.Controller
 
         private void ActionRotate()
         {
+            string[] action = actualAction.Split(';');
 
+            RotateFlipType type = RotateFlipType.RotateNoneFlipNone;
+            switch (action[1])
+            {
+                case "Right":
+                    type = RotateFlipType.Rotate270FlipNone;
+                    break;
+                case "Left":
+                    type = RotateFlipType.Rotate90FlipNone;
+                    break;
+                case "Horizontal":
+                    type = RotateFlipType.RotateNoneFlipX;
+                    break;
+                case "Vertical":
+                    type = RotateFlipType.RotateNoneFlipY;
+                    break;
+
+            }
+
+            if (view.shapeOnPicture.Equals("Shape"))
+            {
+                LinkedList<Shape> shapes = new LinkedList<Shape>(view.shapes);
+                view.removeAllShapes();
+                for(int i=0; i<shapes.Count; i++)
+                {
+                    if (shapes.ElementAt(i).type.ToString().ToLower() == action[2].ToLower())
+                    {
+                        shapes.ElementAt(i).rotate(type);
+                    }
+                    view.CreateShapeInPictureBox(shapes.ElementAt(i));
+                }
+                view.shapes = new LinkedList<Shape>(shapes);
+            }
+            else
+            {
+                LinkedList<Face> faces = new LinkedList<Face>(view.faces);
+                view.removeAllImages();
+                for(int i=0; i<faces.Count; i++)
+                {
+                    faces.ElementAt(i).image.RotateFlip(type);
+                    view.CreateImageInPictureBox(faces.ElementAt(i));
+                }
+
+                view.faces = new LinkedList<Face>(faces);
+            }
         }
 
         private void ActionMoveTo()
         {
+            string[] action = actualAction.Split(';');
+            int x =0 , y = 0;
+            switch (action[1])
+            {
+                case "Right":
+                    x = 15;
+                    y = 0;
+                    break;
+                case "Left":
+                    x = -15;
+                    y = 0;
+                    break;
+                case "Up":
+                    x = 0;
+                    y = -15;
+                    break;
+                case "Down":
+                    x = 0;
+                    y = 15;
+                    break;
+            }
 
+            if (view.shapeOnPicture.Equals("Shape"))
+            {
+                LinkedList<Shape> shapes = new LinkedList<Shape>(view.shapes);
+                view.removeAllShapes();
+                for (int i = 0; i < shapes.Count; i++)
+                {
+                    if (shapes.ElementAt(i).type.ToString().ToLower() == action[2].ToLower())
+                    {
+                        shapes.ElementAt(i).moveShape(x, y);
+                        view.CreateShapeInPictureBox(shapes.ElementAt(i));
+                        continue;
+                    }
+                    view.CreateShapeInPictureBox(shapes.ElementAt(i));
+                }
+                view.shapes = new LinkedList<Shape>(shapes);
+            }
+            else
+            {
+                LinkedList<Face> faces = new LinkedList<Face>(view.faces);
+                view.removeAllImages();
+                for (int i = 0; i < faces.Count; i++)
+                {
+                    faces.ElementAt(i).moveFace(x, y);
+                    view.CreateImageInPictureBox(faces.ElementAt(i));
+                }
+                view.faces = new LinkedList<Face>(faces);
+            }
         }
 
         private void ActionResize()
