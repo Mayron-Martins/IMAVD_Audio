@@ -103,6 +103,26 @@ namespace Project_Audio.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap engLanguage {
+            get {
+                object obj = ResourceManager.GetObject("engLanguage", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap engLanguageDisabled {
+            get {
+                object obj = ResourceManager.GetObject("engLanguageDisabled", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap faces {
             get {
                 object obj = ResourceManager.GetObject("faces", resourceCulture);
@@ -136,6 +156,26 @@ namespace Project_Audio.Properties {
         internal static System.Drawing.Bitmap listPresets {
             get {
                 object obj = ResourceManager.GetObject("listPresets", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap porLanguage {
+            get {
+                object obj = ResourceManager.GetObject("porLanguage", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap porLanguageDisabled {
+            get {
+                object obj = ResourceManager.GetObject("porLanguageDisabled", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

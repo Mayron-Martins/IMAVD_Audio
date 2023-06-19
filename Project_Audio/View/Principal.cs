@@ -25,6 +25,7 @@ namespace Project_Audio
         private Presets presets;
         Shape shape = new Shape();
         public string shapeOnPicture = "Shape";
+        public string defaultLanguage = "en-US";
         public Principal()
         {
             InitializeComponent();
@@ -100,7 +101,7 @@ namespace Project_Audio
             // Exibir o texto traduzido na TextBox
             generatedText.Text = textoConvertido;
 
-
+            ActiveButton(speechToText, textToSpeech, voiceCommands);
         }
 
         private bool ActiveButton(Button button, Button otherButton1, Button otherButton2)
@@ -296,13 +297,19 @@ namespace Project_Audio
 
         private void geometricShapes_Click(object sender, EventArgs e)
         {
+            CreateShape(-1);
+        }
+
+        public void CreateShape(int type)
+        {
             if (shapes.Count <= 11)
             {
-                shape = controller.GenerateImageListFromButton();
+                shape = (type == -1) ? controller.GenerateImageListFromButton() :
+                    controller.GenerateShape((ShapeType)type);
+
                 shapes.AddLast(shape);
                 CreateShapeInPictureBox(shape);
             }
-
         }
 
         public void CreateShapeInPictureBox(Shape shape)
@@ -319,15 +326,15 @@ namespace Project_Audio
             {
                 randomShape.Add(controller.GetRandomImage());
                 Point position = point[positionInterator];
-                if(shape.shape == null)
+                if (shape.shape == null)
                 {
                     g.DrawImage(shape.GenerateShape(shape.type.ToString()), position.X, position.Y);
                 }
                 else
-                {      
+                {
                     g.DrawImage(shape.shape, position.X + shape.x, position.Y + shape.y);
                 }
-                
+
                 positionInterator++;
             }
 
@@ -383,7 +390,7 @@ namespace Project_Audio
             faces.RemoveLast();
             positionInterator = 0;
 
-            foreach(Face face in faces)
+            foreach (Face face in faces)
             {
                 CreateImageInPictureBox(face);
             }
@@ -444,13 +451,18 @@ namespace Project_Audio
 
         private void peoplesFaces_Click(object sender, EventArgs e)
         {
+            CreateImage();
+        }
+
+        public void CreateImage()
+        {
             if (imageStack.Count > 0)
             {
-               
+
                 Random random = new Random();
                 int randomIndex = random.Next(0, imageStack.Count);
 
-                Face faceImage = imageStack.ElementAt(randomIndex);
+                Face faceImage = new Face(imageStack.ElementAt(randomIndex).image);
                 CreateImageInPictureBox(faceImage);
 
                 if (faces.Count <= 11)
@@ -470,7 +482,7 @@ namespace Project_Audio
             if (point.Count > positionInterator)
             {
                 Point position = point[positionInterator];
-                g.DrawImage(faceImage.image, position.X + faceImage.x, position.Y +faceImage.y);
+                g.DrawImage(faceImage.image, position.X + faceImage.x, position.Y + faceImage.y);
                 positionInterator++;
             }
 
@@ -510,6 +522,71 @@ namespace Project_Audio
             }
 
             g.Dispose();
+        }
+
+        private void engLanguage_Click(object sender, EventArgs e)
+        {
+            bool active = ModifyLanguage(engLanguage, porLanguage);
+
+            if (active)
+            {
+                ModifyImageLanguage(true, false);
+            }
+            else
+            {
+                ModifyImageLanguage(false, true);
+            }
+        }
+
+        private void porLanguage_Click(object sender, EventArgs e)
+        {
+            bool active = ModifyLanguage(porLanguage, engLanguage);
+
+            if (active)
+            {
+                ModifyImageLanguage(false, true);
+            }
+            else
+            {
+                ModifyImageLanguage(true, false);
+            }
+        }
+
+        private bool ModifyLanguage(Button button, Button other)
+        {
+            bool active = false;
+            Color bg = button.BackColor;
+
+            if (bg.Equals(Color.FromArgb(179, 179, 179)))
+            {
+                button.BackColor = Color.White;
+                other.BackColor = Color.FromArgb(179, 179, 179);
+
+                active = true;
+            }
+            else
+            {
+                button.BackColor = Color.FromArgb(179, 179, 179);
+                other.BackColor = Color.White;
+                active = false;
+            }
+
+            return active;
+        }
+
+        private void ModifyImageLanguage(bool engEnabled, bool porEnabled)
+        {
+
+            defaultLanguage = (engEnabled) ? "en-US" : defaultLanguage;
+
+            engLanguage.Image = (engEnabled) ? global::Project_Audio.Properties.Resources.engLanguage :
+                global::Project_Audio.Properties.Resources.engLanguageDisabled;
+
+            defaultLanguage = (porEnabled) ? "pt-BR" : defaultLanguage;
+
+            porLanguage.Image = (porEnabled) ? global::Project_Audio.Properties.Resources.porLanguage :
+                global::Project_Audio.Properties.Resources.porLanguageDisabled;
+
         }
     }
 }

@@ -1,10 +1,12 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Project_Audio.Model;
 using Project_Audio.View;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace Project_Audio.Controller
@@ -39,18 +41,29 @@ namespace Project_Audio.Controller
             this.pathPresets = pathPresets;
         }
 
-        public void GenerateDefault(Dictionary<string, object[]> commandList)
+        public void GenerateDefault(Dictionary<string, object[]> commandList, Dictionary<string, object[]> commandListPT)
         {
             string defaultPreset = Path.Combine(pathPresets, "Default.json");
+            string defaultPresetPT = Path.Combine(pathPresets, "Default Portuguese.json");
 
-            if (!File.Exists(defaultPreset))
-            {
+            if (!File.Exists(defaultPreset) || !File.Exists(defaultPresetPT))
+            {   
                 JArray contentJson = new JArray();
+                JArray contentJsonPT = new JArray();
 
                 object[] shapes = { "Square", "Triangle", "Circle", "Face" };
+                object[] shapesPT = { "Quadrado", "Triângulo", "Círculo", "Rosto" };
+
+                int countMain = 0;
+                int countSpecific = 0;
+                int countShape = 0;
+
+                Dictionary<string, object[]>.KeyCollection mainCommandPT = commandListPT.Keys;
 
                 foreach (string mainCommand in commandList.Keys)
                 {
+                    object[] actionPT = commandListPT[mainCommandPT.ElementAt(countMain)];
+
                     if (mainCommand != "Create" && mainCommand != "Duplicate")
                     {
                         foreach (object action in commandList[mainCommand])
@@ -62,7 +75,17 @@ namespace Project_Audio.Controller
                                 command["action"] = mainCommand + ";" + action + ";" + shape;
 
                                 contentJson.Add(command);
+
+                                JObject commandPT = new JObject();
+                                commandPT["name"] = shapesPT[countShape] + " " + mainCommandPT.ElementAt(countMain) + " " + actionPT[countSpecific];
+
+                                commandPT["action"] = mainCommand + ";" + action + ";" + shape;
+
+                                contentJsonPT.Add(commandPT);
+                                countShape++;
                             }
+                            countSpecific++;
+                            countShape = 0;
                         }
                     }
                     else
@@ -75,12 +98,26 @@ namespace Project_Audio.Controller
                             command["action"] = mainCommand + ";" + action;
 
                             contentJson.Add(command);
+
+                            JObject commandPT = new JObject();
+                            commandPT["name"] = mainCommandPT.ElementAt(countMain) + " " + actionPT[countSpecific];
+
+                            commandPT["action"] = mainCommand + ";" + action;
+
+                            contentJsonPT.Add(commandPT);
+
+                            countSpecific++;
                         }
                     }
+                    countMain++;
+                    countSpecific = 0;
                 }
 
                 string strContent = contentJson.ToString();
+                string strContentPT = contentJsonPT.ToString();
+
                 File.WriteAllText(defaultPreset, strContent);
+                File.WriteAllText(defaultPresetPT, strContentPT);
             }
 
             UpdateList();
@@ -135,7 +172,8 @@ namespace Project_Audio.Controller
 
         public void UpdateTable()
         {
-            string presetName = view.presetsList.SelectedItem.ToString();
+            string presetName = (view.presetsList.SelectedItem != null) ?
+                view.presetsList.SelectedItem.ToString() : "";
 
             if (String.IsNullOrEmpty(presetName))
             {
@@ -277,7 +315,8 @@ namespace Project_Audio.Controller
 
         private string GetPathPreset()
         {
-            string presetName = view.presetsList.SelectedItem.ToString();
+            string presetName = (view.presetsList.SelectedItem != null) ?
+                view.presetsList.SelectedItem.ToString() : "";
 
             if (String.IsNullOrEmpty(presetName))
             {

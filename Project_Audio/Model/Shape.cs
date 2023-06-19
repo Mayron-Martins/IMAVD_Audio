@@ -13,6 +13,7 @@ namespace Project_Audio.Model
         public ShapeType type { get; set; }
         public string shapeName;
         public int x=0, y=0;
+        public int size;
 
         public Shape(string shapeName, ShapeType shapeType)
         {
@@ -39,7 +40,7 @@ namespace Project_Audio.Model
             {
                 shape = LoadCircleImage();
             }
-
+            size = 50;
             return shape;
         }
 
@@ -62,7 +63,7 @@ namespace Project_Audio.Model
             
         }
 
-        public Bitmap ResizeImage(Bitmap originalImage, int newWidth, int newHeight)
+        public static Bitmap ResizeImage(Bitmap originalImage, int newWidth, int newHeight)
         {
             Bitmap resizedImage = new Bitmap(newWidth, newHeight);
 
@@ -84,6 +85,41 @@ namespace Project_Audio.Model
         {
             this.x = this.x + x;
             this.y = this.y + y;
+        }
+
+        public void ResizeShape(int size)
+        {
+            if ((this.size == 10 && size == -10) || this.size == 80 && size == 10)
+            {
+                return;
+            }
+
+            this.size = this.size + size;
+            Bitmap image = new Bitmap(shape);
+            shape = ResizeImage(image, this.size, this.size);
+        }
+
+        public void Paint(Color color)
+        {
+            Bitmap image = new Bitmap(shape);
+            int width = shape.Width;
+            int height = shape.Height;
+
+            for (int y = 0; y < height; y++)
+            {
+                for (int x = 0; x < width; x++)
+                {
+                    Color colorPixel = image.GetPixel(x, y);
+
+                    if(colorPixel.A != 0)
+                    {
+                        image.SetPixel(x, y, color);
+                    }
+                }
+            }
+
+            shape = image;
+
         }
     }
 }

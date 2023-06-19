@@ -14,6 +14,7 @@ namespace Project_Audio.View
         private Principal principal;
         private PresetsController controller;
         private Dictionary<string, object[]> commandAction;
+        private Dictionary<string, object[]> commandActionPT;
         private CommandAction selectedCommand;
         public Presets(Principal principal)
         {
@@ -35,16 +36,27 @@ namespace Project_Audio.View
 
             StartPosition = FormStartPosition.CenterScreen;
 
-            commandAction = new Dictionary<string, object[]>();
+            commandAction = new Dictionary<string, object[]>
+            {
+                { "Rotate", new object[] { "Right", "Left", "Horizontal", "Vertical" } },
+                { "Move to", new object[] { "Right", "Left", "Up", "Down" } },
+                { "Resize", new object[] { "Grow", "Reduce" } },
+                { "Color", new object[] { "Red", "Blue", "Green", "White", "Black", "Yellow", "Orange", "Brown", "Purple" } },
+                { "Create", new object[] { "Square", "Triangle", "Circle", "Face" } },
+                { "Duplicate", new object[] { "Square", "Triangle", "Circle", "Face" } }
+            };
 
-            commandAction.Add("Rotate", new object[] { "Right", "Left", "Horizontal", "Vertical" });
-            commandAction.Add("Move to", new object[] { "Right", "Left", "Up", "Down" });
-            commandAction.Add("Resize", new object[] { "Grow", "Reduce" });
-            commandAction.Add("Color", new object[] { "Red", "Blue", "Green", "White", "Black", "Yellow", "Orange", "Brown", "Purple" });
-            commandAction.Add("Create", new object[] { "Square", "Triangle", "Circle", "Face" });
-            commandAction.Add("Duplicate", new object[] { "Square", "Triangle", "Circle", "Face" });
+            commandActionPT = new Dictionary<string, object[]>
+            {
+                { "Rotacionar para", new object[] { "Direita", "Esquerda", "Horizontal", "Vertical" } },
+                { "Mover para", new object[] { "Direita", "Esquerda", "Cima", "Baixo" } },
+                { "Redimensionar para", new object[] { "Aumentar", "Reduzir" } },
+                { "Cor", new object[] { "Vermelho", "Azul", "Verde", "Branco", "Preto", "Amarelo", "Laranja", "Marrom", "Roxo" } },
+                { "Criar", new object[] { "Quadrado", "Triângulo", "Círculo", "Rosto" } },
+                { "Duplicar", new object[] { "Quadrado", "Triângulo", "Círculo", "Rosto" } }
+            };
 
-            controller.GenerateDefault(commandAction);
+            controller.GenerateDefault(commandAction, commandActionPT);
             
             selectedCommand = new CommandAction();
         }
@@ -277,9 +289,10 @@ namespace Project_Audio.View
         {
             string name = commandName.Text;
 
-            string main = mainAction.SelectedItem.ToString();
-            string specific = specificAction.SelectedItem.ToString();
-            string diretive = diretiveAction.SelectedItem.ToString();
+            string main = (mainAction.SelectedItem != null) ?
+            mainAction.SelectedItem.ToString() : "";
+            string specific = (specificAction.SelectedItem != null) ? specificAction.SelectedItem.ToString() : "";
+            string diretive = (diretiveAction.SelectedItem != null) ? diretiveAction.SelectedItem.ToString() : "";
 
             if(string.IsNullOrEmpty(name) || string.IsNullOrEmpty(main)
                 || string.IsNullOrEmpty(specific))

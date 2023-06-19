@@ -162,10 +162,14 @@
     <Content Include="View\Icons\addPreset.png" />
     <Content Include="View\Icons\audioOff.png" />
     <Content Include="View\Icons\audioOn.png" />
+    <Content Include="View\Icons\engLanguage.png" />
+    <Content Include="View\Icons\engLanguageDisabled.png" />
     <Content Include="View\Icons\faces.png" />
     <Content Include="View\Icons\folder.png" />
     <Content Include="View\Icons\geometricShapes.png" />
     <Content Include="View\Icons\listPresets.png" />
+    <Content Include="View\Icons\porLanguage.png" />
+    <Content Include="View\Icons\porLanguageDisabled.png" />
     <Content Include="View\Icons\removeCommand.png" />
     <Content Include="View\Icons\save.png" />
     <Content Include="View\Shapes\Circle.png" />

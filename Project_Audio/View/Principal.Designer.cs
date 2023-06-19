@@ -43,6 +43,8 @@
             this.pathAudioFile = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.actualPresets = new System.Windows.Forms.Label();
+            this.porLanguage = new System.Windows.Forms.Button();
+            this.engLanguage = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.cleanImages = new System.Windows.Forms.Button();
             this.listPresets = new System.Windows.Forms.Button();
@@ -214,6 +216,28 @@
             this.actualPresets.Text = "Presets:";
             this.actualPresets.TextChanged += new System.EventHandler(this.actualPresets_TextChanged);
             // 
+            // porLanguage
+            // 
+            this.porLanguage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(179)))), ((int)(((byte)(179)))), ((int)(((byte)(179)))));
+            this.porLanguage.Image = global::Project_Audio.Properties.Resources.porLanguageDisabled;
+            this.porLanguage.Location = new System.Drawing.Point(732, 440);
+            this.porLanguage.Name = "porLanguage";
+            this.porLanguage.Size = new System.Drawing.Size(40, 40);
+            this.porLanguage.TabIndex = 17;
+            this.porLanguage.UseVisualStyleBackColor = false;
+            this.porLanguage.Click += new System.EventHandler(this.porLanguage_Click);
+            // 
+            // engLanguage
+            // 
+            this.engLanguage.BackColor = System.Drawing.Color.White;
+            this.engLanguage.Image = global::Project_Audio.Properties.Resources.engLanguage;
+            this.engLanguage.Location = new System.Drawing.Point(688, 440);
+            this.engLanguage.Name = "engLanguage";
+            this.engLanguage.Size = new System.Drawing.Size(40, 40);
+            this.engLanguage.TabIndex = 16;
+            this.engLanguage.UseVisualStyleBackColor = false;
+            this.engLanguage.Click += new System.EventHandler(this.engLanguage_Click);
+            // 
             // pictureBox1
             // 
             this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -351,6 +375,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
             this.ClientSize = new System.Drawing.Size(784, 511);
+            this.Controls.Add(this.porLanguage);
+            this.Controls.Add(this.engLanguage);
             this.Controls.Add(this.actualPresets);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.cleanImages);
@@ -405,6 +431,8 @@
         private System.Windows.Forms.Button cleanImages;
         private System.Windows.Forms.PictureBox pictureBox1;
         public System.Windows.Forms.Label actualPresets;
+        private System.Windows.Forms.Button engLanguage;
+        private System.Windows.Forms.Button porLanguage;
     }
 }
 
