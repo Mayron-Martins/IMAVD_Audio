@@ -169,9 +169,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Temp\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="headphone.ico" />
     <Content Include="View\Icons\addPreset.png" />

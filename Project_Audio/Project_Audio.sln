@@ -5,6 +5,8 @@ VisualStudioVersion = 17.6.33723.286
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Project_Audio", "Project_Audio.csproj", "{2E067F75-B082-400B-A07D-A7234E1775AC}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "SetupAudioIMAVD", "..\SetupAudioIMAVD\SetupAudioIMAVD.vdproj", "{5C103F58-CDD6-44AD-B9B2-A0C9433BB5FA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,8 @@ Global
 		{2E067F75-B082-400B-A07D-A7234E1775AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2E067F75-B082-400B-A07D-A7234E1775AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2E067F75-B082-400B-A07D-A7234E1775AC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C103F58-CDD6-44AD-B9B2-A0C9433BB5FA}.Debug|Any CPU.ActiveCfg = Debug
+		{5C103F58-CDD6-44AD-B9B2-A0C9433BB5FA}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
